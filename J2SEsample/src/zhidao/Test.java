@@ -4,37 +4,66 @@
  */
 package zhidao;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JLabel;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Arrays;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 class Test {
 
-    public static void main(String[] args) {
-        System.getProperties().list(System.out);
-        System.out.println(System.getProperty("user.home") + "/Desktop");
-        JLabel label = new JLabel();
-        label.setText("123456");
-        Dimension size = label.getPreferredSize();
-        BufferedImage image = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_BGR);
-//        label.paint(image.createGraphics()); /*这个方法只有label显示的时候才能用,而且图片样子和label显示的是一模一样的*/
-        Graphics2D g = image.createGraphics();
-        g.setColor(Color.WHITE);
-        g.fill(new Rectangle(0,0,size.width,size.height));
-        g.setColor(Color.BLACK);
-        g.drawString(label.getText(), 0, 10);
-        try {
-            ImageIO.write(image, "jpg", new File("D:\\1.jpg"));
-        } catch (IOException ex) {
-            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+    public static int SearchButtonIndex(Object[] buttons, Object button) {
+        if (buttons.length == 0 || buttons == null) {
+            return -1;
         }
+        for (int i = 0; i < buttons.length; i++) {
+            if (buttons[i].equals(button)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        final JButton[] buttons = new JButton[20];
+        frame.setLayout(new GridLayout(4, 5));
+        for (int i = 0; i < 20; i++) {
+            buttons[i] = new JButton(i + "");
+            buttons[i].addMouseListener(new MouseListener() {
+
+                public void mouseClicked(MouseEvent e) {
+                    System.out.println("这是第" + ((JButton) e.getSource()).getActionCommand());
+                    System.out.println(SearchButtonIndex(buttons, e.getSource()));
+                }
+
+                public void mousePressed(MouseEvent e) {
+                    System.out.println("这是第" + ((JButton) e.getSource()).getActionCommand());
+                    System.out.println(SearchButtonIndex(buttons, e.getSource()));
+                }
+
+                public void mouseReleased(MouseEvent e) {
+                    System.out.println("这是第" + ((JButton) e.getSource()).getActionCommand());
+                    System.out.println(SearchButtonIndex(buttons, e.getSource()));
+                }
+
+                public void mouseEntered(MouseEvent e) {
+                    System.out.println("这是第" + ((JButton) e.getSource()).getActionCommand());
+                    System.out.println(SearchButtonIndex(buttons, e.getSource()));
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    System.out.println("这是第" + ((JButton) e.getSource()).getActionCommand());
+                    System.out.println(SearchButtonIndex(buttons, e.getSource()));
+                }
+            });
+            frame.getContentPane().add(buttons[i]);
+            frame.setDefaultCloseOperation(3);
+            frame.setVisible(true);
+        }
+
     }
 }

@@ -42,13 +42,23 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jSpinner1 = new javax.swing.JSpinner();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+        getContentPane().setLayout(new java.awt.FlowLayout());
 
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("楷体_GB2312", 3, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("楷体_GB2312", 3, 12));
         jLabel1.setText("jLabel1");
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -57,9 +67,27 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 53, 19);
+        jLabel1.setBounds(10, 50, 53, 19);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        jTextField1.setText("jTextField1");
+        jPanel1.add(jTextField1);
+        jTextField1.setBounds(90, 70, 72, 21);
+
+        jSpinner1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jSpinner1FocusGained(evt);
+            }
+        });
+        jPanel1.add(jSpinner1);
+        jSpinner1.setBounds(170, 40, 140, 20);
+        jPanel1.add(jButton1);
+        jButton1.setBounds(30, 160, 33, 9);
+
+        jButton2.setText("jButton2");
+        jPanel1.add(jButton2);
+        jButton2.setBounds(90, 100, 170, 130);
+
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -68,6 +96,14 @@ public class NewJFrame extends javax.swing.JFrame {
         Point point = jLabel1.getLocation();
         this.jLabel1.setLocation(evt.getPoint().x +point.x, evt.getPoint().y +point.y);
     }//GEN-LAST:event_jLabel1MouseDragged
+
+    private void jSpinner1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSpinner1FocusGained
+        System.out.println("dfafadf");
+    }//GEN-LAST:event_jSpinner1FocusGained
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        System.out.println("djfaklfsaf");
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
@@ -82,7 +118,11 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

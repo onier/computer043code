@@ -181,7 +181,6 @@ public class JFontChooser extends javax.swing.JDialog {
     }//GEN-LAST:event_jList1ValueChanged
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     /**
