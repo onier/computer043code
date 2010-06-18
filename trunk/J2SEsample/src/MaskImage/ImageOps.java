@@ -10,8 +10,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.color.ColorSpace;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -31,7 +29,7 @@ import javax.swing.JPanel;
 /** A demonstration of various image processing filters */
 public class ImageOps extends JPanel {
 
-    static final int WIDTH = 600,  HEIGHT = 675; // Size of our example
+    static final int WIDTH = 600, HEIGHT = 675; // Size of our example
 
     public String getName() {
         return "Image Processing";
@@ -48,13 +46,11 @@ public class ImageOps extends JPanel {
 
     /** This constructor loads the image we will manipulate */
     public ImageOps() {
-        image = new javax.swing.ImageIcon("E:\\Sample\\Test\\1cov2er.png").getImage();
+        image = new javax.swing.ImageIcon("C:\\未命.png").getImage();
     }
-
     // These arrays of bytes are used by the LookupImageOp image filters below
     static byte[] brightenTable = new byte[256];
     static byte[] thresholdTable = new byte[256];
-
 
     static { // Initialize the arrays
         for (int i = 0; i < 256; i++) {
@@ -62,22 +58,18 @@ public class ImageOps extends JPanel {
             thresholdTable[i] = (byte) ((i < 225) ? 0 : i);
         }
     }
-
     // This AffineTransform is used by one of the image filters below
     static AffineTransform mirrorTransform;
-
 
     static { // Create and initialize the AffineTransform
         mirrorTransform = AffineTransform.getTranslateInstance(127, 0);
         mirrorTransform.scale(-1.0, 1.0); // flip horizontally
     }
-
     // These are the labels we'll display for each of the filtered images
     static String[] filterNames = new String[]{"Original", "Gray Scale",
         "Negative", "Brighten (linear)", "Brighten (sqrt)", "Threshold",
         "Blur", "Sharpen", "Edge Detect", "Mirror", "Rotate (center)",
         "Rotate (lower left)"};
-
     // The following BufferedImageOp image filter objects perform
     // different types of image processing operations.
     static BufferedImageOp[] filters = new BufferedImageOp[]{
@@ -86,7 +78,7 @@ public class ImageOps extends JPanel {
         // 2) Convert to Grayscale color space
         new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null),
         // 3) Image negative. Multiply each color value by -1.0 and add 255
-        new RescaleOp(new float[]{-1, -1, -1}, new float[]{255f, 255f, 255f}, null),
+        new RescaleOp(-1.0f, 255f, null),
         // 4) Brighten using a linear formula that increases all color
         // values
         new RescaleOp(1.25f, 0, null),
@@ -120,7 +112,7 @@ public class ImageOps extends JPanel {
         // Create a BufferedImage big enough to hold the Image loaded
         // in the constructor. Then copy that image into the new
         // BufferedImage object so that we can process it.
-        BufferedImage bimage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        BufferedImage bimage = new BufferedImage(image.getWidth(this), image.getHeight(this), BufferedImage.TYPE_INT_RGB);
         Graphics2D ig = bimage.createGraphics();
         ig.drawImage(image, 0, 0, this); // copy the image
 
@@ -147,22 +139,11 @@ public class ImageOps extends JPanel {
     }
 
     public static void main(String[] a) {
-        final JFrame f = new JFrame();
+        JFrame f = new JFrame();
         f.addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
-            }
-        });
-        f.addMouseMotionListener(new MouseAdapter() {
-
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                if (e.isShiftDown()) {
-                    f.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
-                } else {
-                    f.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-                }
             }
         });
         f.setContentPane(new ImageOps());
@@ -170,4 +151,3 @@ public class ImageOps extends JPanel {
         f.setVisible(true);
     }
 }
-

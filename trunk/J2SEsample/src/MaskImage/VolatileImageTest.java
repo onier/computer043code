@@ -107,5 +107,4 @@ public class VolatileImageTest extends Applet implements ItemListener {
             }
         }
     }
-    // TODO overwrite start(), stop() and destroy() methods
 }

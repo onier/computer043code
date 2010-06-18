@@ -63,7 +63,7 @@ public class Sampler extends Frame {
     private Hashtable mOps;
 
     public static void main(String[] args) {
-        String imageFile = "E:\\Sample\\Test\\1cover.png";
+        String imageFile = "C:\\view.JPG";
         if (args.length > 0) {
             imageFile = args[0];
         }
