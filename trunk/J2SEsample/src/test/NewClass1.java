@@ -4,6 +4,7 @@
  */
 
 package test;
+import javax.swing.text.DefaultCaret;
 
 /**
  *

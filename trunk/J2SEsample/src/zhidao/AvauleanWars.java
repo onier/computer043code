@@ -6,9 +6,6 @@ package zhidao;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.plaf.*;
-import java.awt.event.*;
-import java.applet.*;
 
 public class AvauleanWars extends JApplet {
 
@@ -17,6 +14,7 @@ public class AvauleanWars extends JApplet {
     OptionBar options;
     Container applet;
 
+    @Override
     public void init() {
         applet = this.getContentPane();
         applet.setLayout(null);
@@ -72,6 +70,7 @@ public class AvauleanWars extends JApplet {
             return img;
         }
 
+        @Override
         public void paint(Graphics g) {
             super.paint(g);
             g.drawImage(img, 0, 0, this);
