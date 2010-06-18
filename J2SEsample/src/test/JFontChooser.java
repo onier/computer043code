@@ -52,21 +52,24 @@ public class JFontChooser extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        fontTitleLabel = new javax.swing.JLabel();
-        fontformatTitleLabel = new javax.swing.JLabel();
-        sizeTitleLabel = new javax.swing.JLabel();
-        fontNameLabel = new javax.swing.JLabel();
-        formatLabel = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        fontNameList = new javax.swing.JList();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList(formats);
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
         jPanel1 = new javax.swing.JPanel();
         previewLabel = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        fontNameList = new javax.swing.JList();
+        fontNameLabel = new javax.swing.JLabel();
+        fontTitleLabel = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        formatLabel = new javax.swing.JLabel();
+        fontformatTitleLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList(formats);
+        jPanel5 = new javax.swing.JPanel();
+        sizeTitleLabel = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList();
+        jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -74,26 +77,16 @@ public class JFontChooser extends javax.swing.JDialog {
         setTitle("FontChooser");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fontTitleLabel.setText("字体");
-        getContentPane().add(fontTitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("预览"));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
-        fontformatTitleLabel.setText("字体样式");
-        getContentPane().add(fontformatTitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
+        previewLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        previewLabel.setText("abcdef");
+        jPanel1.add(previewLabel);
 
-        sizeTitleLabel.setText("大小");
-        getContentPane().add(sizeTitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, -1, 20));
-        getContentPane().add(fontNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 160, 20));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 150, 50));
 
-        formatLabel.setText("     ");
-        getContentPane().add(formatLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 130, -1));
-
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 40, 20));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(0, 0));
 
@@ -109,7 +102,48 @@ public class JFontChooser extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(fontNameList);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 160, 140));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 80;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jScrollPane1, gridBagConstraints);
+
+        fontNameLabel.setText(" ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel3.add(fontNameLabel, gridBagConstraints);
+
+        fontTitleLabel.setText("字体");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel3.add(fontTitleLabel, gridBagConstraints);
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 3, 190, 185));
+
+        jPanel6.setLayout(new java.awt.GridBagLayout());
+
+        formatLabel.setText("     ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel6.add(formatLabel, gridBagConstraints);
+
+        fontformatTitleLabel.setText("字体样式");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel6.add(fontformatTitleLabel, gridBagConstraints);
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(24, 24));
 
@@ -120,7 +154,41 @@ public class JFontChooser extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(jList1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 130, 140));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 80;
+        gridBagConstraints.ipady = 135;
+        jPanel6.add(jScrollPane2, gridBagConstraints);
+
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 107, 190));
+
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        sizeTitleLabel.setText("大小");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel5.add(sizeTitleLabel, gridBagConstraints);
+
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 34;
+        gridBagConstraints.ipady = -1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel5.add(jFormattedTextField1, gridBagConstraints);
 
         jList2.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -129,37 +197,37 @@ public class JFontChooser extends javax.swing.JDialog {
         });
         jScrollPane3.setViewportView(jList2);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 17;
+        gridBagConstraints.ipady = 115;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(jScrollPane3, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("预览"));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 44, 190));
 
-        previewLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        previewLabel.setText("abcdef");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(previewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(previewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 370, -1));
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setText("确定");
-        jPanel2.add(jButton1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel4.add(jButton1, gridBagConstraints);
 
         jButton2.setText("取消");
-        jPanel2.add(jButton2);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel4.add(jButton2, gridBagConstraints);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, -1, 40));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,7 +282,10 @@ public class JFontChooser extends javax.swing.JDialog {
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

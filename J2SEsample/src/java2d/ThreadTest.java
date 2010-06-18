@@ -17,7 +17,6 @@ public class ThreadTest {
     public static void main(String[] args) {
         HashMap m = new HashMap();
         m.isEmpty();
-        java.util.Collections
 
         while (true) {
             new Thread(new Runnable() {
