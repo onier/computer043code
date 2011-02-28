@@ -39,6 +39,9 @@ public class ColorLookAndFeel extends BasicLookAndFeel {
     @Override
     protected void initSystemColorDefaults(UIDefaults table) {
         super.initSystemColorDefaults(table);
+        table.put("progressBar.color", Color.GREEN);
+        table.put("progressBar.bordercolor", Color.YELLOW);
+        table.put(" ProgressBar.repaintInterval", 25);
     }
 
     @Override
@@ -53,6 +56,8 @@ public class ColorLookAndFeel extends BasicLookAndFeel {
                     "EllipseToggleButtonUI", "apaint.ColorEllipseToggleButtonUI",
                     "TabbedPaneUI", "apaint.ColorTabbedPaneUI",
                     "ScrollBarUI", "apaint.ColorScrollBarUI",
+                    "ProgressBarUI", "apaint.ColorProgressBarUI",
+                    "ComboBoxUI", "apaint.ColorComboBoxUI",
                     "PanelUI", "apaint.ColorPanelUI",});
     }
 

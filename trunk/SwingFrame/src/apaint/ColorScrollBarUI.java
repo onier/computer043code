@@ -187,7 +187,7 @@ public class ColorScrollBarUI extends BasicScrollBarUI {
                 g.setColor(origColor);
                 return;
             }
-            if (rollover || this.getModel().isRollover()) {
+            if (rollover || this.getModel().isRollover() || armed) {
                 this.paintButton(g);
             }
             if (isPressed) {
