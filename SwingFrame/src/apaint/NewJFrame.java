@@ -13,7 +13,6 @@ package apaint;
 import component.ColorTabbedPane;
 import component.EllipseButton;
 import component.JDropDownButton;
-import component.JTabbedPaneHeader;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -52,23 +51,7 @@ public class NewJFrame extends javax.swing.JFrame {
         UIManager.put("TabbedPane.contentBorderInsets", new Insets(0, 2, 1, 2));
         UIManager.put("TabbedPane.tabInsets", new Insets(2, 2, 3, 0));
         initComponents();
-        JButton jButton2 = new javax.swing.JButton();
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/layout/Down.gif"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        this.jButton3.setToolTipText("<html> "
-                + "a" + "&lt;" + "3" + "<br>"
-                + "第二行 <P> "
-                + "</html>");
-//        jButton2.setBorder(null);
-        jButton2.setName("jButton2"); // NOI18N
-        JTabbedPaneHeader label = new JTabbedPaneHeader("test1", true);
-        ((ColorTabbedPane) this.jTabbedPane1).setTabHeaderAt(0, label);
-        label = new JTabbedPaneHeader("test2");
-        ((ColorTabbedPane) this.jTabbedPane1).setTabHeaderAt(1, label);
-//        label = new JTabbedPaneHeader("test3");
-//        ((ColorTabbedPane) this.jTabbedPane1).setTabHeaderAt(2, label);
-//        label = new JTabbedPaneHeader("test4");
-//        ((ColorTabbedPane) this.jTabbedPane1).setTabHeaderAt(3, label);
+        jTabbedPane1.setSelectedIndex(jTabbedPane1.getTabCount() - 1);
         JButton jButton3 = new javax.swing.JButton();
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/layout/Up.gif")));
         jButton3.setBorderPainted(false);
@@ -80,11 +63,6 @@ public class NewJFrame extends javax.swing.JFrame {
         this.jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/layout/Up.gif")));
         jMenu1.add(new JDropDownButton("text", true));
         this.ellipseButton1.putClientProperty(ColorLookAndFeel.BUTTON_BORDER, Color.GREEN);
-//        this.jButton1.setUI(new ColorButtonUI());
-//        jButton2.setUI(new ColorButtonUI());
-//        jButton4.setUI(new ColorButtonUI());
-//        jButton5.setUI(new ColorButtonUI());
-        //        this.jInternalFrame1.setUI(new BasicInternalFrameUI(jInternalFrame1));
     }
 
     /** This method is called from within the constructor to
@@ -122,6 +100,8 @@ public class NewJFrame extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jComboBox1 = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -230,8 +210,12 @@ public class NewJFrame extends javax.swing.JFrame {
         ellipseToggleButton1.setText("ellipseToggleButton1");
         ellipseToggleButton1.setName("ellipseToggleButton1"); // NOI18N
 
-        jProgressBar1.setValue(50);
+        jProgressBar1.setValue(100);
+        jProgressBar1.setEnabled(false);
+        jProgressBar1.setInheritsPopupMenu(true);
         jProgressBar1.setName("jProgressBar1"); // NOI18N
+        jProgressBar1.setString("75%"); // NOI18N
+        jProgressBar1.setStringPainted(true);
 
         jToolBar1.setRollover(true);
         jToolBar1.setName("jToolBar1"); // NOI18N
@@ -249,6 +233,15 @@ public class NewJFrame extends javax.swing.JFrame {
         jButton10.setName("jButton10"); // NOI18N
         jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton10);
+
+        jProgressBar2.setOrientation(1);
+        jProgressBar2.setValue(100);
+        jProgressBar2.setIndeterminate(true);
+        jProgressBar2.setName("jProgressBar2"); // NOI18N
+        jProgressBar2.setStringPainted(true);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setName("jComboBox1"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -277,7 +270,10 @@ public class NewJFrame extends javax.swing.JFrame {
                                         .addGap(52, 52, 52))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(35, 35, 35)))
+                                        .addGap(35, 35, 35))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,8 +286,10 @@ public class NewJFrame extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jRadioButton1)
-                                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(95, 95, 95)
@@ -319,9 +317,9 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ellipseButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                    .addComponent(ellipseButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -341,9 +339,17 @@ public class NewJFrame extends javax.swing.JFrame {
                                                     .addComponent(jButton5))))
                                         .addGap(6, 6, 6)
                                         .addComponent(jToggleButton2)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ellipseToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -423,6 +429,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -431,6 +438,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

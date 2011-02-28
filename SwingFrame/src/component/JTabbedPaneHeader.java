@@ -7,6 +7,7 @@ package component;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.Box;
 import javax.swing.DefaultButtonModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -32,7 +34,7 @@ import javax.swing.event.ChangeListener;
  */
 public class JTabbedPaneHeader extends JComponent {
 
-    private boolean action = false;
+    private boolean action = true;
     private DefaultButtonModel buttonModel = new DefaultButtonModel();
     private JButton button;
     private GradientPaint rolloverSelectPaint;
@@ -45,6 +47,7 @@ public class JTabbedPaneHeader extends JComponent {
     private JLabel label;
     private JTabbedPane tabbedPane;
     private int tabIndex = -1;
+    private Component com;
 
     public JTabbedPaneHeader(String text) {
         super();
@@ -55,6 +58,7 @@ public class JTabbedPaneHeader extends JComponent {
     private void initComponent() {
         button = new ColorArrowButton(ColorArrowButton.SOUTH);
         button.setOpaque(false);
+        button.setEnabled(false);
         label = new JLabel(text);
         label.setOpaque(false);
         setOpaque(false);
@@ -200,9 +204,16 @@ public class JTabbedPaneHeader extends JComponent {
 
             public void stateChanged(ChangeEvent e) {
                 if (tabbedPane.getSelectedIndex() == tabIndex) {
-                    button.setEnabled(true);
+                    if (com != null) {
+                        JTabbedPaneHeader.this.remove(com);
+                    }
+                    JTabbedPaneHeader.this.add(button, BorderLayout.EAST);
+                    button.setVisible(true);
                 } else {
-                    button.setEnabled(false);
+                    JTabbedPaneHeader.this.remove(button);
+                    com = Box.createHorizontalStrut(button.getWidth());
+                    JTabbedPaneHeader.this.add(com, BorderLayout.EAST);
+                    button.setVisible(false);
                 }
             }
         });
