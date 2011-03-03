@@ -53,6 +53,12 @@ public class SwitchWidget extends NodeContainerGroupWidget implements WidgetInfo
                 SwitchWidget.this.setToolTipText(WidgetUtils.getToolTipString(switchNode.toString()));
             }
         });
+        node.addPropertyChangeListener("properties", new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent evt) {
+                properties();
+            }
+        });
     }
 
     @Override
@@ -133,7 +139,7 @@ public class SwitchWidget extends NodeContainerGroupWidget implements WidgetInfo
         });
         return widget;
     }
-     
+
     /**
      * @return the switchNode
      */

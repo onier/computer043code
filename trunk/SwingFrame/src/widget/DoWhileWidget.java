@@ -50,6 +50,12 @@ public class DoWhileWidget extends NodeContainerWidget implements WidgetInfo {
                 DoWhileWidget.this.setToolTipText(WidgetUtils.getToolTipString(doWhileNode.toString()));
             }
         });
+        node.addPropertyChangeListener("properties", new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent evt) {
+                properties();
+            }
+        });
         BlockWidget widget = new BlockWidget(scene, new BlockBeanNodeElement(), 1, 1);
         this.adddNodeWidget(widget);
     }

@@ -18,6 +18,7 @@ public class BlockBeanNodeElement extends AbstractBeanNodeElement {
     public BlockBeanNodeElement() {
         this.beanInfo.put("code", String.class);
         this.beanValue.put("code", "");
+        this.disctription = "Block";
     }
 
     public BlockBeanNodeElement(BlockBeanNodeElement e) {
@@ -36,7 +37,7 @@ public class BlockBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String getDisctription() {
-        return "Block";
+        return disctription;
     }
 
     public NodeElement getEditNode() {

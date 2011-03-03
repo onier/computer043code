@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
     public static void main(String[] args) {
         TableCellEditorFactory.createEditor(String.class);
         TableCellRendererFactory.createTableCellRenderer(String.class);
-        final JPanel palatte = createVSplitPane(new Palette(), Properties.getProperties());
+        final JPanel palatte = createVSplitPane(Palette.getPalette(), Properties.getProperties());
         JPanel p1 = createHSplitPane(new EditPanel(), palatte);
         JTextArea text = new JTextArea("BUILD SUCCESSFUL (total time: 8 seconds)");
         JPanel p2 = createVSplitPane(p1, new JScrollPane(text));

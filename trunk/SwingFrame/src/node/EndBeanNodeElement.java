@@ -19,6 +19,7 @@ public class EndBeanNodeElement extends AbstractBeanNodeElement {
     }
 
     public EndBeanNodeElement() {
+        this.disctription = "END";
     }
 
     @Override
@@ -33,7 +34,7 @@ public class EndBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String getDisctription() {
-        return "End";
+        return disctription;
     }
 
     public EndBeanNodeElement getEditNode() {

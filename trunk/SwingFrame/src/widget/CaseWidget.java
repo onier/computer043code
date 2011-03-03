@@ -37,6 +37,12 @@ public class CaseWidget extends NodeContainerGroupWidget implements WidgetInfo {
                 CaseWidget.this.setToolTipText(WidgetUtils.getToolTipString(caseNode.toString()));
             }
         });
+        node.addPropertyChangeListener("properties", new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent evt) {
+                properties();
+            }
+        });
         this.addGroup("true", "true");
         this.addGroup("false", "false");
         headerButtonChage();

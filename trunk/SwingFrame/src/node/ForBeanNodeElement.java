@@ -28,6 +28,7 @@ public class ForBeanNodeElement extends AbstractBeanNodeElement {
         this.beanValue.put("updata", "");
         this.beanInfo.put("block", String.class);
         this.beanValue.put("block", "");
+        this.disctription = "For";
     }
 
     @Override
@@ -60,7 +61,7 @@ public class ForBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String getDisctription() {
-        return "For";
+        return disctription;
     }
 
     public NodeElement getEditNode() {

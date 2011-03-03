@@ -60,6 +60,13 @@ public class TableCellEditorFactory {
     }
 
     public static TableCellEditor createEditor(Class cl) {
+        if (cl.isEnum()) {
+            JComboBox combox = new JComboBox(cl.getEnumConstants());
+            combox.setEditable(false);
+            DefaultCellEditor editor = new DefaultCellEditor(combox);
+            editor.setClickCountToStart(2);
+            return editor;
+        }
         return editorMap.get(cl);
     }
 

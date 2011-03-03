@@ -29,6 +29,7 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
     public SwitchBeanNodeElement(SwitchBeanNodeElement e) {
         super(e);
         copyMap(labelsMap, e.labelsMap);
+        this.disctription = "Switch";
         initListener();
     }
 
@@ -121,7 +122,7 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String getDisctription() {
-        return "Switch";
+        return this.disctription;
     }
 
     /**

@@ -29,6 +29,12 @@ public class StartWidget extends ProgramNodeWidget implements WidgetInfo {
                 Properties.getProperties().setProperties(startNode.getPropertiesModel());
             }
         });
+        node.addPropertyChangeListener("properties", new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent evt) {
+                properties();
+            }
+        });
         startNode.addPropertyChangeListener("setProperties", new PropertyChangeListener() {
 
             public void propertyChange(PropertyChangeEvent evt) {

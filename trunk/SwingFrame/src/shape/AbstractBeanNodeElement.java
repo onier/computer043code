@@ -4,13 +4,13 @@
  */
 package shape;
 
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import javax.swing.ImageIcon;
 import org.jdesktop.application.AbstractBean;
 import widget.WidgetUtils;
@@ -23,8 +23,8 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
 
     protected BeanNodeElement parent;
     protected List<BeanNodeElement> children = new ArrayList<BeanNodeElement>();
-    protected HashMap<String, Class> beanInfo = new HashMap<String, Class>();
-    protected HashMap<String, Object> beanValue = new HashMap<String, Object>();
+    protected TreeMap<String, Class> beanInfo = new TreeMap<String, Class>();
+    protected TreeMap<String, Object> beanValue = new TreeMap<String, Object>();
     protected ImageIcon icon = WidgetUtils.MESSAGE_IMAGE;
     protected String disctription = "";
 
@@ -40,6 +40,10 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
         copyMap(beanValue, e.beanValue);
         icon = e.icon;
         this.disctription = e.disctription;
+    }
+
+    public void fireNodeProperties() {
+        firePropertyChange("properties", false, true);
     }
 
     protected <K, V> Map<K, V> copyMap(Map<K, V> dmap, Map<K, V> smap) {
@@ -118,7 +122,7 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
         return children.size();
     }
 
-    public HashMap<String, Class> getBeanInfo() {
+    public TreeMap<String, Class> getBeanInfo() {
         return beanInfo;
     }
 
@@ -130,7 +134,14 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
         return icon;
     }
 
-    public HashMap<String, Object> getBeanValue() {
+    public Map<String, Object> getBeanValue() {
         return beanValue;
+    }
+
+    /**
+     * @param disctription the disctription to set
+     */
+    public void setDisctription(String disctription) {
+        this.disctription = disctription;
     }
 }

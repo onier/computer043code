@@ -17,4 +17,6 @@ public interface NodeElement {
     public String getDisctription();
 
     public NodeElement getEditNode();
+
+    public void setDisctription(String str);
 }

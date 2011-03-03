@@ -14,11 +14,28 @@ import shape.NodeElement;
 public class PrintBeanNodeElement extends AbstractBeanNodeElement {
 
     public PrintBeanNodeElement() {
-        this.beanInfo.put(disctription, null);
+        this.beanInfo.put("value", String.class);
+        this.beanValue.put("value", "");
+        this.disctription = "Print";
+    }
+
+    public PrintBeanNodeElement(PrintBeanNodeElement e) {
+        super(e);
+    }
+
+    @Override
+    public String toString() {
+        String str = "System.out.println(" + beanValue.get("value").toString() + ");" + "\n";
+        return str;
+    }
+
+    @Override
+    public String getDisctription() {
+        return disctription;
     }
 
     @Override
     public NodeElement getEditNode() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new PrintBeanNodeElement(this);
     }
 }
