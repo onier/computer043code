@@ -7,25 +7,25 @@ package widget;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
-import node.BlockBeanNodeElement;
-import org.netbeans.api.visual.widget.Scene;
+import node.GeneralBeanNodeElement;
+import testframe.BeanNodeGraphView;
 import testframe.Properties;
 
 /**
  *
  * @author admin
  */
-public class BlockWidget extends ProgramNodeWidget implements WidgetInfo {
+public class GeneralWidget extends ProgramNodeWidget implements WidgetInfo {
 
-    private BlockBeanNodeElement block;
+    private GeneralBeanNodeElement parameterNode;
 
-    public BlockWidget(Scene scene, BlockBeanNodeElement node) {
-        super(scene, node, 1, 1);
-        this.block = node;
-        block.addPropertyChangeListener("code", new PropertyChangeListener() {
+    public GeneralWidget(BeanNodeGraphView scene, GeneralBeanNodeElement node) {
+        super(scene, node);
+        this.parameterNode = node;
+        node.addPropertyChangeListener("change", new PropertyChangeListener() {
 
             public void propertyChange(PropertyChangeEvent evt) {
-                BlockWidget.this.setToolTipText(WidgetUtils.getToolTipString(evt.getNewValue().toString()));
+                GeneralWidget.this.setToolTipText(WidgetUtils.getToolTipString(parameterNode.toString()));
             }
         });
         node.addPropertyChangeListener("properties", new PropertyChangeListener() {
@@ -36,17 +36,8 @@ public class BlockWidget extends ProgramNodeWidget implements WidgetInfo {
         });
     }
 
-    public BlockBeanNodeElement getStartBeanNode() {
-        return block;
-    }
-
-    public BlockWidget(Scene scene, BlockBeanNodeElement node, int row, int column) {
-        super(scene, node, row, column);
-        this.block = node;
-    }
-
     public String getWidgetName() {
-        return block.getDisctription();
+        return "Parameter";
     }
 
     public Icon getWidgetIcon() {

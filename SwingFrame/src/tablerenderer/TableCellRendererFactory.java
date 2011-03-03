@@ -69,7 +69,25 @@ public class TableCellRendererFactory {
         rendererMap.put(ArrayList.class, new ArrayCustomerRenderer());
     }
 
-    public static TableCellRenderer createTableCellRenderer(Class cl) {
+    public static TableCellRenderer createTableCellRenderer(final Class cl) {
+        if (cl.isEnum()) {
+            return new TableCellRenderer() {
+
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    JComboBox comboxBox = new JComboBox(cl.getEnumConstants());
+                    comboxBox.setSelectedItem(value);
+                    comboxBox.setEditable(false);
+                    if (isSelected) {
+                        comboxBox.setBackground(table.getSelectionBackground());
+                        comboxBox.setForeground(table.getSelectionForeground());
+                    } else {
+                        comboxBox.setBackground(table.getBackground());
+                        comboxBox.setForeground(table.getForeground());
+                    }
+                    return comboxBox;
+                }
+            };
+        }
         return rendererMap.get(cl);
     }
 

@@ -38,6 +38,12 @@ public class WhileWidget extends NodeContainerWidget implements WidgetInfo {
                 WhileWidget.this.setToolTipText(WidgetUtils.getToolTipString(whileNode.toString()));
             }
         });
+        node.addPropertyChangeListener("properties", new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent evt) {
+                properties();
+            }
+        });
         BlockBeanNodeElement e = new BlockBeanNodeElement();
         whileNode.addBeanNode(e);
         this.adddNodeWidget(new BlockWidget(scene, e));

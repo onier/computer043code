@@ -32,6 +32,12 @@ public class ForWidget extends NodeContainerWidget implements WidgetInfo {
                 ForWidget.this.setToolTipText(WidgetUtils.getToolTipString(forNode.toString()));
             }
         });
+        node.addPropertyChangeListener("properties", new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent evt) {
+                properties();
+            }
+        });
         BlockBeanNodeElement e = new BlockBeanNodeElement();
         forNode.adddBeanNodeElement(e);
         this.adddNodeWidget(new BlockWidget(scene, e));

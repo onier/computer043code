@@ -27,6 +27,10 @@ import node.CaseBeanNodeElement;
 import node.DoWhileBeanNodeElement;
 import node.EndBeanNodeElement;
 import node.ForBeanNodeElement;
+import node.GeneralBeanNodeElement;
+import node.CheckPointBeanNodeElement;
+import node.PrintBeanNodeElement;
+import node.ScriptBeanNodeElement;
 import node.StartBeanNodeElement;
 import node.SwitchBeanNodeElement;
 import node.WhileBeanNodeElement;
@@ -38,8 +42,21 @@ import shape.NodeElement;
  */
 public class Palette extends javax.swing.JPanel {
 
+    /**
+     * @return the palette
+     */
+    public static Palette getPalette() {
+        return palette;
+    }
+
+    public void addNode(NodeElement... objs) {
+        list.getModel().addNode(objs);
+    }
+    private ShapeComponentListPanelRenderer list = new ShapeComponentListPanelRenderer();
+    private static final Palette palette = new Palette();
+
     /** Creates new form Palette */
-    public Palette() {
+    private Palette() {
         initComponents();
 
         final JDownComponentPanelContainer comtainer1 = new JDownComponentPanelContainer();
@@ -57,9 +74,13 @@ public class Palette extends javax.swing.JPanel {
             new StartBeanNodeElement(),
             new SwitchBeanNodeElement(),
             new WhileBeanNodeElement(),
-            new ForBeanNodeElement()};
+            new ForBeanNodeElement(),
+            new ScriptBeanNodeElement(),
+            new PrintBeanNodeElement(),
+            new GeneralBeanNodeElement(),
+            new CheckPointBeanNodeElement()};
         comtainer1.addPopupPanel(new DownComponentPanel(new ButtonHeaderRenderer("open"), new ShapeComponentListPanelRenderer(elements)));
-        comtainer1.addPopupPanel(new DownComponentPanel(new ButtonHeaderRenderer("open"), new ShapeComponentListPanelRenderer(elements)));
+        comtainer1.addPopupPanel(new DownComponentPanel(new ButtonHeaderRenderer("自定义"), list));
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(new JScrollPane(comtainer1), BorderLayout.CENTER);
         this.addComponentListener(new ComponentListener() {

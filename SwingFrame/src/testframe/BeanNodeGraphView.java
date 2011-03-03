@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.Vector;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -43,6 +44,10 @@ import node.CaseBeanNodeElement;
 import node.DoWhileBeanNodeElement;
 import node.EndBeanNodeElement;
 import node.ForBeanNodeElement;
+import node.GeneralBeanNodeElement;
+import node.CheckPointBeanNodeElement;
+import node.PrintBeanNodeElement;
+import node.ScriptBeanNodeElement;
 import node.StartBeanNodeElement;
 import node.SwitchBeanNodeElement;
 import node.WhileBeanNodeElement;
@@ -68,7 +73,6 @@ import org.netbeans.api.visual.widget.ConnectionWidget;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
-import org.netbeans.api.visual.widget.general.IconNodeWidget;
 import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
 import shape.AbstractBeanNodeElement;
@@ -80,6 +84,10 @@ import widget.DoWhileWidget;
 import widget.EndWidget;
 import widget.ForWidget;
 import widget.NodeConnectionWidget;
+import widget.GeneralWidget;
+import widget.CheckPointWidget;
+import widget.PrintWidget;
+import widget.ScriptWidget;
 import widget.StartWidget;
 import widget.SwitchWidget;
 import widget.WhileWidget;
@@ -102,7 +110,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
     private WidgetAction connectAction = ActionFactory.createExtendedConnectAction(interractionLayer, new SceneConnectProvider(this));
     private WidgetAction reconnectAction = ActionFactory.createReconnectAction(new SceneReconnectProvider(this));
     private WidgetAction moveControlPointAction = ActionFactory.createFreeMoveControlPointAction();
-//    private WidgetAction selectAction = ActionFactory.createSelectAction(new ObjectSelectProvider());
+    private WidgetAction selectAction = ActionFactory.createSelectAction(new ObjectSelectProvider());
     private JComponent component;
     protected WidgetAction repaintAction = new WidgetAdapter() {
 
@@ -197,57 +205,31 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             return State.CONSUMED;
         }
     };
-    private WidgetAction selectAction = new WidgetAdapter() {
-
-        @Override
-        public State mouseDragged(Widget widget, WidgetMouseEvent wme) {
-            component.repaint();
-            return super.mouseDragged(widget, wme);
-        }
-
-        @Override
-        public State mouseMoved(Widget widget, WidgetMouseEvent wme) {
-            component.repaint();
-            return super.mouseMoved(widget, wme);
-        }
-
-        @Override
-        public State mouseClicked(Widget widget, WidgetMouseEvent wme) {
-            if (widget instanceof BlockWidget) {
-                BlockWidget blockWidget = (BlockWidget) widget;
-                Properties.getProperties().setProperties(blockWidget.getBeanNode().getPropertiesModel());
-            }
-            if (widget instanceof CaseWidget) {
-                CaseWidget caseWidget = (CaseWidget) widget;
-                Properties.getProperties().setProperties(caseWidget.getCaseNode().getPropertiesModel());
-            }
-            if (widget instanceof DoWhileWidget) {
-                DoWhileWidget doWhileWidget = (DoWhileWidget) widget;
-                Properties.getProperties().setProperties(doWhileWidget.getDoWhileNode().getPropertiesModel());
-            }
-            if (widget instanceof EndWidget) {
-                EndWidget endWidget = (EndWidget) widget;
-                Properties.getProperties().setProperties(endWidget.getBeanNode().getPropertiesModel());
-            }
-            if (widget instanceof StartWidget) {
-                StartWidget startWidget = (StartWidget) widget;
-                Properties.getProperties().setProperties(startWidget.getBeanNode().getPropertiesModel());
-            }
-            if (widget instanceof SwitchWidget) {
-                SwitchWidget switchWidget = (SwitchWidget) widget;
-                Properties.getProperties().setProperties(switchWidget.getSwitchNode().getPropertiesModel());
-            }
-            if (widget instanceof WhileWidget) {
-                WhileWidget whileWidget = (WhileWidget) widget;
-                Properties.getProperties().setProperties(whileWidget.getWhileNode().getPropertiesModel());
-            }
-            if (widget instanceof ForWidget) {
-                ForWidget forWidget = (ForWidget) widget;
-                Properties.getProperties().setProperties(forWidget.getForNode().getPropertiesModel());
-            }
-            return super.mouseClicked(widget, wme);
-        }
-    };
+//    private WidgetAction selectAction = new WidgetAdapter() {
+//
+//        @Override
+//        public State mouseDragged(Widget widget, WidgetMouseEvent wme) {
+//            component.repaint();
+//            return super.mouseDragged(widget, wme);
+//        }
+//
+//        @Override
+//        public State mouseMoved(Widget widget, WidgetMouseEvent wme) {
+//            component.repaint();
+//            return super.mouseMoved(widget, wme);
+//        }
+//
+//        @Override
+//        public State mouseClicked(Widget widget, WidgetMouseEvent wme) {
+//            if (widget instanceof WidgetInfo) {
+//                WidgetInfo widgetInfo = (WidgetInfo) widget;
+//                widgetInfo.properties();
+//            }
+//            return super.mouseClicked(widget, wme);
+//        }
+//    };
+//
+//
     private NodeMenu nodeMenu = new NodeMenu(this);
     private EdgeMenu edgeMenu = new EdgeMenu(this);
     private Point point;
@@ -440,6 +422,66 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
     }
 
     private Widget getWidget(BeanNodeElement node) {
+        if (node instanceof PrintBeanNodeElement) {
+            PrintWidget widget = new PrintWidget(this, (PrintBeanNodeElement) node);
+            widget.setLabel(node.getDisctription());
+            widget.setOpaque(true);
+            widget.getActions().addAction(getConnectAction());
+            widget.getActions().addAction(getMoveAction());
+            widget.getActions().addAction(selectAction);
+            if (point != null) {
+                widget.setPreferredLocation(WidgetUtils.getPosition(point));
+            }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
+            mainLayer.addChild(widget);
+            widgetArray.add(widget);
+            return widget;
+        }
+        if (node instanceof GeneralBeanNodeElement) {
+            GeneralWidget widget = new GeneralWidget(this, (GeneralBeanNodeElement) node);
+            widget.setLabel(node.getDisctription());
+            widget.setOpaque(true);
+            widget.getActions().addAction(getConnectAction());
+            widget.getActions().addAction(getMoveAction());
+            widget.getActions().addAction(selectAction);
+            if (point != null) {
+                widget.setPreferredLocation(WidgetUtils.getPosition(point));
+            }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
+            mainLayer.addChild(widget);
+            widgetArray.add(widget);
+            return widget;
+        }
+        if (node instanceof CheckPointBeanNodeElement) {
+            CheckPointWidget widget = new CheckPointWidget(this, (CheckPointBeanNodeElement) node);
+            widget.setLabel(node.getDisctription());
+            widget.setOpaque(true);
+            widget.getActions().addAction(getConnectAction());
+            widget.getActions().addAction(getMoveAction());
+            widget.getActions().addAction(selectAction);
+            if (point != null) {
+                widget.setPreferredLocation(WidgetUtils.getPosition(point));
+            }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
+            mainLayer.addChild(widget);
+            widgetArray.add(widget);
+            return widget;
+        }
+        if (node instanceof ScriptBeanNodeElement) {
+            ScriptWidget widget = new ScriptWidget(this, (ScriptBeanNodeElement) node);
+            widget.setLabel(node.getDisctription());
+            widget.setOpaque(true);
+            widget.getActions().addAction(getConnectAction());
+            widget.getActions().addAction(getMoveAction());
+            widget.getActions().addAction(selectAction);
+            if (point != null) {
+                widget.setPreferredLocation(WidgetUtils.getPosition(point));
+            }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
+            mainLayer.addChild(widget);
+            widgetArray.add(widget);
+            return widget;
+        }
         if (node instanceof BlockBeanNodeElement) {
             BlockWidget widget = new BlockWidget(this, (BlockBeanNodeElement) node);
             widget.setLabel(node.getDisctription());
@@ -450,6 +492,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             mainLayer.addChild(widget);
             widgetArray.add(widget);
             return widget;
@@ -464,6 +507,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             mainLayer.addChild(widget);
             widgetArray.add(widget);
             return widget;
@@ -477,6 +521,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             mainLayer.addChild(widget);
             widgetArray.add(widget);
             return widget;
@@ -490,6 +535,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             mainLayer.addChild(widget);
             widgetArray.add(widget);
             return widget;
@@ -504,6 +550,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             mainLayer.addChild(widget);
             widgetArray.add(widget);
             return widget;
@@ -518,6 +565,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             mainLayer.addChild(widget);
             widgetArray.add(widget);
             return widget;
@@ -531,6 +579,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             mainLayer.addChild(widget);
             widgetArray.add(widget);
             return widget;
@@ -544,6 +593,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             mainLayer.addChild(widget);
             widgetArray.add(widget);
             return widget;
@@ -661,7 +711,9 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
 
         public void select(Widget widget, Point localLocation, boolean invertSelection) {
             Object object = findObject(widget);
-
+            if (object instanceof AbstractBeanNodeElement) {
+                ((AbstractBeanNodeElement) object).fireNodeProperties();
+            }
             if (object != null) {
                 if (getSelectedObjects().contains(object)) {
                     return;
@@ -754,8 +806,9 @@ class EdgeMenu implements PopupMenuProvider, ActionListener {
 class NodeMenu implements PopupMenuProvider, ActionListener {
 
     private static final String DELETE_NODE_ACTION = "deleteNodeAction"; // NOI18N
+    private static final String ADD_NODE = "addNodeAction"; // NOI18N
     private JPopupMenu menu;
-    private IconNodeWidget node;
+    private Widget node;
     private Point point;
     private BeanNodeGraphView scene;
 
@@ -768,11 +821,16 @@ class NodeMenu implements PopupMenuProvider, ActionListener {
         item.setActionCommand(DELETE_NODE_ACTION);
         item.addActionListener(this);
         menu.add(item);
+
+        item = new JMenuItem("Add Node");
+        item.setActionCommand(ADD_NODE);
+        item.addActionListener(this);
+        menu.add(item);
     }
 
     public JPopupMenu getPopupMenu(Widget widget, Point point) {
         this.point = point;
-        this.node = (IconNodeWidget) widget;
+        this.node = widget;
         return menu;
     }
 
@@ -780,6 +838,11 @@ class NodeMenu implements PopupMenuProvider, ActionListener {
         if (e.getActionCommand().equals(DELETE_NODE_ACTION)) {
             scene.removeNodeWithEdges((BeanNodeElement) scene.findObject(node));
             scene.validate();
+        }
+        if (e.getActionCommand().equals(ADD_NODE)) {
+            NodeElement n = ((BeanNodeElement) scene.findObject(node)).getEditNode();
+            n.setDisctription(JOptionPane.showInputDialog("Please input Disctription"));
+            Palette.getPalette().addNode(n);
         }
     }
 }

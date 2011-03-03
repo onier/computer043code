@@ -24,6 +24,7 @@ public class WhileBeanNodeElement extends AbstractBeanNodeElement {
         this.beanValue.put("case", "");
         this.beanInfo.put("block", String.class);
         this.beanValue.put("block", "");
+        this.disctription = "While";
     }
 
     public void addBeanNode(BeanNodeElement e) {
@@ -50,7 +51,7 @@ public class WhileBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String getDisctription() {
-        return "While";
+        return disctription;
     }
 
     public WhileBeanNodeElement getEditNode() {

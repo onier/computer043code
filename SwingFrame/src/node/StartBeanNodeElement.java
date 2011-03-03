@@ -27,13 +27,13 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
 
     public StartBeanNodeElement(StartBeanNodeElement e) {
         super(e);
-        this.beanInfo.put("Parameters", ArrayList.class);
-        this.beanValue.put("Parameters", new ArrayList<String>());
         initListener();
     }
 
     public StartBeanNodeElement() {
         initListener();
+        this.beanInfo.put("Parameters", ArrayList.class);
+        this.beanValue.put("Parameters", new ArrayList<String>());
     }
 
     public void firePropertyChange() {

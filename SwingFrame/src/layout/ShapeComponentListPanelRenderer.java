@@ -52,6 +52,11 @@ public class ShapeComponentListPanelRenderer<T extends NodeElement> extends List
             data.addAll(Arrays.asList(objs));
         }
 
+        public void addNode(T... objs) {
+            data.addAll(Arrays.asList(objs));
+            this.fireIntervalAdded(objs, 0, data.size());
+        }
+
         public int getSize() {
             return data.size();
         }

@@ -26,6 +26,7 @@ public class CaseBeanNodeElement extends AbstractBeanNodeElement {
         this.beanValue.put("trueBlock", " ");
         this.beanInfo.put("falseBlock", String.class);
         this.beanValue.put("falseBlock", " ");
+        this.disctription = "Case";
     }
 
     public CaseBeanNodeElement(CaseBeanNodeElement node) {
@@ -57,7 +58,7 @@ public class CaseBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String getDisctription() {
-        return "Case";
+        return this.disctription;
     }
 
     public CaseBeanNodeElement getEditNode() {

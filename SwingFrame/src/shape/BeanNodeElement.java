@@ -5,8 +5,8 @@
 package shape;
 
 import java.beans.PropertyChangeListener;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -38,11 +38,11 @@ public interface BeanNodeElement extends NodeElement {
      * 包含bean信息的节点,<属性名,数据类型>  <Visible,Boolean>
      * @return
      */
-    public HashMap<String, Class> getBeanInfo();
+    public Map<String, Class> getBeanInfo();
 
     /**
      * 包含bean信息的节点,<属性名,数据类型>  <Visible,Boolean>
      * @return
      */
-    public HashMap<String, Object> getBeanValue();
+    public Map<String, Object> getBeanValue();
 }

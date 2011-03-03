@@ -23,6 +23,7 @@ public class DoWhileBeanNodeElement extends AbstractBeanNodeElement {
         this.beanValue.put("case", "");
         this.beanInfo.put("block", String.class);
         this.beanValue.put("block", "");
+        this.disctription = "doWhile";
     }
 
     @Override

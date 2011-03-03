@@ -4,6 +4,8 @@
  */
 package widget;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
 import node.EndBeanNodeElement;
 import org.netbeans.api.visual.widget.Scene;
@@ -17,9 +19,15 @@ public class EndWidget extends ProgramNodeWidget implements WidgetInfo {
 
     private EndBeanNodeElement startNode;
 
-    public EndWidget(Scene scene, EndBeanNodeElement node) {
+    public EndWidget(Scene scene, final EndBeanNodeElement node) {
         super(scene, node, 1, 1);
         this.startNode = node;
+        node.addPropertyChangeListener("properties", new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent evt) {
+                properties();
+            }
+        });
     }
 
     public EndBeanNodeElement getStartBeanNode() {
