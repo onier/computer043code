@@ -4,11 +4,13 @@
  */
 package widget;
 
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
+import java.beans.Expression;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
 import node.ScriptBeanNodeElement;
-import shape.BeanNodeElement;
 import testframe.BeanNodeGraphView;
 import testframe.Properties;
 
@@ -51,5 +53,16 @@ public class ScriptWidget extends ProgramNodeWidget implements WidgetInfo {
 
     public ScriptBeanNodeElement getBeanNodeElement() {
         return scriptNode;
+    }
+
+    public void loadEncoderDelegate(Encoder encoder) {
+        encoder.setPersistenceDelegate(ScriptBeanNodeElement.class, new DefaultPersistenceDelegate(new String[]{"parent", "children", "beanInfo", "beanValue", "icon", "disctription"}) {
+
+            @Override
+            protected Expression instantiate(Object oldInstance, Encoder out) {
+                ScriptBeanNodeElement test = (ScriptBeanNodeElement) oldInstance;
+                return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
+            }
+        });
     }
 }

@@ -4,6 +4,8 @@
  */
 package node;
 
+import java.util.List;
+import java.util.TreeMap;
 import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
 import shape.BeanNodeElement;
@@ -14,6 +16,10 @@ import widget.WidgetUtils;
  * @author admin
  */
 public class ForBeanNodeElement extends AbstractBeanNodeElement {
+
+    public ForBeanNodeElement(BeanNodeElement parent, List<BeanNodeElement> children, TreeMap<String, Class> beanInfo, TreeMap<String, Object> beanValue, ImageIcon icon, String disctription) {
+        super(parent, children, beanInfo, beanValue, icon, disctription);
+    }
 
     public ForBeanNodeElement(ForBeanNodeElement e) {
         super(e);

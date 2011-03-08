@@ -4,8 +4,9 @@
  */
 package widget;
 
+import java.beans.Encoder;
 import javax.swing.Icon;
-import shape.BeanNodeElement;
+import shape.AbstractBeanNodeElement;
 
 /**
  *
@@ -19,7 +20,9 @@ public interface WidgetInfo {
 
     public String getToolTipText();
 
-    public BeanNodeElement getBeanNodeElement();
+    public AbstractBeanNodeElement getBeanNodeElement();
+
+    public void loadEncoderDelegate(Encoder encoder);
 
     public void properties();
 }

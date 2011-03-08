@@ -9,11 +9,13 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
 import shape.AbstractPropertiesModel;
+import shape.BeanNodeElement;
 import tablerenderer.ParameterType;
 import widget.WidgetUtils;
 
@@ -23,6 +25,9 @@ import widget.WidgetUtils;
  */
 public class StartBeanNodeElement extends AbstractBeanNodeElement {
 
+    public StartBeanNodeElement(BeanNodeElement parent, List<BeanNodeElement> children, TreeMap<String, Class> beanInfo, TreeMap<String, Object> beanValue, ImageIcon icon, String disctription) {
+        super(parent, children, beanInfo, beanValue, icon, disctription);
+    }
     private TreeMap<String, ParameterType> parameters = new TreeMap<String, ParameterType>();
 
     public StartBeanNodeElement(StartBeanNodeElement e) {
