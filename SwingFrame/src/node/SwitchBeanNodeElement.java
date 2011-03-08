@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
@@ -24,6 +25,12 @@ import widget.WidgetUtils;
 public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
 
     private TreeMap<String, String> labelsMap = new TreeMap<String, String>();
+
+    public SwitchBeanNodeElement(BeanNodeElement parent, List<BeanNodeElement> children, TreeMap<String, Class> beanInfo, TreeMap<String, Object> beanValue, ImageIcon icon, String disctription) {
+        super(parent, children, beanInfo, beanValue, icon, disctription);
+        initListener();
+        this.firePropertyChange("change", false, true);
+    }
 
     public SwitchBeanNodeElement(SwitchBeanNodeElement e) {
         super(e);

@@ -21,6 +21,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
+import java.beans.Expression;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -431,12 +434,40 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
 
     public static class ConnectionContent {
 
-        ConnectionContent(int sourceIndex, int targetIndex) {
+        public ConnectionContent(int sourceIndex, int targetIndex) {
             this.sourceIndex = sourceIndex;
             this.targetIndex = targetIndex;
         }
-        int sourceIndex;
-        int targetIndex;
+        private int sourceIndex;
+        private int targetIndex;
+
+        /**
+         * @return the sourceIndex
+         */
+        public int getSourceIndex() {
+            return sourceIndex;
+        }
+
+        /**
+         * @param sourceIndex the sourceIndex to set
+         */
+        public void setSourceIndex(int sourceIndex) {
+            this.sourceIndex = sourceIndex;
+        }
+
+        /**
+         * @return the targetIndex
+         */
+        public int getTargetIndex() {
+            return targetIndex;
+        }
+
+        /**
+         * @param targetIndex the targetIndex to set
+         */
+        public void setTargetIndex(int targetIndex) {
+            this.targetIndex = targetIndex;
+        }
     }
 
     public void save(File file) throws FileNotFoundException {
@@ -449,9 +480,10 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
 
     public void save(OutputStream outStream) {
         XMLEncoder encoder = new XMLEncoder(outStream);
-        ArrayList<BeanNodeElement> list = new ArrayList<BeanNodeElement>();
+        ArrayList<AbstractBeanNodeElement> list = new ArrayList<AbstractBeanNodeElement>();
         for (int i = 0; i < widgetArray.size(); i++) {
-            list.add(widgetArray.get(i).getBeanNodeElement().getEditNode());
+            widgetArray.get(i).loadEncoderDelegate(encoder);
+            list.add(widgetArray.get(i).getBeanNodeElement());
         }
         Collection<NodeConnection> collection = getEdges();
         Iterator<NodeConnection> iterator = collection.iterator();
@@ -464,6 +496,14 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
                 list1.add(new ConnectionContent(sourceIndex, targetIndex));
             }
         }
+        encoder.setPersistenceDelegate(ConnectionContent.class, new DefaultPersistenceDelegate(new String[]{"sourceIndex", "targetIndex"}) {
+
+            @Override
+            protected Expression instantiate(Object oldInstance, Encoder out) {
+                ConnectionContent test = (ConnectionContent) oldInstance;
+                return new Expression(test, test.getClass(), "new", new Object[]{test.getSourceIndex(), test.getTargetIndex()});
+            }
+        });
         encoder.writeObject(list);
         encoder.writeObject(list1);
         encoder.flush();
@@ -489,7 +529,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
         }
         for (int i = 0; i < list1.size(); i++) {
             ConnectionContent content = list1.get(i);
-            this.attachEdgeWidget(new NodeConnection(list.get(content.sourceIndex), list.get(content.targetIndex), this));
+            this.attachEdgeWidget(new NodeConnection(list.get(content.getSourceIndex()), list.get(content.getTargetIndex()), this));
         }
     }
 

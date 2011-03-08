@@ -5,6 +5,9 @@
 package widget;
 
 import java.awt.Color;
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
+import java.beans.Expression;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
@@ -12,7 +15,6 @@ import node.BlockBeanNodeElement;
 import node.ForBeanNodeElement;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.widget.Widget;
-import shape.BeanNodeElement;
 import testframe.BeanNodeGraphView;
 import testframe.Properties;
 
@@ -91,5 +93,16 @@ public class ForWidget extends NodeContainerWidget implements WidgetInfo {
 
     public ForBeanNodeElement getBeanNodeElement() {
         return forNode;
+    }
+
+    public void loadEncoderDelegate(Encoder encoder) {
+        encoder.setPersistenceDelegate(ForBeanNodeElement.class, new DefaultPersistenceDelegate(new String[]{"parent", "children", "beanInfo", "beanValue", "icon", "disctription"}) {
+
+            @Override
+            protected Expression instantiate(Object oldInstance, Encoder out) {
+                ForBeanNodeElement test = (ForBeanNodeElement) oldInstance;
+                return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
+            }
+        });
     }
 }

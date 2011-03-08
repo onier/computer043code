@@ -28,6 +28,15 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
     protected ImageIcon icon = WidgetUtils.MESSAGE_IMAGE;
     protected String disctription = "";
 
+    public AbstractBeanNodeElement(BeanNodeElement parent, List<BeanNodeElement> children, TreeMap<String, Class> beanInfo, TreeMap<String, Object> beanValue, ImageIcon icon, String disctription) {
+        this.parent = parent;
+        this.children = children;
+        this.beanInfo = beanInfo;
+        this.beanValue = beanValue;
+        this.disctription = disctription;
+        this.icon = icon;
+    }
+
     public AbstractBeanNodeElement() {
     }
 

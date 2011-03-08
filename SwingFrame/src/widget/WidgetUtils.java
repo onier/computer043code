@@ -7,12 +7,21 @@ package widget;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
+import java.beans.Expression;
+import java.beans.XMLEncoder;
 import javax.swing.ImageIcon;
+import node.BlockBeanNodeElement;
+import node.CaseBeanNodeElement;
+import node.CheckPointBeanNodeElement;
+import node.StartBeanNodeElement;
 import org.netbeans.api.visual.border.Border;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 import shape.BeanNodeElement;
+import testframe.BeanNodeGraphView.ConnectionContent;
 
 /**
  *
