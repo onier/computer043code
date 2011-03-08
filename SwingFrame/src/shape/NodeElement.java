@@ -16,7 +16,7 @@ public interface NodeElement {
 
     public String getDisctription();
 
-    public NodeElement getEditNode();
+    public BeanNodeElement getEditNode();
 
     public void setDisctription(String str);
 }

@@ -12,6 +12,7 @@ import node.BlockBeanNodeElement;
 import node.WhileBeanNodeElement;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.widget.Widget;
+import shape.BeanNodeElement;
 import testframe.BeanNodeGraphView;
 import testframe.Properties;
 
@@ -93,5 +94,9 @@ public class WhileWidget extends NodeContainerWidget implements WidgetInfo {
 
     public void properties() {
         Properties.getProperties().setProperties(whileNode.getPropertiesModel());
+    }
+
+    public WhileBeanNodeElement getBeanNodeElement() {
+        return whileNode;
     }
 }

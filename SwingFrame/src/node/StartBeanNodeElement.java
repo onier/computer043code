@@ -31,6 +31,7 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
     }
 
     public StartBeanNodeElement() {
+        this.disctription = "Start";
         initListener();
         this.beanInfo.put("Parameters", ArrayList.class);
         this.beanValue.put("Parameters", new ArrayList<String>());
@@ -44,7 +45,7 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
         this.addPropertyChangeListener("change", new PropertyChangeListener() {
 
             public void propertyChange(PropertyChangeEvent evt) {
-                ArrayList<String> labels = (ArrayList<String>) beanValue.get("Parameters");
+                ArrayList<String> labels = (ArrayList<String>) getBeanValue().get("Parameters");
                 Set<String> set = parameters.keySet();
                 String[] values = new String[set.size()];
                 set.toArray(values);
@@ -135,11 +136,6 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
             str = str + "// End of variables declaration " + "\n" + "\n";
         }
         return str;
-    }
-
-    @Override
-    public String getDisctription() {
-        return "Start";
     }
 
     public StartBeanNodeElement getEditNode() {

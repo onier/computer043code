@@ -8,14 +8,13 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
 import shape.AbstractPropertiesModel;
-import shape.NodeElement;
+import shape.BeanNodeElement;
 import widget.WidgetUtils;
 
 /**
@@ -38,6 +37,7 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
         this.beanValue.put("expression", "");
         this.beanInfo.put("switchLabels", ArrayList.class);
         this.beanValue.put("switchLabels", new ArrayList<String>());
+        this.disctription = "Switch";
         initListener();
     }
 
@@ -99,7 +99,7 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
     }
 
     public ArrayList<String> getSwitchLabel() {
-        return (ArrayList<String>) beanValue.get("switchLabels");
+        return (ArrayList<String>) getBeanValue().get("switchLabels");
     }
 
     @Override
@@ -109,7 +109,7 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String toString() {
-        String str = "switch(" + beanValue.get("expression") + ")" + "{" + "\n";
+        String str = "switch(" + getBeanValue().get("expression") + ")" + "{" + "\n";
         Iterator<String> iterator = labelsMap.keySet().iterator();
         while (iterator.hasNext()) {
             String str1 = iterator.next();
@@ -120,11 +120,6 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
         return str.toString();
     }
 
-    @Override
-    public String getDisctription() {
-        return this.disctription;
-    }
-
     /**
      * @return the labelsMap
      */
@@ -132,7 +127,7 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
         return labelsMap;
     }
 
-    public NodeElement getEditNode() {
+    public BeanNodeElement getEditNode() {
         return new SwitchBeanNodeElement(this);
     }
 }

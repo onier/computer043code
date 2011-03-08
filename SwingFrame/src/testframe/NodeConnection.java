@@ -4,6 +4,7 @@
  */
 package testframe;
 
+import shape.BeanNodeElement;
 import shape.NodeElement;
 
 /**
@@ -16,7 +17,7 @@ public class NodeConnection {
     protected NodeElement target = null;
     protected BeanNodeGraphView scene;
 
-    public NodeConnection(NodeElement target, NodeElement source, BeanNodeGraphView scene) {
+    public NodeConnection(BeanNodeElement target, BeanNodeElement source, BeanNodeGraphView scene) {
         this.source = source;
         this.target = target;
         this.scene = scene;

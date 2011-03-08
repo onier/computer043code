@@ -28,30 +28,25 @@ public class WhileBeanNodeElement extends AbstractBeanNodeElement {
     }
 
     public void addBeanNode(BeanNodeElement e) {
-        this.children.add(e);
+        this.getChildren().add(e);
     }
 
     @Override
     public String toString() {
-        String str = "while(" + beanValue.get("case").toString() + "){" + "\n";
-        str = str + beanValue.get("block") + "\n" + "}" + "\n";
+        String str = "while(" + getBeanValue().get("case").toString() + "){" + "\n";
+        str = str + getBeanValue().get("block") + "\n" + "}" + "\n";
         return str;
     }
 
     public String toTipString() {
-        String str = "while(" + WidgetUtils.getCaseString(beanValue.get("case").toString()) + "){" + "\n";
-        str = str + beanValue.get("block") + "\n" + "}" + "\n";
+        String str = "while(" + WidgetUtils.getCaseString(getBeanValue().get("case").toString()) + "){" + "\n";
+        str = str + getBeanValue().get("block") + "\n" + "}" + "\n";
         return str;
     }
 
     @Override
     public ImageIcon getIcon() {
         return WidgetUtils.LOOP_IMAGE;
-    }
-
-    @Override
-    public String getDisctription() {
-        return disctription;
     }
 
     public WhileBeanNodeElement getEditNode() {

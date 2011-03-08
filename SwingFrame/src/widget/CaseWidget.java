@@ -13,6 +13,7 @@ import org.netbeans.api.visual.action.WidgetAction.State;
 import org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.widget.Widget;
+import shape.BeanNodeElement;
 import testframe.BeanNodeGraphView;
 import testframe.Properties;
 import testframe.WidgetAdapter;
@@ -46,10 +47,6 @@ public class CaseWidget extends NodeContainerGroupWidget implements WidgetInfo {
         this.addGroup("true", "true");
         this.addGroup("false", "false");
         headerButtonChage();
-    }
-
-    public CaseBeanNodeElement getStartBeanNode() {
-        return getCaseNode();
     }
 
     @Override
@@ -99,7 +96,7 @@ public class CaseWidget extends NodeContainerGroupWidget implements WidgetInfo {
     }
 
     public String getWidgetName() {
-        return getCaseNode().getDisctription();
+        return getBeanNodeElement().getDisctription();
     }
 
     public Icon getWidgetIcon() {
@@ -107,13 +104,10 @@ public class CaseWidget extends NodeContainerGroupWidget implements WidgetInfo {
     }
 
     public void properties() {
-        Properties.getProperties().setProperties(getCaseNode().getPropertiesModel());
+        Properties.getProperties().setProperties(getBeanNodeElement().getPropertiesModel());
     }
 
-    /**
-     * @return the caseNode
-     */
-    public CaseBeanNodeElement getCaseNode() {
+    public CaseBeanNodeElement getBeanNodeElement() {
         return caseNode;
     }
 }

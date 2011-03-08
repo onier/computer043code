@@ -32,11 +32,6 @@ public class EndBeanNodeElement extends AbstractBeanNodeElement {
         return "//End" + "\n";
     }
 
-    @Override
-    public String getDisctription() {
-        return disctription;
-    }
-
     public EndBeanNodeElement getEditNode() {
         return new EndBeanNodeElement(this);
     }

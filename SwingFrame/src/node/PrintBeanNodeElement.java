@@ -5,7 +5,7 @@
 package node;
 
 import shape.AbstractBeanNodeElement;
-import shape.NodeElement;
+import shape.BeanNodeElement;
 
 /**
  *
@@ -25,17 +25,12 @@ public class PrintBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String toString() {
-        String str = "System.out.println(" + beanValue.get("value").toString() + ");" + "\n";
+        String str = "System.out.println(" + getBeanValue().get("value").toString() + ");" + "\n";
         return str;
     }
 
     @Override
-    public String getDisctription() {
-        return disctription;
-    }
-
-    @Override
-    public NodeElement getEditNode() {
+    public BeanNodeElement getEditNode() {
         return new PrintBeanNodeElement(this);
     }
 }

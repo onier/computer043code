@@ -8,6 +8,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
 import node.CheckPointBeanNodeElement;
+import shape.BeanNodeElement;
 import testframe.BeanNodeGraphView;
 import testframe.Properties;
 
@@ -46,5 +47,9 @@ public class CheckPointWidget extends ProgramNodeWidget implements WidgetInfo {
 
     public void properties() {
         Properties.getProperties().setProperties(getBeanNode().getPropertiesModel());
+    }
+
+    public CheckPointBeanNodeElement getBeanNodeElement() {
+        return parameterNode;
     }
 }

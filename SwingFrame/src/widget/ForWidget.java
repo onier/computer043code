@@ -12,6 +12,7 @@ import node.BlockBeanNodeElement;
 import node.ForBeanNodeElement;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.widget.Widget;
+import shape.BeanNodeElement;
 import testframe.BeanNodeGraphView;
 import testframe.Properties;
 
@@ -86,5 +87,9 @@ public class ForWidget extends NodeContainerWidget implements WidgetInfo {
 
     public void properties() {
         Properties.getProperties().setProperties(forNode.getPropertiesModel());
+    }
+
+    public ForBeanNodeElement getBeanNodeElement() {
+        return forNode;
     }
 }

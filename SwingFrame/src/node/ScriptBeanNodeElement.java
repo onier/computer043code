@@ -5,7 +5,7 @@
 package node;
 
 import shape.AbstractBeanNodeElement;
-import shape.NodeElement;
+import shape.BeanNodeElement;
 
 /**
  *
@@ -28,15 +28,10 @@ public class ScriptBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String toString() {
-        return beanValue.get("parameter").toString() + "\n";
+        return getBeanValue().get("parameter").toString() + "\n";
     }
 
-    public NodeElement getEditNode() {
+    public BeanNodeElement getEditNode() {
         return new ScriptBeanNodeElement(this);
-    }
-
-    @Override
-    public String getDisctription() {
-        return disctription;
     }
 }

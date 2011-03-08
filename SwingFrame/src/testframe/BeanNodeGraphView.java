@@ -24,7 +24,15 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -421,6 +429,70 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
         return component;
     }
 
+    public static class ConnectionContent {
+
+        ConnectionContent(int sourceIndex, int targetIndex) {
+            this.sourceIndex = sourceIndex;
+            this.targetIndex = targetIndex;
+        }
+        int sourceIndex;
+        int targetIndex;
+    }
+
+    public void save(File file) throws FileNotFoundException {
+        this.save(new FileOutputStream(file));
+    }
+
+    public void save(String path) throws FileNotFoundException {
+        this.save(new File(path));
+    }
+
+    public void save(OutputStream outStream) {
+        XMLEncoder encoder = new XMLEncoder(outStream);
+        ArrayList<BeanNodeElement> list = new ArrayList<BeanNodeElement>();
+        for (int i = 0; i < widgetArray.size(); i++) {
+            list.add(widgetArray.get(i).getBeanNodeElement().getEditNode());
+        }
+        Collection<NodeConnection> collection = getEdges();
+        Iterator<NodeConnection> iterator = collection.iterator();
+        ArrayList<ConnectionContent> list1 = new ArrayList<ConnectionContent>();
+        while (iterator.hasNext()) {
+            NodeConnection connection = iterator.next();
+            int sourceIndex = list.indexOf(connection.getSource());
+            int targetIndex = list.indexOf(connection.getTarget());
+            if (sourceIndex >= 0 && sourceIndex < list.size() && targetIndex >= 0 && targetIndex < list.size()) {
+                list1.add(new ConnectionContent(sourceIndex, targetIndex));
+            }
+        }
+        encoder.writeObject(list);
+        encoder.writeObject(list1);
+        encoder.flush();
+        encoder.close();
+    }
+
+    public void read(String path) throws FileNotFoundException {
+        this.read(new File(path));
+    }
+
+    public void read(File file) throws FileNotFoundException {
+        this.read(new FileInputStream(file));
+    }
+
+    public void read(InputStream inputStream) {
+        XMLDecoder decoder = new XMLDecoder(inputStream);
+        ArrayList<BeanNodeElement> list = new ArrayList<BeanNodeElement>();
+        ArrayList<ConnectionContent> list1 = new ArrayList<ConnectionContent>();
+        list = (ArrayList<BeanNodeElement>) decoder.readObject();
+        list1 = (ArrayList<ConnectionContent>) decoder.readObject();
+        for (int i = 0; i < list.size(); i++) {
+            this.attachNodeWidget(list.get(i));
+        }
+        for (int i = 0; i < list1.size(); i++) {
+            ConnectionContent content = list1.get(i);
+            this.attachEdgeWidget(new NodeConnection(list.get(content.sourceIndex), list.get(content.targetIndex), this));
+        }
+    }
+
     private Widget getWidget(BeanNodeElement node) {
         if (node instanceof PrintBeanNodeElement) {
             PrintWidget widget = new PrintWidget(this, (PrintBeanNodeElement) node);
@@ -558,14 +630,15 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
         if (node instanceof SwitchBeanNodeElement) {
             SwitchWidget widget = new SwitchWidget(this, (SwitchBeanNodeElement) node, 0);
             widget.setOpaque(true);
+            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             widget.getActions().addAction(selectAction);
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
             widget.getActions().addAction(getRepaintAction());
+
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
-            widget.getActions().addAction(ActionFactory.createPopupMenuAction(nodeMenu));
             mainLayer.addChild(widget);
             widgetArray.add(widget);
             return widget;
@@ -841,8 +914,11 @@ class NodeMenu implements PopupMenuProvider, ActionListener {
         }
         if (e.getActionCommand().equals(ADD_NODE)) {
             NodeElement n = ((BeanNodeElement) scene.findObject(node)).getEditNode();
-            n.setDisctription(JOptionPane.showInputDialog("Please input Disctription"));
-            Palette.getPalette().addNode(n);
+            String str = JOptionPane.showInputDialog("Please input Disctription");
+            if (str != null && str.length() > 0) {
+                n.setDisctription(str);
+                Palette.getPalette().addNode(n);
+            }
         }
     }
 }

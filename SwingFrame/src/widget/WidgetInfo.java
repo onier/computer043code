@@ -5,6 +5,7 @@
 package widget;
 
 import javax.swing.Icon;
+import shape.BeanNodeElement;
 
 /**
  *
@@ -17,6 +18,8 @@ public interface WidgetInfo {
     public Icon getWidgetIcon();
 
     public String getToolTipText();
+
+    public BeanNodeElement getBeanNodeElement();
 
     public void properties();
 }

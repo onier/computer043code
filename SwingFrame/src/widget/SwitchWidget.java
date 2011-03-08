@@ -82,7 +82,13 @@ public class SwitchWidget extends NodeContainerGroupWidget implements WidgetInfo
         return widget;
     }
 
+    public SwitchBeanNodeElement getBeanNodeElement() {
+        return switchNode;
+    }
+
     public void addGroups(Map<String, String> beanValue) {
+        middle.setVisible(true);
+        group.setVisible(false);
         Set<String> set = beanValue.keySet();
         String[] values = new String[set.size()];
         ArrayList<String> Int = new ArrayList<String>();

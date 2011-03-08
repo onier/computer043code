@@ -19,7 +19,6 @@ public class NewJFrame1 extends javax.swing.JFrame {
     /** Creates new form NewJFrame1 */
     public NewJFrame1() {
         initComponents();
-        System.out.println(this.jTabbedPane1.getActionMap().get("scrollTabsForwardAction"));
     }
 
     /** This method is called from within the constructor to
