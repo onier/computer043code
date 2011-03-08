@@ -31,6 +31,7 @@ import sun.swing.DefaultLookup;
  */
 public class ColorComboBoxUI extends BasicComboBoxUI {
 
+    protected ColorCellRendererPane currentValuePane = new ColorCellRendererPane();
     private Hanlder hanlder = new Hanlder();
     private boolean rollover = false, armed = false;
 
@@ -92,7 +93,6 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
             }
         }
 
-        // Fix for 4238829: should lay out the JPanel.
         boolean shouldValidate = false;
         if (c instanceof JPanel) {
             shouldValidate = true;

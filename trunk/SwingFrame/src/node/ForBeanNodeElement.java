@@ -6,7 +6,7 @@ package node;
 
 import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
-import shape.NodeElement;
+import shape.BeanNodeElement;
 import widget.WidgetUtils;
 
 /**
@@ -39,32 +39,27 @@ public class ForBeanNodeElement extends AbstractBeanNodeElement {
     @Override
     public String toString() {
         String str = "for(";
-        str = str + beanValue.get("init") + ";";
-        str = str + beanValue.get("Expression").toString() + ";";
-        str = str + beanValue.get("updata");
+        str = str + getBeanValue().get("init") + ";";
+        str = str + getBeanValue().get("Expression").toString() + ";";
+        str = str + getBeanValue().get("updata");
         str = str + "){" + "\n";
-        str = str + beanValue.get("block") + "\n";
+        str = str + getBeanValue().get("block") + "\n";
         str = str + "}" + "\n";
         return str;
     }
 
     public String toTipString() {
         String str = "for(";
-        str = str + beanValue.get("init") + ";";
-        str = str + WidgetUtils.getCaseString(beanValue.get("Expression").toString()) + ";";
-        str = str + beanValue.get("updata");
+        str = str + getBeanValue().get("init") + ";";
+        str = str + WidgetUtils.getCaseString(getBeanValue().get("Expression").toString()) + ";";
+        str = str + getBeanValue().get("updata");
         str = str + "){" + "\n";
-        str = str + beanValue.get("block") + "\n";
+        str = str + getBeanValue().get("block") + "\n";
         str = str + "}" + "\n";
         return str;
     }
 
-    @Override
-    public String getDisctription() {
-        return disctription;
-    }
-
-    public NodeElement getEditNode() {
+    public BeanNodeElement getEditNode() {
         return new ForBeanNodeElement(this);
     }
 }

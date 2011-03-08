@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
 import node.EndBeanNodeElement;
 import org.netbeans.api.visual.widget.Scene;
+import shape.BeanNodeElement;
 import testframe.Properties;
 
 /**
@@ -49,5 +50,9 @@ public class EndWidget extends ProgramNodeWidget implements WidgetInfo {
 
     public void properties() {
         Properties.getProperties().setProperties(getBeanNode().getPropertiesModel());
+    }
+
+    public EndBeanNodeElement getBeanNodeElement() {
+        return startNode;
     }
 }

@@ -5,8 +5,7 @@
 package node;
 
 import shape.AbstractBeanNodeElement;
-import shape.AbstractPropertiesModel;
-import shape.NodeElement;
+import shape.BeanNodeElement;
 
 /**
  *
@@ -110,18 +109,13 @@ public class GeneralBeanNodeElement extends AbstractBeanNodeElement {
 //    }
     @Override
     public String toString() {
-        String str = "ar." + beanValue.get("Window").toString() + " (\"" + beanValue.get("Window.Parameter").toString() + " \")";
-        str = str + beanValue.get("Action").toString();
-        str = str + " (\"" + beanValue.get("Action.Parameter1").toString() + " \"," + beanValue.get("Action.Parameter2").toString() + " \"," + beanValue.get("Action.Parameter3").toString() + " \"," + ");";
-        return str;
+        String str = "ar." + getBeanValue().get("Window").toString() + " (\"" + getBeanValue().get("Window.Parameter").toString() + " \").";
+        str = str + getBeanValue().get("Action").toString();
+        str = str + " (\"" + getBeanValue().get("Action.Parameter1").toString() + " \"," + getBeanValue().get("Action.Parameter2").toString() + " \"," + getBeanValue().get("Action.Parameter3").toString() + " \"" + ");";
+        return str + "\n";
     }
 
-    public NodeElement getEditNode() {
+    public BeanNodeElement getEditNode() {
         return new GeneralBeanNodeElement(this);
-    }
-
-    @Override
-    public String getDisctription() {
-        return this.disctription;
     }
 }

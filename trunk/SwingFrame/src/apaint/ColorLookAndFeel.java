@@ -5,7 +5,6 @@
 package apaint;
 
 import java.awt.Color;
-import javax.swing.JRadioButton;
 import javax.swing.UIDefaults;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 
@@ -17,6 +16,7 @@ public class ColorLookAndFeel extends BasicLookAndFeel {
 
     private String name = "Color";
     public static final String BUTTON_LAYOUT_LEFT = "left";
+    public static final String BUTTON_LAYOUT_BOTH = "both";
     public static final String BUTTON_LAYOUT_RIGHT = "right";
     public static final String BUTTON_LAYOUT = "layout";
     public static final String BUTTON_SEPARATOR = "separator";
@@ -58,6 +58,9 @@ public class ColorLookAndFeel extends BasicLookAndFeel {
                     "ScrollBarUI", "apaint.ColorScrollBarUI",
                     "ProgressBarUI", "apaint.ColorProgressBarUI",
                     "ComboBoxUI", "apaint.ColorComboBoxUI",
+                    "ScrollPaneUI", "apaint.ColorScrollPaneUI",
+                    "SplitPaneUI", "apaint.ColorSplitPaneUI",
+                    "RootPaneU", "apaint.ColorRootPaneUI",
                     "PanelUI", "apaint.ColorPanelUI",});
     }
 

@@ -13,6 +13,7 @@ import node.BlockBeanNodeElement;
 import node.DoWhileBeanNodeElement;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.widget.Widget;
+import shape.BeanNodeElement;
 import testframe.BeanNodeGraphView;
 import testframe.Properties;
 
@@ -104,5 +105,9 @@ public class DoWhileWidget extends NodeContainerWidget implements WidgetInfo {
 
     public void properties() {
         Properties.getProperties().setProperties(doWhileNode.getPropertiesModel());
+    }
+
+    public DoWhileBeanNodeElement getBeanNodeElement() {
+        return doWhileNode;
     }
 }

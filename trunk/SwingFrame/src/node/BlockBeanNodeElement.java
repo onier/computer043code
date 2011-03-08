@@ -6,7 +6,7 @@ package node;
 
 import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
-import shape.NodeElement;
+import shape.BeanNodeElement;
 import widget.WidgetUtils;
 
 /**
@@ -32,15 +32,10 @@ public class BlockBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String toString() {
-        return this.beanValue.get("code").toString() + "\n";
+        return this.getBeanValue().get("code").toString() + "\n";
     }
 
-    @Override
-    public String getDisctription() {
-        return disctription;
-    }
-
-    public NodeElement getEditNode() {
+    public BeanNodeElement getEditNode() {
         return new BlockBeanNodeElement(this);
     }
 }

@@ -22,6 +22,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
@@ -30,6 +31,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -86,6 +88,8 @@ public class EditPanel extends javax.swing.JPanel {
         jToggleButton2 = new javax.swing.JToggleButton();
         chartToolBar = new javax.swing.JToolBar();
         GridsToggleButton = new javax.swing.JToggleButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jToolBar2 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
 
@@ -129,6 +133,28 @@ public class EditPanel extends javax.swing.JPanel {
             }
         });
         chartToolBar.add(GridsToggleButton);
+
+        jButton2.setText("保存");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        chartToolBar.add(jButton2);
+
+        jButton3.setText("打开");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        chartToolBar.add(jButton3);
 
         jToolBar1.add(chartToolBar);
 
@@ -182,10 +208,28 @@ public class EditPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            scene.save("c:/test.xml");
+        } catch (FileNotFoundException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            scene.read("c:/test.xml");
+        } catch (FileNotFoundException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton GridsToggleButton;
     private javax.swing.JToolBar chartToolBar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToggleButton jToggleButton1;

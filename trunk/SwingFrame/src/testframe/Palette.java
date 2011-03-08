@@ -34,6 +34,7 @@ import node.ScriptBeanNodeElement;
 import node.StartBeanNodeElement;
 import node.SwitchBeanNodeElement;
 import node.WhileBeanNodeElement;
+import shape.BeanNodeElement;
 import shape.NodeElement;
 
 /**
@@ -66,7 +67,7 @@ public class Palette extends javax.swing.JPanel {
                 System.out.println(e.getActionCommand());
             }
         };
-        NodeElement[] elements = new NodeElement[]{
+        BeanNodeElement[] elements = new BeanNodeElement[]{
             new BlockBeanNodeElement(),
             new CaseBeanNodeElement(),
             new DoWhileBeanNodeElement(),

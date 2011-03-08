@@ -40,25 +40,20 @@ public class CaseBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String toString() {
-        String str = "if(" + beanValue.get("case") + ")" + "{" + "\n";
-        str = str + beanValue.get("trueBlock") + "\n";
+        String str = "if(" + getBeanValue().get("case") + ")" + "{" + "\n";
+        str = str + getBeanValue().get("trueBlock") + "\n";
         str = str + "}";
-        if (beanValue.get("falseBlock") != null && beanValue.get("falseBlock").toString().length() > 0) {
+        if (getBeanValue().get("falseBlock") != null && getBeanValue().get("falseBlock").toString().length() > 0) {
             str = str + "else{" + "\n";
-            str = str + beanValue.get("falseBlock") + "\n";
+            str = str + getBeanValue().get("falseBlock") + "\n";
             str = str + "}";
         }
-        return str;
+        return str + "\n";
     }
 
     public void addFalseNode(BeanNodeElement node) {
-        this.children.add(node);
+        this.getChildren().add(node);
         falseNode = node;
-    }
-
-    @Override
-    public String getDisctription() {
-        return this.disctription;
     }
 
     public CaseBeanNodeElement getEditNode() {

@@ -34,21 +34,16 @@ public class DoWhileBeanNodeElement extends AbstractBeanNodeElement {
     @Override
     public String toString() {
         String str = "do {" + "\n";
-        str = str + beanValue.get("block").toString() + "\n";
-        str = str + "}" + "while(" + beanValue.get("case").toString() + ");" + "\n";
+        str = str + getBeanValue().get("block").toString() + "\n";
+        str = str + "}" + "while(" + getBeanValue().get("case").toString() + ");" + "\n";
         return str;
     }
 
     public String toTipString() {
         String str = "do {" + "\n";
-        str = str + beanValue.get("block").toString() + "\n";
-        str = str + "}" + "while(" + WidgetUtils.getCaseString(beanValue.get("case").toString()) + ");" + "\n";
+        str = str + getBeanValue().get("block").toString() + "\n";
+        str = str + "}" + "while(" + WidgetUtils.getCaseString(getBeanValue().get("case").toString()) + ");" + "\n";
         return str;
-    }
-
-    @Override
-    public String getDisctription() {
-        return "Do While";
     }
 
     public DoWhileBeanNodeElement getEditNode() {

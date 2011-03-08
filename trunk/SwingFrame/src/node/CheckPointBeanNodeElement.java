@@ -5,7 +5,7 @@
 package node;
 
 import shape.AbstractBeanNodeElement;
-import shape.NodeElement;
+import shape.BeanNodeElement;
 
 /**
  *
@@ -25,15 +25,11 @@ public class CheckPointBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String toString() {
-        return beanValue.get("checkPoint").toString() + "\n";
+        return getBeanValue().get("checkPoint").toString() + "\n";
     }
 
-    public NodeElement getEditNode() {
+    public BeanNodeElement getEditNode() {
         return new CheckPointBeanNodeElement(this);
     }
 
-    @Override
-    public String getDisctription() {
-        return this.disctription;
-    }
 }

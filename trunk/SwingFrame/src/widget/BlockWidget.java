@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
 import node.BlockBeanNodeElement;
 import org.netbeans.api.visual.widget.Scene;
+import shape.BeanNodeElement;
 import testframe.Properties;
 
 /**
@@ -36,7 +37,7 @@ public class BlockWidget extends ProgramNodeWidget implements WidgetInfo {
         });
     }
 
-    public BlockBeanNodeElement getStartBeanNode() {
+    public BlockBeanNodeElement getBeanNodeElement() {
         return block;
     }
 

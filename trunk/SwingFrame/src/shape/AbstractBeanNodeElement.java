@@ -32,7 +32,7 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
     }
 
     public void adddBeanNodeElement(BeanNodeElement e) {
-        children.add(e);
+        getChildren().add(e);
     }
 
     public AbstractBeanNodeElement(AbstractBeanNodeElement e) {
@@ -65,7 +65,7 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
             }
 
             public int getRowCount() {
-                return beanInfo.keySet().size();
+                return getBeanInfo().keySet().size();
             }
 
             @Override
@@ -75,18 +75,18 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
 
             @Override
             public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-                Object[] objs = beanInfo.keySet().toArray();
-                AbstractBeanNodeElement.this.firePropertyChange(objs[rowIndex].toString(), beanValue.get(objs[rowIndex].toString()), aValue);
-                beanValue.put(objs[rowIndex].toString(), aValue);
+                Object[] objs = getBeanInfo().keySet().toArray();
+                AbstractBeanNodeElement.this.firePropertyChange(objs[rowIndex].toString(), getBeanValue().get(objs[rowIndex].toString()), aValue);
+                getBeanValue().put(objs[rowIndex].toString(), aValue);
                 AbstractBeanNodeElement.this.firePropertyChange("change", true, false);
             }
 
             public Object getValueAt(int rowIndex, int columnIndex) {
-                Object[] objs = beanInfo.keySet().toArray();
+                Object[] objs = getBeanInfo().keySet().toArray();
                 if (columnIndex == 0) {
                     return objs[rowIndex].toString();
                 }
-                return beanValue.get(objs[rowIndex].toString());
+                return getBeanValue().get(objs[rowIndex].toString());
             }
 
             @Override
@@ -111,15 +111,15 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
     }
 
     public BeanNodeElement getChildAt(int childIndex) {
-        return children.get(childIndex);
+        return getChildren().get(childIndex);
     }
 
     public List<BeanNodeElement> children() {
-        return children;
+        return getChildren();
     }
 
     public int getChildCount() {
-        return children.size();
+        return getChildren().size();
     }
 
     public TreeMap<String, Class> getBeanInfo() {
@@ -143,5 +143,40 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
      */
     public void setDisctription(String disctription) {
         this.disctription = disctription;
+    }
+
+    /**
+     * @param parent the parent to set
+     */
+    public void setParent(BeanNodeElement parent) {
+        this.parent = parent;
+    }
+
+    /**
+     * @return the children
+     */
+    public List<BeanNodeElement> getChildren() {
+        return children;
+    }
+
+    /**
+     * @param children the children to set
+     */
+    public void setChildren(List<BeanNodeElement> children) {
+        this.children = children;
+    }
+
+    /**
+     * @param beanInfo the beanInfo to set
+     */
+    public void setBeanInfo(TreeMap<String, Class> beanInfo) {
+        this.beanInfo = beanInfo;
+    }
+
+    /**
+     * @param beanValue the beanValue to set
+     */
+    public void setBeanValue(TreeMap<String, Object> beanValue) {
+        this.beanValue = beanValue;
     }
 }
