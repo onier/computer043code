@@ -68,6 +68,7 @@ import org.netbeans.api.visual.action.ConnectorState;
 import org.netbeans.api.visual.action.PopupMenuProvider;
 import org.netbeans.api.visual.action.ReconnectProvider;
 import org.netbeans.api.visual.action.SelectProvider;
+import org.netbeans.api.visual.action.TwoStateHoverProvider;
 import org.netbeans.api.visual.action.WidgetAction;
 import org.netbeans.api.visual.anchor.AnchorFactory;
 import org.netbeans.api.visual.anchor.AnchorShape;
@@ -123,99 +124,115 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
     private WidgetAction moveControlPointAction = ActionFactory.createFreeMoveControlPointAction();
     private WidgetAction selectAction = ActionFactory.createSelectAction(new ObjectSelectProvider());
     private JComponent component;
-    protected WidgetAction repaintAction = new WidgetAdapter() {
+    private WidgetAction hoverAction = ActionFactory.createHoverAction(new TwoStateHoverProvider() {
 
-        public State mouseClicked(Widget widget, WidgetMouseEvent wme) {
-            component.repaint();
-            return State.CONSUMED;
+        public void unsetHovering(Widget widget) {
+//            if (widget != null) {
+//                widget.setBackground(Color.WHITE);
+//                widget.setForeground(Color.BLACK);
+//            }
         }
 
-        public State mousePressed(Widget widget, WidgetMouseEvent wme) {
-            component.repaint();
-            return State.CONSUMED;
+        public void setHovering(Widget widget) {
+//            if (widget != null) {
+//                widget.setBackground(new Color(52, 124, 150));
+//                widget.setForeground(Color.WHITE);
+//            }
         }
-
-        public State mouseReleased(Widget widget, WidgetMouseEvent wme) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State mouseEntered(Widget widget, WidgetMouseEvent wme) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State mouseExited(Widget widget, WidgetMouseEvent wme) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        @Override
-        public State mouseDragged(Widget widget, WidgetMouseEvent wme) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State mouseMoved(Widget widget, WidgetMouseEvent wme) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State mouseWheelMoved(Widget widget, WidgetMouseWheelEvent wmwe) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State keyTyped(Widget widget, WidgetKeyEvent wke) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State keyPressed(Widget widget, WidgetKeyEvent wke) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State keyReleased(Widget widget, WidgetKeyEvent wke) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State focusGained(Widget widget, WidgetFocusEvent wfe) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State focusLost(Widget widget, WidgetFocusEvent wfe) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State dragEnter(Widget widget, WidgetDropTargetDragEvent wdtde) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State dragOver(Widget widget, WidgetDropTargetDragEvent wdtde) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State dropActionChanged(Widget widget, WidgetDropTargetDragEvent wdtde) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State dragExit(Widget widget, WidgetDropTargetEvent wdte) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-
-        public State drop(Widget widget, WidgetDropTargetDropEvent wdtde) {
-            component.repaint();
-            return State.CONSUMED;
-        }
-    };
+    });
+//    protected WidgetAction repaintAction = new WidgetAdapter() {
+//
+//        public State mouseClicked(Widget widget, WidgetMouseEvent wme) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State mousePressed(Widget widget, WidgetMouseEvent wme) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State mouseReleased(Widget widget, WidgetMouseEvent wme) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State mouseEntered(Widget widget, WidgetMouseEvent wme) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State mouseExited(Widget widget, WidgetMouseEvent wme) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        @Override
+//        public State mouseDragged(Widget widget, WidgetMouseEvent wme) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State mouseMoved(Widget widget, WidgetMouseEvent wme) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State mouseWheelMoved(Widget widget, WidgetMouseWheelEvent wmwe) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State keyTyped(Widget widget, WidgetKeyEvent wke) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State keyPressed(Widget widget, WidgetKeyEvent wke) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State keyReleased(Widget widget, WidgetKeyEvent wke) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State focusGained(Widget widget, WidgetFocusEvent wfe) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State focusLost(Widget widget, WidgetFocusEvent wfe) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State dragEnter(Widget widget, WidgetDropTargetDragEvent wdtde) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State dragOver(Widget widget, WidgetDropTargetDragEvent wdtde) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State dropActionChanged(Widget widget, WidgetDropTargetDragEvent wdtde) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State dragExit(Widget widget, WidgetDropTargetEvent wdte) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//
+//        public State drop(Widget widget, WidgetDropTargetDropEvent wdtde) {
+//            component.repaint();
+//            return State.CONSUMED;
+//        }
+//    };
 //    private WidgetAction selectAction = new WidgetAdapter() {
 //
 //        @Override
@@ -347,9 +364,9 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
     public void parseCode(NodeElement e) {
         Collection<NodeConnection> collection = this.getEdges();
         for (NodeConnection connection : collection) {
-            if (connection.getTarget().equals(e)) {
-                code = code + connection.getSource().toString();
-                parseCode(connection.getSource());
+            if (connection.getSource().equals(e)) {
+                code = code + connection.getTarget().toString();
+                parseCode(connection.getTarget());
             }
         }
     }
@@ -425,6 +442,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
 
                 @Override
                 public void mousePressed(MouseEvent e) {
+                    System.out.println("sdfsdfa");
                     component.requestFocusInWindow();
                 }
             });
@@ -480,10 +498,13 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
 
     public void save(OutputStream outStream) {
         XMLEncoder encoder = new XMLEncoder(outStream);
-        ArrayList<AbstractBeanNodeElement> list = new ArrayList<AbstractBeanNodeElement>();
-        for (int i = 0; i < widgetArray.size(); i++) {
-            widgetArray.get(i).loadEncoderDelegate(encoder);
-            list.add(widgetArray.get(i).getBeanNodeElement());
+        ArrayList<BeanNodeElement> list = new ArrayList<BeanNodeElement>();
+        Collection<BeanNodeElement> ns = this.getNodes();
+        Iterator<BeanNodeElement> it = ns.iterator();
+        while (it.hasNext()) {
+            BeanNodeElement node = it.next();
+            node.loadEncoderDelegate(encoder);
+            list.add(node);
         }
         Collection<NodeConnection> collection = getEdges();
         Iterator<NodeConnection> iterator = collection.iterator();
@@ -525,12 +546,17 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
         list = (ArrayList<BeanNodeElement>) decoder.readObject();
         list1 = (ArrayList<ConnectionContent>) decoder.readObject();
         for (int i = 0; i < list.size(); i++) {
-            this.attachNodeWidget(list.get(i));
+            this.addNode(list.get(i));
         }
         for (int i = 0; i < list1.size(); i++) {
             ConnectionContent content = list1.get(i);
-            this.attachEdgeWidget(new NodeConnection(list.get(content.getSourceIndex()), list.get(content.getTargetIndex()), this));
+            NodeConnection con = new NodeConnection(list.get(content.getSourceIndex()), list.get(content.getTargetIndex()), this);
+            this.addEdge(con);
+            setEdgeSource(con, con.getSource());
+            setEdgeTarget(con, con.getTarget());
         }
+        this.revalidate();
+        this.invokeLayout();
     }
 
     private Widget getWidget(BeanNodeElement node) {
@@ -541,6 +567,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
             widget.getActions().addAction(selectAction);
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -556,6 +583,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
             widget.getActions().addAction(selectAction);
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -571,6 +599,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
             widget.getActions().addAction(selectAction);
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -586,6 +615,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
             widget.getActions().addAction(selectAction);
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -601,6 +631,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
             widget.getActions().addAction(selectAction);
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -616,6 +647,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
             widget.getActions().addAction(selectAction);
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -630,6 +662,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(selectAction);
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -644,6 +677,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
             widget.getActions().addAction(selectAction);
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -659,6 +693,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
             widget.getActions().addAction(selectAction);
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -674,8 +709,8 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(selectAction);
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
-            widget.getActions().addAction(getRepaintAction());
-
+//            widget.getActions().addAction(getRepaintAction());
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -689,6 +724,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(selectAction);
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -703,6 +739,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             widget.getActions().addAction(selectAction);
             widget.getActions().addAction(getConnectAction());
             widget.getActions().addAction(getMoveAction());
+            widget.getActions().addAction(hoverAction);
             if (point != null) {
                 widget.setPreferredLocation(WidgetUtils.getPosition(point));
             }
@@ -808,10 +845,9 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
     /**
      * @return the repaintAction
      */
-    public WidgetAction getRepaintAction() {
-        return repaintAction;
-    }
-
+//    public WidgetAction getRepaintAction() {
+//        return repaintAction;
+//    }
     class ObjectSelectProvider implements SelectProvider {
 
         public boolean isAimingAllowed(Widget widget, Point localLocation, boolean invertSelection) {
@@ -939,6 +975,11 @@ class NodeMenu implements PopupMenuProvider, ActionListener {
         item.setActionCommand(ADD_NODE);
         item.addActionListener(this);
         menu.add(item);
+
+        item = new JMenuItem("Layout");
+        item.setActionCommand("Layout");
+        item.addActionListener(this);
+        menu.add(item);
     }
 
     public JPopupMenu getPopupMenu(Widget widget, Point point) {
@@ -959,6 +1000,9 @@ class NodeMenu implements PopupMenuProvider, ActionListener {
                 n.setDisctription(str);
                 Palette.getPalette().addNode(n);
             }
+        }
+        if (e.getActionCommand().equals("Layout")) {
+            scene.invokeLayout();
         }
     }
 }

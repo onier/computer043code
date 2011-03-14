@@ -71,15 +71,4 @@ public class StartWidget extends ProgramNodeWidget implements WidgetInfo {
     public StartBeanNodeElement getBeanNodeElement() {
         return startNode;
     }
-
-    public void loadEncoderDelegate(Encoder encoder) {
-        encoder.setPersistenceDelegate(StartBeanNodeElement.class, new DefaultPersistenceDelegate(new String[]{"parent", "children", "beanInfo", "beanValue", "icon", "disctription"}) {
-
-            @Override
-            protected Expression instantiate(Object oldInstance, Encoder out) {
-                StartBeanNodeElement test = (StartBeanNodeElement) oldInstance;
-                return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
-            }
-        });
-    }
 }

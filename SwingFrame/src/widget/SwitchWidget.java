@@ -167,15 +167,4 @@ public class SwitchWidget extends NodeContainerGroupWidget implements WidgetInfo
     public void properties() {
         Properties.getProperties().setProperties(switchNode.getPropertiesModel());
     }
-
-    public void loadEncoderDelegate(Encoder encoder) {
-        encoder.setPersistenceDelegate(SwitchBeanNodeElement.class, new DefaultPersistenceDelegate(new String[]{"parent", "children", "beanInfo", "beanValue", "icon", "disctription"}) {
-
-            @Override
-            protected Expression instantiate(Object oldInstance, Encoder out) {
-                SwitchBeanNodeElement test = (SwitchBeanNodeElement) oldInstance;
-                return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
-            }
-        });
-    }
 }

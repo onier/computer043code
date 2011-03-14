@@ -5,7 +5,6 @@
 package testframe;
 
 import shape.BeanNodeElement;
-import shape.NodeElement;
 
 /**
  *
@@ -13,11 +12,11 @@ import shape.NodeElement;
  */
 public class NodeConnection {
 
-    protected NodeElement source = null;
-    protected NodeElement target = null;
+    protected BeanNodeElement source = null;
+    protected BeanNodeElement target = null;
     protected BeanNodeGraphView scene;
 
-    public NodeConnection(BeanNodeElement target, BeanNodeElement source, BeanNodeGraphView scene) {
+    public NodeConnection(BeanNodeElement source, BeanNodeElement target, BeanNodeGraphView scene) {
         this.source = source;
         this.target = target;
         this.scene = scene;
@@ -26,28 +25,28 @@ public class NodeConnection {
     /**
      * @return the source
      */
-    public NodeElement getSource() {
+    public BeanNodeElement getSource() {
         return source;
     }
 
     /**
      * @param source the source to set
      */
-    public void setSource(NodeElement source) {
+    public void setSource(BeanNodeElement source) {
         this.source = source;
     }
 
     /**
      * @return the target
      */
-    public NodeElement getTarget() {
+    public BeanNodeElement getTarget() {
         return target;
     }
 
     /**
      * @param target the target to set
      */
-    public void setTarget(NodeElement target) {
+    public void setTarget(BeanNodeElement target) {
         this.target = target;
     }
 

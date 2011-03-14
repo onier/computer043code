@@ -5,9 +5,6 @@
 package widget;
 
 import java.awt.Color;
-import java.beans.DefaultPersistenceDelegate;
-import java.beans.Encoder;
-import java.beans.Expression;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
@@ -111,16 +108,5 @@ public class CaseWidget extends NodeContainerGroupWidget implements WidgetInfo {
 
     public CaseBeanNodeElement getBeanNodeElement() {
         return caseNode;
-    }
-
-    public void loadEncoderDelegate(Encoder encoder) {
-        encoder.setPersistenceDelegate(CaseBeanNodeElement.class, new DefaultPersistenceDelegate(new String[]{"parent", "children", "beanInfo", "beanValue", "icon", "disctription"}) {
-
-            @Override
-            protected Expression instantiate(Object oldInstance, Encoder out) {
-                CaseBeanNodeElement test = (CaseBeanNodeElement) oldInstance;
-                return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
-            }
-        });
     }
 }

@@ -4,9 +4,6 @@
  */
 package widget;
 
-import java.beans.DefaultPersistenceDelegate;
-import java.beans.Encoder;
-import java.beans.Expression;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
@@ -53,16 +50,5 @@ public class GeneralWidget extends ProgramNodeWidget implements WidgetInfo {
 
     public GeneralBeanNodeElement getBeanNodeElement() {
         return parameterNode;
-    }
-
-    public void loadEncoderDelegate(Encoder encoder) {
-        encoder.setPersistenceDelegate(GeneralBeanNodeElement.class, new DefaultPersistenceDelegate(new String[]{"parent", "children", "beanInfo", "beanValue", "icon", "disctription"}) {
-
-            @Override
-            protected Expression instantiate(Object oldInstance, Encoder out) {
-                GeneralBeanNodeElement test = (GeneralBeanNodeElement) oldInstance;
-                return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
-            }
-        });
     }
 }
