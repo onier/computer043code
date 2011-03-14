@@ -4,6 +4,9 @@
  */
 package node;
 
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
+import java.beans.Expression;
 import java.util.List;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
@@ -67,5 +70,16 @@ public class ForBeanNodeElement extends AbstractBeanNodeElement {
 
     public BeanNodeElement getEditNode() {
         return new ForBeanNodeElement(this);
+    }
+
+    public void loadEncoderDelegate(Encoder encoder) {
+        encoder.setPersistenceDelegate(ForBeanNodeElement.class, new DefaultPersistenceDelegate(new String[]{"parent", "children", "beanInfo", "beanValue", "icon", "disctription"}) {
+
+            @Override
+            protected Expression instantiate(Object oldInstance, Encoder out) {
+                ForBeanNodeElement test = (ForBeanNodeElement) oldInstance;
+                return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
+            }
+        });
     }
 }

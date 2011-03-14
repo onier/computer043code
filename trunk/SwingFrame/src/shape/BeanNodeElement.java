@@ -4,6 +4,7 @@
  */
 package shape;
 
+import java.beans.Encoder;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,10 @@ import java.util.Map;
 public interface BeanNodeElement extends NodeElement {
 
     public BeanNodeElement getParent();
+
+    public void loadEncoderDelegate(Encoder encoder);
+
+    public BeanNodeElement parseElement(String str);
 
     public void addPropertyChangeListener(PropertyChangeListener listener);
 

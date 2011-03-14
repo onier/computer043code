@@ -98,8 +98,13 @@ public class TableComponentPanelRenderer extends JTable implements ComponentPane
         Object value = this.getValueAt(row, column);
 
         if (column != 0) {
-            TableCellRenderer renderer;
-            renderer = TableCellRendererFactory.createTableCellRenderer(value.getClass());
+            TableCellRenderer renderer = null;
+            try {
+                renderer = TableCellRendererFactory.createTableCellRenderer(value.getClass());
+            } catch (Exception e) {
+                System.out.println("dsfdf");
+            }
+
             if (renderer != null) {
                 return renderer;
             }

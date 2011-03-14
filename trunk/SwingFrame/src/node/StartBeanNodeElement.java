@@ -4,6 +4,9 @@
  */
 package node;
 
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
+import java.beans.Expression;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -27,11 +30,15 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
 
     public StartBeanNodeElement(BeanNodeElement parent, List<BeanNodeElement> children, TreeMap<String, Class> beanInfo, TreeMap<String, Object> beanValue, ImageIcon icon, String disctription) {
         super(parent, children, beanInfo, beanValue, icon, disctription);
+        initListener();
     }
     private TreeMap<String, ParameterType> parameters = new TreeMap<String, ParameterType>();
+    private TreeMap<String, String> parameterValues = new TreeMap<String, String>();
 
     public StartBeanNodeElement(StartBeanNodeElement e) {
         super(e);
+        this.copyMap(parameters, e.parameters);
+        this.copyMap(parameterValues, e.parameterValues);
         initListener();
     }
 
@@ -62,6 +69,9 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
                 for (int i = 0; i < labels.size(); i++) {
                     if (!parameters.containsKey(labels.get(i))) {
                         parameters.put(labels.get(i), ParameterType.NULL);
+                        if (!parameterValues.containsKey(labels.get(i))) {
+                            parameterValues.put(labels.get(i), "");
+                        }
                     }
                 }
             }
@@ -98,10 +108,11 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
                 if (columnIndex == 1) {
                     Object[] objs = getParameters().keySet().toArray();
                     getParameters().put(objs[rowIndex].toString(), ((ParameterType) aValue));
+                    parameterValues.put(objs[rowIndex].toString(), ((ParameterType) aValue).getInitValue().toString());
                 }
                 if (columnIndex == 2) {
                     Object[] objs = getParameters().keySet().toArray();
-                    getParameters().get(objs[rowIndex].toString()).setInitValue(aValue.toString());
+                    parameterValues.put(objs[rowIndex].toString(), aValue.toString());
                 }
                 firePropertyChange("change", true, false);
             }
@@ -115,7 +126,7 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
                     return getParameters().get(objs[rowIndex].toString());
                 }
                 if (columnIndex == 2) {
-                    return getParameters().get(objs[rowIndex].toString()).getInitValue().toString();
+                    return parameterValues.get(objs[rowIndex].toString());
                 }
                 return "";
             }
@@ -136,7 +147,7 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
             Iterator<String> iterator = parameters.keySet().iterator();
             while (iterator.hasNext()) {
                 String str1 = iterator.next();
-                str = str + parameters.get(str1) + " " + str1 + " = " + parameters.get(str1).getInitValue().toString() + ";\n";
+                str = str + parameters.get(str1) + " " + str1 + " = " + parameterValues.get(str1).toString() + ";\n";
             }
             str = str + "// End of variables declaration " + "\n" + "\n";
         }
@@ -159,5 +170,51 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
      */
     public void setParameters(TreeMap<String, ParameterType> parameters) {
         this.parameters = parameters;
+    }
+
+    public void loadEncoderDelegate(Encoder encoder) {
+        encoder.setPersistenceDelegate(StartBeanNodeElement.class, new DefaultPersistenceDelegate(new String[]{"parent", "children", "beanInfo", "beanValue", "icon", "disctription"}) {
+
+            @Override
+            protected Expression instantiate(Object oldInstance, Encoder out) {
+                StartBeanNodeElement test = (StartBeanNodeElement) oldInstance;
+                return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
+            }
+        });
+    }
+
+    /**
+     * @return the values
+     */
+    public TreeMap<String, String> getValues() {
+        return parameterValues;
+    }
+
+    /**
+     * @param values the values to set
+     */
+    public void setValues(TreeMap<String, String> values) {
+        this.parameterValues = values;
+    }
+
+    private void parseParameters(String str) {
+        str = str.replace(";", " ");
+        String[] value = str.split(" ");
+        for (int i = 0; i < value.length; i++) {
+            String string = value[i];
+            if(string.trim().length()>0){
+
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        String str = " int a = 1;";
+        str = str.replace(";", " ");
+        System.out.println(Arrays.toString(str.split(" ")));
+    }
+
+    public BeanNodeElement parseElement(String str) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

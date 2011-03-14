@@ -38,6 +38,26 @@ public enum ParameterType {
         }
     }
 
+    public ParameterType parseType(String str) {
+        if (str.equals("int")) {
+            return INT;
+        }
+        if (str.equals("float")) {
+            return FLOAT;
+        }
+        if (str.equals("double")) {
+            return DOUBLE;
+        }
+        if (str.equals("String")) {
+            return STRING;
+        }
+        if (str.equals("Object")) {
+            return OBJECT;
+        } else {
+            return INT;
+        }
+    }
+
     @Override
     public String toString() {
         switch (type) {
@@ -70,5 +90,4 @@ public enum ParameterType {
     public void setInitValue(String initValue) {
         this.initValue = initValue;
     }
-
 }

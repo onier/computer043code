@@ -4,6 +4,9 @@
  */
 package node;
 
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
+import java.beans.Expression;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -136,5 +139,16 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
 
     public BeanNodeElement getEditNode() {
         return new SwitchBeanNodeElement(this);
+    }
+
+    public void loadEncoderDelegate(Encoder encoder) {
+        encoder.setPersistenceDelegate(SwitchBeanNodeElement.class, new DefaultPersistenceDelegate(new String[]{"parent", "children", "beanInfo", "beanValue", "icon", "disctription"}) {
+
+            @Override
+            protected Expression instantiate(Object oldInstance, Encoder out) {
+                SwitchBeanNodeElement test = (SwitchBeanNodeElement) oldInstance;
+                return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
+            }
+        });
     }
 }
