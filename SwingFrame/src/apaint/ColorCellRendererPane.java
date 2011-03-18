@@ -12,9 +12,10 @@ import java.awt.Rectangle;
 import javax.accessibility.Accessible;
 import javax.accessibility.AccessibleContext;
 import javax.accessibility.AccessibleRole;
+import javax.swing.CellRendererPane;
 import javax.swing.JComponent;
 
-public class ColorCellRendererPane extends Container implements Accessible {
+public class ColorCellRendererPane extends CellRendererPane implements Accessible {
 
     public ColorCellRendererPane() {
         super();

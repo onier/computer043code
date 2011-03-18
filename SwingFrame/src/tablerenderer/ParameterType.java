@@ -38,7 +38,7 @@ public enum ParameterType {
         }
     }
 
-    public ParameterType parseType(String str) {
+    public static ParameterType parseType(String str) {
         if (str.equals("int")) {
             return INT;
         }

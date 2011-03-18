@@ -70,4 +70,38 @@ public class DoWhileBeanNodeElement extends AbstractBeanNodeElement {
             }
         });
     }
+
+    public static DoWhileBeanNodeElement parseElement(String str) {
+        DoWhileBeanNodeElement e = new DoWhileBeanNodeElement();
+        int n = str.indexOf("{");
+        if (n >= 0) {
+            int m = str.lastIndexOf("}");
+            e.beanValue.put("block", str.substring(n + 1, m).trim());
+            n = str.indexOf("while");
+            if (n >= 0) {
+                str = str.substring(n + 5, str.length());
+                if (str.length() > 2) {
+                    str = str.trim();
+                    if (str.endsWith(";")) {
+                        e.beanValue.put("case", str.substring(1, str.length() - 2).trim());
+                    } else {
+                        e.beanValue.put("case", str.substring(1, str.length() - 1).trim());
+                    }
+                }
+            }
+        }
+        return e;
+    }
+
+    public static void main(String[] args) {
+        String str = "do {" + "\n"
+                + "if (true) {" + "\n"
+                + "System.out.println(" + "sdfasdf" + ");" + "\n"
+                + "}else{" + "\n"
+                + "System.out.println(" + "dfsadfasdf" + ");" + "\n"
+                + "}" + "\n"
+                + "} while (true);";
+        DoWhileBeanNodeElement e = new DoWhileBeanNodeElement();
+        System.out.println(e.parseElement(str));
+    }
 }

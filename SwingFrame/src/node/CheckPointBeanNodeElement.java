@@ -52,4 +52,8 @@ public class CheckPointBeanNodeElement extends AbstractBeanNodeElement {
             }
         });
     }
+
+    public static CheckPointBeanNodeElement parseElement(String str) {
+        return new CheckPointBeanNodeElement();
+    }
 }

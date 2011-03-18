@@ -197,24 +197,58 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
         this.parameterValues = values;
     }
 
-    private void parseParameters(String str) {
+    private static void parseParameters(String str, StartBeanNodeElement e) {
         str = str.replace(";", " ");
         String[] value = str.split(" ");
+        ArrayList<String> l = new ArrayList<String>();
         for (int i = 0; i < value.length; i++) {
             String string = value[i];
-            if(string.trim().length()>0){
-
+            if (string.trim().length() > 0) {
+                l.add(string);
             }
+        }
+        if (l.size() < 2) {
+            return;
+        }
+        for (int i = 0; i < l.size(); i++) {
+            e.parameters.put(l.get(1), ParameterType.parseType(l.get(0)));
+            if (l.size() > 2) {
+                if (l.size() > 3) {
+                    e.parameterValues.put(l.get(1), l.get(3));
+                } else {
+                    e.parameterValues.put(l.get(1), "");
+                }
+            }
+        }
+        Object obj = e.beanValue.get("Parameters");
+        if (obj != null && obj instanceof ArrayList) {
+            ((ArrayList) obj).add(l.get(1));
+        } else {
+            ArrayList<Object> list = new ArrayList<Object>();
+            list.add(l.get(1));
+            e.beanValue.put("Parameters", list);
         }
     }
 
     public static void main(String[] args) {
-        String str = " int a = 1;";
-        str = str.replace(";", " ");
-        System.out.println(Arrays.toString(str.split(" ")));
+        StartBeanNodeElement e = new StartBeanNodeElement();
+        String str = "int a = 1;"
+                + "double b = 1.0;"
+                + "Object obj = null";
+        System.out.println(e.parseElement(str));
     }
 
-    public BeanNodeElement parseElement(String str) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public static StartBeanNodeElement parseElement(String str) {
+        StartBeanNodeElement e = new StartBeanNodeElement();
+        if (str != null && str.trim().length() > 0) {
+            String[] values = str.split(";");
+            for (int i = 0; i < values.length; i++) {
+                String string = values[i];
+                if (string != null && string.trim().length() > 0) {
+                    parseParameters(string, e);
+                }
+            }
+        }
+        return e;
     }
 }

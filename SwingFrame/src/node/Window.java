@@ -17,6 +17,16 @@ public enum Window {
         this.name = str;
     }
 
+    public static Window parseWindow(String str) {
+        if (str.equals("ieFrame")) {
+            return IEFRAME;
+        } else if (str.equals("java")) {
+            return JAVA;
+        } else {
+            return WINDOW;
+        }
+    }
+
     @Override
     public String toString() {
         return name;

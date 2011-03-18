@@ -62,6 +62,8 @@ public class SwitchWidget extends NodeContainerGroupWidget implements WidgetInfo
                 properties();
             }
         });
+        switchNode.fireNodeProperties();
+//        switchNode.fireNodeChange();
     }
 
     @Override

@@ -53,6 +53,10 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
         firePropertyChange("properties", false, true);
     }
 
+    public void fireNodeChange() {
+        firePropertyChange("change", false, true);
+    }
+
     protected <K, V> Map<K, V> copyMap(Map<K, V> dmap, Map<K, V> smap) {
         Set<K> set = smap.keySet();
         Iterator<K> iterator = set.iterator();

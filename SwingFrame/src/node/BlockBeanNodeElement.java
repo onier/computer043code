@@ -61,7 +61,7 @@ public class BlockBeanNodeElement extends AbstractBeanNodeElement {
         });
     }
 
-    public BeanNodeElement parseElement(String str) {
+    public static BlockBeanNodeElement parseElement(String str) {
         BlockBeanNodeElement e = new BlockBeanNodeElement();
         e.beanValue.put("code", str);
         return e;

@@ -31,7 +31,7 @@ import sun.swing.DefaultLookup;
  */
 public class ColorComboBoxUI extends BasicComboBoxUI {
 
-    protected ColorCellRendererPane currentValuePane = new ColorCellRendererPane();
+//    protected ColorCellRendererPane currentValuePane = new ColorCellRendererPane();
     private Hanlder hanlder = new Hanlder();
     private boolean rollover = false, armed = false;
 
@@ -39,11 +39,16 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
         return new ColorComboBoxUI();
     }
 
+    public ColorComboBoxUI() {
+        currentValuePane = new ColorCellRendererPane();
+    }
+
     @Override
     public boolean contains(JComponent c, int x, int y) {
         return super.contains(c, x, y);
     }
 
+    @Override
     public void paint(Graphics gg, JComponent c) {
         hasFocus = comboBox.hasFocus();
         Graphics2D g = (Graphics2D) gg;
@@ -62,7 +67,6 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
     public void paintCurrentValue(Graphics2D g, Rectangle bounds, boolean hasFocus) {
         ListCellRenderer renderer = comboBox.getRenderer();
         Component c;
-
         if (hasFocus && !isPopupVisible(comboBox)) {
             c = renderer.getListCellRendererComponent(listBox,
                     comboBox.getSelectedItem(),

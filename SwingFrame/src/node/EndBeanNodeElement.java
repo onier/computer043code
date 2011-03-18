@@ -56,4 +56,8 @@ public class EndBeanNodeElement extends AbstractBeanNodeElement {
             }
         });
     }
+
+    public static EndBeanNodeElement parseElement(String str) {
+        return new EndBeanNodeElement();
+    }
 }

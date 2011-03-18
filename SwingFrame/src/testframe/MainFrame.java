@@ -29,6 +29,9 @@ import tablerenderer.TableCellRendererFactory;
 public class MainFrame extends JFrame {
 
     public static void main(String[] args) {
+//        ToolTipManager.sharedInstance().setDismissDelay(250);
+//        ToolTipManager.sharedInstance().setInitialDelay(250);
+//        ToolTipManager.sharedInstance().setReshowDelay(250);
         TableCellEditorFactory.createEditor(String.class);
         TableCellRendererFactory.createTableCellRenderer(String.class);
         final JPanel palatte = createVSplitPane(Palette.getPalette(), Properties.getProperties());

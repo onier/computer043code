@@ -82,4 +82,41 @@ public class ForBeanNodeElement extends AbstractBeanNodeElement {
             }
         });
     }
+
+    private static void parseFor(String str, ForBeanNodeElement e) {
+        int s = str.indexOf("(");
+        int n = str.lastIndexOf(")");
+        if (s >= 0 && n >= 0) {
+            str = str.substring(s + 1, n);
+            String[] values = str.split(";");
+            if (values.length == 3) {
+                e.beanValue.put("init", values[0]);
+                e.beanValue.put("Expression", values[1]);
+                e.beanValue.put("updata", values[2]);
+            }
+        }
+    }
+
+    public static ForBeanNodeElement parseElement(String str) {
+        ForBeanNodeElement e = new ForBeanNodeElement();
+        int n = str.indexOf("{");
+        if (n >= 0) {
+            parseFor(str.substring(0, n), e);
+            int m = str.lastIndexOf("}");
+            e.beanValue.put("block", str.substring(n + 1, m).trim());
+        }
+        return e;
+    }
+
+    public static void main(String[] args) {
+        String str = " for (int i = 0; i < 3; i++) {" + "\n"
+                + "if (i > 2) {" + "\n"
+                + "System.out.println(i);" + "\n"
+                + "} else {" + "\n"
+                + "i++;" + "\n"
+                + "}" + "\n"
+                + "}";
+        ForBeanNodeElement e = new ForBeanNodeElement();
+        System.out.println(e.parseElement(str));
+    }
 }
