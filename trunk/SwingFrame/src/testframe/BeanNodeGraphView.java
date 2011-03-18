@@ -393,11 +393,11 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
                     counter < maxCounter; counter++) {
                 parent.add(new DefaultMutableTreeNode(childArray[counter]));
             }
-        } else if (children instanceof List) {
-            List childArray = (List) children;
+        } else if (children instanceof Collection) {
+            Collection childArray = (Collection) children;
 
-            for (int counter = 0; counter < childArray.size(); counter++) {
-                parent.add(new DefaultMutableTreeNode(childArray.get(counter)));
+            for (Object obj : childArray) {
+                parent.add(new DefaultMutableTreeNode(obj));
             }
         }
     }
@@ -410,7 +410,7 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
             root.add(parameter);
         }
         DefaultMutableTreeNode node = new DefaultMutableTreeNode("Node");
-        createChildren(node, widgetArray);
+        createChildren(node, this.getNodes());
         root.add(node);
         return root;
     }
@@ -537,6 +537,27 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
 
     public void read(File file) throws FileNotFoundException {
         this.read(new FileInputStream(file));
+    }
+
+    public void removeAll() {
+        Collection<BeanNodeElement> ns = this.getNodes();
+        List<BeanNodeElement> list = new ArrayList<BeanNodeElement>();
+        list.addAll(ns);
+        for (int i = 0; i < list.size(); i++) {
+            this.removeNodeWithEdges(list.get(i));
+        }
+    }
+
+    public void addElements(List<BeanNodeElement> list) {
+        for (int i = 0; i < list.size(); i++) {
+            this.addNode(list.get(i));
+            if (i > 0) {
+                NodeConnection con = new NodeConnection(list.get(i - 1), list.get(i), this);
+                this.addEdge(con);
+                setEdgeSource(con, con.getSource());
+                setEdgeTarget(con, con.getTarget());
+            }
+        }
     }
 
     public void read(InputStream inputStream) {

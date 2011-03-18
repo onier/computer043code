@@ -73,8 +73,34 @@ public class WhileBeanNodeElement extends AbstractBeanNodeElement {
         });
     }
 
-    public WhileBeanNodeElement parseElement(String str) {
+    public static WhileBeanNodeElement parseElement(String str) {
         WhileBeanNodeElement e = new WhileBeanNodeElement();
+        int n = str.indexOf("{");
+        if (n >= 0) {
+            String c = str.substring(0, n);
+            int a = c.indexOf("(");
+            if (a >= 0) {
+                int b = c.lastIndexOf(")");
+                if (b >= 0) {
+                    e.beanValue.put("case", c.substring(a + 1, b).trim());
+                }
+            }
+            int m = str.lastIndexOf("}");
+            e.beanValue.put("block", str.substring(n + 1, m).trim());
+        }
         return e;
     }
+
+    public static void main(String[] args) {
+        String str = "while (true) {" + "\n"
+                + "if (true) {" + "\n"
+                + "System.out.println(1);" + "\n"
+                + "} else {" + "\n"
+                + "System.out.println(2);" + "\n"
+                + "}" + "\n"
+                + "}";
+        WhileBeanNodeElement e = new WhileBeanNodeElement();
+        System.out.println(e.parseElement(str));
+    }
 }
+

@@ -28,6 +28,8 @@ import widget.WidgetUtils;
 public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
 
     private TreeMap<String, String> labelsMap = new TreeMap<String, String>();
+    public static final String EXPRESSION = "expression";
+    public static final String SWITCH_LABELS = "switchLabels";
 
     public SwitchBeanNodeElement(BeanNodeElement parent, List<BeanNodeElement> children, TreeMap<String, Class> beanInfo, TreeMap<String, Object> beanValue, ImageIcon icon, String disctription) {
         super(parent, children, beanInfo, beanValue, icon, disctription);
@@ -43,10 +45,10 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
     }
 
     public SwitchBeanNodeElement() {
-        this.beanInfo.put("expression", String.class);
-        this.beanValue.put("expression", "");
-        this.beanInfo.put("switchLabels", ArrayList.class);
-        this.beanValue.put("switchLabels", new ArrayList<String>());
+        this.beanInfo.put(EXPRESSION, String.class);
+        this.beanValue.put(EXPRESSION, "");
+        this.beanInfo.put(SWITCH_LABELS, ArrayList.class);
+        this.beanValue.put(SWITCH_LABELS, new ArrayList<String>());
         this.disctription = "Switch";
         initListener();
     }
@@ -150,5 +152,73 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
                 return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
             }
         });
+    }
+
+    private static void parseLabel(String str, SwitchBeanNodeElement e) {
+        int n = str.indexOf("case");
+        if (n >= 0) {
+            str = str.substring(n + 4, str.length()).trim();
+            n = str.indexOf(":");
+            if (n >= 0) {
+                String label = str.substring(0, n).trim();
+                addLabel(e, label.trim());
+                String content = str.substring(n + 1, str.length());
+                e.labelsMap.put(label, content.trim());
+            }
+        }
+    }
+
+    public static void addLabel(SwitchBeanNodeElement e, String label) {
+        Object ob = e.beanValue.get(SwitchBeanNodeElement.SWITCH_LABELS);
+        if (ob != null) {
+            ((ArrayList) ob).add(label);
+        } else {
+            ArrayList<Object> list = new ArrayList<Object>();
+            list.add(label);
+            e.beanValue.put(SwitchBeanNodeElement.SWITCH_LABELS, label);
+        }
+    }
+
+    private static void parseExpression(String str, SwitchBeanNodeElement e) {
+        int a = 1;
+        int n = str.indexOf("switch");
+        if (n >= 0) {
+            str = str.substring(n + 6, str.length()).trim();
+            n = str.indexOf("(");
+            if (n >= 0) {
+                str = str.substring(n + 1, str.length()).trim();
+                n = str.lastIndexOf(")");
+                if (n >= 0) {
+                    str = str.substring(0, n).trim();
+                    e.beanValue.put(SwitchBeanNodeElement.EXPRESSION, str);
+                }
+            }
+        }
+    }
+
+    public static SwitchBeanNodeElement parseElement(String str) {
+        SwitchBeanNodeElement e = new SwitchBeanNodeElement();
+        int n = str.lastIndexOf("}");
+        if (n > 0) {
+            str = str.substring(0, n);
+            String[] values = str.split("case");
+            parseExpression(values[0], e);
+            for (int i = 1; i < values.length; i++) {
+                String string = values[i];
+                if (string != null && string.trim().length() > 0) {
+                    parseLabel("case " + string, e);
+                }
+            }
+        }
+        return e;
+    }
+
+    public static void main(String[] args) {
+        SwitchBeanNodeElement e = new SwitchBeanNodeElement();
+        String str = " switch(a){"
+                + "case 1:" + "\n"
+                + " if(true){aaa}else{bbb}" + "\n"
+                + "case 2:" + "" + "int b;" + "\n" + "}";
+        System.out.println(e.parseElement(str));
     }
 }

@@ -19,8 +19,6 @@ public interface BeanNodeElement extends NodeElement {
 
     public void loadEncoderDelegate(Encoder encoder);
 
-    public BeanNodeElement parseElement(String str);
-
     public void addPropertyChangeListener(PropertyChangeListener listener);
 
     public void removePropertyChangeListener(PropertyChangeListener listener);

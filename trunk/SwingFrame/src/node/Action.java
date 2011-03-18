@@ -17,6 +17,20 @@ public enum Action {
         this.name = str;
     }
 
+    public static Action parseAction(String str) {
+        if (str.equals("getProperty")) {
+            return GETPROPERTY;
+        } else if (str.equals("click")) {
+            return CLICK;
+        } else if (str.equals("setValue")) {
+            return SETVALUE;
+        } else if (str.equals("setProperty")) {
+            return SETPROPERTY;
+        } else {
+            return SELECT;
+        }
+    }
+
     @Override
     public String toString() {
         return name;

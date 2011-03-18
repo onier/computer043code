@@ -23,6 +23,7 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
@@ -31,7 +32,9 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
+import node.BeanNodeElementUtils;
 import org.openide.util.Exceptions;
+import shape.BeanNodeElement;
 
 /**
  *
@@ -199,6 +202,12 @@ public class EditPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        scene.removeAll();
+        ArrayList<BeanNodeElement> list = BeanNodeElementUtils.parse(area.getText());
+        if (list != null) {
+            scene.addElements(list);
+            scene.invokeLayout();
+        }
         this.jToolBar2.setVisible(false);
         this.chartToolBar.setVisible(true);
         jToggleButton1.setSelected(false);

@@ -7,6 +7,8 @@ package node;
 import java.beans.DefaultPersistenceDelegate;
 import java.beans.Encoder;
 import java.beans.Expression;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
@@ -119,9 +121,9 @@ public class GeneralBeanNodeElement extends AbstractBeanNodeElement {
 //    }
     @Override
     public String toString() {
-        String str = "ar." + getBeanValue().get("Window").toString() + " (\"" + getBeanValue().get("Window.Parameter").toString() + " \").";
+        String str = "ar." + getBeanValue().get("Window").toString() + " (\"" + getBeanValue().get("Window.Parameter").toString() + "\").";
         str = str + getBeanValue().get("Action").toString();
-        str = str + " (\"" + getBeanValue().get("Action.Parameter1").toString() + " \"," + getBeanValue().get("Action.Parameter2").toString() + " \"," + getBeanValue().get("Action.Parameter3").toString() + " \"" + ");";
+        str = str + " (\"" + getBeanValue().get("Action.Parameter1").toString() + "\"," + " \"" + getBeanValue().get("Action.Parameter2").toString() + "\"," + " \"" + getBeanValue().get("Action.Parameter3").toString() + "\"" + ");";
         return str + "\n";
     }
 
@@ -138,5 +140,70 @@ public class GeneralBeanNodeElement extends AbstractBeanNodeElement {
                 return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
             }
         });
+    }
+
+//    private void parseAction(String str, GeneralBeanNodeElement e) {
+//    }
+//
+//    private void parseWindow(String str, GeneralBeanNodeElement e) {
+//        int n = str.indexOf("(");
+//        if (n > 0) {
+//            str = str.substring(0, n);
+//            e.beanValue.put("Window", Window.parseWindow(str));
+//            str = str.substring(n+1, str.length());
+//            str
+//        }
+//    }
+    public static GeneralBeanNodeElement parseElement(String str) {
+//        ar.window ("4 ").click ("1 ",2 ",3 ");
+        str = str.trim();
+        if (str.trim().endsWith(";")) {
+            str = str.substring(0, str.length() - 1);
+        }
+        String[] values = str.split("\\.");
+        GeneralBeanNodeElement e = new GeneralBeanNodeElement();
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] != null && values[i].length() > 0) {
+                list.add(values[i]);
+            }
+        }
+        if (list.size() == 3) {
+            str = list.get(1);
+            int n = str.indexOf("(");
+            if (n >= 0) {
+                str = str.substring(0, n);
+                e.beanValue.put("Window", Window.parseWindow(str.trim()));
+            }
+            n = list.get(1).indexOf("\"");
+            int m = list.get(1).lastIndexOf("\"");
+            if (n >= 0 && m >= 0) {
+                e.beanValue.put("Window.Parameter", list.get(1).substring(n + 1, m).trim());
+            }
+            str = list.get(2);
+            n = str.indexOf("(");
+            if (n >= 0) {
+                e.beanValue.put("Action", Action.parseAction(str.substring(0, n).trim()));
+                str = str.substring(n + 1, str.length() - 1);
+                values = str.split(",");
+                if (values.length == 3) {
+                    values[0] = values[0].trim();
+                    values[1] = values[1].trim();
+                    values[2] = values[2].trim();
+                    e.beanValue.put("Action.Parameter1", values[0].substring(1, values[0].length() - 1).trim());
+                    e.beanValue.put("Action.Parameter2", values[1].substring(1, values[1].length() - 1).trim());
+                    e.beanValue.put("Action.Parameter3", values[2].substring(1, values[2].length() - 1).trim());
+                }
+            }
+        }
+        return e;
+    }
+
+    public static void main(String[] args) {
+        String str = "ar.window (" + "\"4 \"" + ").click (" + "\"1\"" + ",\"2\"" + ",\"3\" " + ");";
+//        System.out.println(Arrays.toString(str.split("^\"*$\"")));
+        System.out.println(str);
+        GeneralBeanNodeElement e = new GeneralBeanNodeElement();
+        System.out.println(e.parseElement(str));
     }
 }

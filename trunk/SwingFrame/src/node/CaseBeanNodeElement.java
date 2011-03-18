@@ -10,7 +10,6 @@ import java.beans.Expression;
 import java.util.List;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
-import node.BeanNodeElementUtils.ParseElementException;
 import shape.AbstractBeanNodeElement;
 import shape.BeanNodeElement;
 import widget.WidgetUtils;
@@ -56,7 +55,7 @@ public class CaseBeanNodeElement extends AbstractBeanNodeElement {
         String str = "if(" + getBeanValue().get("case") + ")" + "{" + "\n";
         str = str + getBeanValue().get("trueBlock") + "\n";
         str = str + "}";
-        if (getBeanValue().get("falseBlock") != null && getBeanValue().get("falseBlock").toString().length() > 0) {
+        if (getBeanValue().get("falseBlock") != null && getBeanValue().get("falseBlock").toString().trim().length() > 0) {
             str = str + "else{" + "\n";
             str = str + getBeanValue().get("falseBlock") + "\n";
             str = str + "}";
@@ -84,44 +83,55 @@ public class CaseBeanNodeElement extends AbstractBeanNodeElement {
         });
     }
 
-    private void parseCase(String str, CaseBeanNodeElement e) {
+    private static void parseTrueBlock(String str, CaseBeanNodeElement e) {
+        int a = str.indexOf("{");
+        if (a >= 0) {
+            String c = str.substring(0, a);
+            int n = c.indexOf("(");
+            if (n >= 0) {
+                int m = c.lastIndexOf(")");
+                if (m >= 0) {
+                    e.beanValue.put("case", c.substring(n + 1, m).trim());
+                }
+            }
+            int b = str.lastIndexOf("}");
+            if (b >= 0) {
+                e.beanValue.put("trueBlock", str.substring(a + 1, b).trim());
+            }
+        }
     }
 
-    private void parseTrueBlock(String str, CaseBeanNodeElement e) {
+    private static void parseFalseBlock(String str, CaseBeanNodeElement e) {
+        int a = str.indexOf("{");
+        if (a >= 0) {
+            int b = str.lastIndexOf("}");
+            if (b >= 0) {
+                e.beanValue.put("falseBlock", str.substring(a + 1, b).trim());
+            }
+        }
     }
 
-    private void parseFalseBlock(String str, CaseBeanNodeElement e) {
-    }
-
-    public BeanNodeElement parseElement(String str) {
+    public static CaseBeanNodeElement parseElement(String str) {
         CaseBeanNodeElement e = new CaseBeanNodeElement();
-        int a = str.indexOf("if");
-        int b = str.indexOf("else");
-        if (a < 0 || a > str.length()) {
-            throw new ParseElementException(e, "if is not find");
+        int n = str.indexOf("_e_l_s_e");
+        if (n >= 0) {
+            parseTrueBlock(str.substring(0, n), e);
+            parseFalseBlock(str.substring(n + 8, str.length()), e);
+        } else {
+            parseTrueBlock(str.trim(), e);
         }
-        if(b>=0){
-
-        }
-//        int start = str.indexOf("if(");
-//        String str1 = str.substring(start + 3, str.length());
-//        int n = str1.indexOf(")");
-//        str1 = str1.substring(0, n);
-//        beanValue.put(CASE, str1);
-//        str1 = str1.substring(n + 1, str1.length());
-//        if (str1.startsWith("{")) {
-//            str1 = str1.substring(1, str1.length());
-//            n = str1.indexOf("}");
-//        }
         return e;
     }
 
     public static void main(String[] args) {
-        String str = "0if(true)";
-        int sr = str.indexOf("if");
-        String str1 = str.substring(sr + 3, str.length());
-        int st = str1.indexOf(")");
-        str1 = str1.substring(0, st);
-        System.out.println(str1);
+        String str = "if (true) {" + "\n"
+                + "if (false) {" + "\n"
+                + "System.out.println(a);" + "\n"
+                + "}" + "\n"
+                + "System.out.println(b);" + "\n"
+                + "} _e_l_s_e {" + "\n"
+                + "System.out.println(c);" + "\n";
+        CaseBeanNodeElement e = new CaseBeanNodeElement();
+        System.out.println(e.parseElement(str));
     }
 }

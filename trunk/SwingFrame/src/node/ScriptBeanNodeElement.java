@@ -38,7 +38,10 @@ public class ScriptBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String toString() {
-        return getBeanValue().get("parameter").toString() + "\n";
+        String str = "//ScriptBeanNodeStart" + "\n";
+        str = str + getBeanValue().get("parameter").toString() + "\n";
+        str = str + "//ScriptBeanNodeEnd" + "\n";
+        return str;
     }
 
     public BeanNodeElement getEditNode() {
@@ -54,5 +57,11 @@ public class ScriptBeanNodeElement extends AbstractBeanNodeElement {
                 return new Expression(test, test.getClass(), "new", new Object[]{test.getParent(), test.getChildren(), test.getBeanInfo(), test.getBeanValue(), test.getIcon(), test.getDisctription()});
             }
         });
+    }
+
+    public static ScriptBeanNodeElement parseElement(String str) {
+        ScriptBeanNodeElement e = new ScriptBeanNodeElement();
+        e.beanValue.put("parameter", str);
+        return e;
     }
 }

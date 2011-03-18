@@ -54,4 +54,19 @@ public class PrintBeanNodeElement extends AbstractBeanNodeElement {
             }
         });
     }
+
+    public static void main(String[] args) {
+        String str = " System.out.println(aaa);";
+        PrintBeanNodeElement e = new PrintBeanNodeElement();
+        System.out.println(e.parseElement(str));
+    }
+
+    public static PrintBeanNodeElement parseElement(String str) {
+        PrintBeanNodeElement e = new PrintBeanNodeElement();
+        int s = str.indexOf("(");
+        int n = str.lastIndexOf(")");
+        str = str.substring(s + 1, n);
+        e.beanValue.put("value", str);
+        return e;
+    }
 }
