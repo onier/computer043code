@@ -211,21 +211,21 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
             return;
         }
         for (int i = 0; i < l.size(); i++) {
-            e.parameters.put(l.get(1), ParameterType.parseType(l.get(0)));
+            e.parameters.put(l.get(1), ParameterType.parseType(l.get(0).trim()));
             if (l.size() > 2) {
                 if (l.size() > 3) {
-                    e.parameterValues.put(l.get(1), l.get(3));
+                    e.parameterValues.put(l.get(1).trim(), l.get(3).trim());
                 } else {
-                    e.parameterValues.put(l.get(1), "");
+                    e.parameterValues.put(l.get(1).trim(), "");
                 }
             }
         }
         Object obj = e.beanValue.get("Parameters");
         if (obj != null && obj instanceof ArrayList) {
-            ((ArrayList) obj).add(l.get(1));
+            ((ArrayList) obj).add(l.get(1).trim());
         } else {
             ArrayList<Object> list = new ArrayList<Object>();
-            list.add(l.get(1));
+            list.add(l.get(1).trim());
             e.beanValue.put("Parameters", list);
         }
     }

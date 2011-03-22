@@ -212,7 +212,7 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
         }
         return e;
     }
-
+    
     public static void main(String[] args) {
         SwitchBeanNodeElement e = new SwitchBeanNodeElement();
         String str = " switch(a){"

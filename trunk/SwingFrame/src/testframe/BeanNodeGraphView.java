@@ -442,7 +442,6 @@ public class BeanNodeGraphView extends GraphScene<BeanNodeElement, NodeConnectio
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    System.out.println("sdfsdfa");
                     component.requestFocusInWindow();
                 }
             });

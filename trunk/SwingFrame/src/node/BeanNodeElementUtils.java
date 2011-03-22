@@ -21,7 +21,7 @@ import shape.BeanNodeElement;
  */
 public class BeanNodeElementUtils {
 
-    public static String[] KEY_WORD = new String[]{"if", "do", "for", "//start", "//End", "ar", "System.out.println", "while", "switch"};
+    public static String[] KEY_WORD = new String[]{"if", "do", "for", "//start", "//End", "ar", "System.out.println", "while", "switch", "//ScriptBeanNodeStart", "//checkPoint"};
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
@@ -74,6 +74,7 @@ public class BeanNodeElementUtils {
             }
             code = code.substring(index, code.length());
             do {
+                boolean b = false;
                 code = source.substring(index, source.length());
                 if (code.trim().startsWith("for")) {
                     n = indexOf(code, ";");
@@ -84,6 +85,9 @@ public class BeanNodeElementUtils {
                     } else {
                         return result;
                     }
+                } else if (code.trim().startsWith("do")) {
+                    b = true;
+                    n = code.indexOf(";");
                 } else {
                     n = code.indexOf(";");
                 }
@@ -98,7 +102,7 @@ public class BeanNodeElementUtils {
                         index1 = brances.get(m).getIndex();
                         brotherIndex = brances.get(m).getBrotherIndex();
                         String While = source.substring(brotherIndex + 1, source.length());
-                        if (While.trim().startsWith("while")) {
+                        if (While.trim().startsWith("while") && b) {
                             int t = While.indexOf(";");
                             brotherIndex = brotherIndex + t + 1;
                         }
@@ -191,6 +195,12 @@ public class BeanNodeElementUtils {
                     case 8:
                         nodeList.add(SwitchBeanNodeElement.parseElement(code.trim()));
                         return;
+                    case 9:
+                        nodeList.add(ScriptBeanNodeElement.parseElement(code.trim()));
+                        return;
+                    case 10:
+                        nodeList.add(CheckPointBeanNodeElement.parseElement(code.trim()));
+                        return;
                     default:
                         nodeList.add(BlockBeanNodeElement.parseElement(code.trim()));
                         return;
@@ -271,9 +281,6 @@ public class BeanNodeElementUtils {
                 throw new RuntimeException("not init");
             }
             boolean b = brotherIndex < bc.brotherIndex && index > bc.index;
-            if (b) {
-                System.out.println("sdfasdf");
-            }
             return b;
         }
 

@@ -35,7 +35,7 @@ public class CheckPointBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public String toString() {
-        return getBeanValue().get("checkPoint").toString() + "\n";
+        return "//checkPoint" + "\n" + getBeanValue().get("checkPoint").toString() + "\n";
     }
 
     public BeanNodeElement getEditNode() {
@@ -54,6 +54,17 @@ public class CheckPointBeanNodeElement extends AbstractBeanNodeElement {
     }
 
     public static CheckPointBeanNodeElement parseElement(String str) {
-        return new CheckPointBeanNodeElement();
+        if (str.startsWith("//")) {
+            int n = str.indexOf("\n");
+            if (n >= 0) {
+                str = str.substring(n, str.length()).trim();
+            }
+        }
+        if (!str.endsWith(";")) {
+            str = str + ";";
+        }
+        CheckPointBeanNodeElement e = new CheckPointBeanNodeElement();
+        e.beanValue.put("checkPoint", str);
+        return e;
     }
 }
