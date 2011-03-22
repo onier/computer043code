@@ -125,6 +125,7 @@ public class EditPanel extends javax.swing.JPanel {
         });
         jToolBar1.add(jToggleButton2);
 
+        chartToolBar.setBorder(null);
         chartToolBar.setFloatable(false);
         chartToolBar.setRollover(true);
 
@@ -161,6 +162,7 @@ public class EditPanel extends javax.swing.JPanel {
 
         jToolBar1.add(chartToolBar);
 
+        jToolBar2.setBorder(null);
         jToolBar2.setFloatable(false);
         jToolBar2.setRollover(true);
 

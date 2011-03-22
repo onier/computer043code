@@ -77,7 +77,7 @@ public class DoWhileBeanNodeElement extends AbstractBeanNodeElement {
         if (n >= 0) {
             int m = str.lastIndexOf("}");
             e.beanValue.put("block", str.substring(n + 1, m).trim());
-            n = str.indexOf("while");
+            n = str.lastIndexOf("while");
             if (n >= 0) {
                 str = str.substring(n + 5, str.length());
                 if (str.length() > 2) {

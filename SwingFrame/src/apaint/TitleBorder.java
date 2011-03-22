@@ -72,7 +72,6 @@ public class TitleBorder extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new  TitlePane();
@@ -80,13 +79,12 @@ public class TitleBorder extends javax.swing.JPanel {
         setName("Form"); // NOI18N
         setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("宋体", 1, 18));
         jLabel1.setForeground(new java.awt.Color(0, 255, 102));
         jLabel1.setText(org.openide.util.NbBundle.getMessage(TitleBorder.class, "TitleBorder.jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
         add(jLabel1, java.awt.BorderLayout.WEST);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setName("jPanel1"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -97,7 +95,7 @@ public class TitleBorder extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
+            .addGap(0, 29, Short.MAX_VALUE)
         );
 
         add(jPanel1, java.awt.BorderLayout.EAST);

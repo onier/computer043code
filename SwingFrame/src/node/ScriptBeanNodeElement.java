@@ -40,7 +40,6 @@ public class ScriptBeanNodeElement extends AbstractBeanNodeElement {
     public String toString() {
         String str = "//ScriptBeanNodeStart" + "\n";
         str = str + getBeanValue().get("parameter").toString() + "\n";
-        str = str + "//ScriptBeanNodeEnd" + "\n";
         return str;
     }
 
@@ -61,6 +60,13 @@ public class ScriptBeanNodeElement extends AbstractBeanNodeElement {
 
     public static ScriptBeanNodeElement parseElement(String str) {
         ScriptBeanNodeElement e = new ScriptBeanNodeElement();
+        if (!str.endsWith(";")) {
+            str = str + ";";
+        }
+        if (str.startsWith("//")) {
+            int n = str.indexOf("\n");
+            str = str.substring(n, str.length()).trim();
+        }
         e.beanValue.put("parameter", str);
         return e;
     }
