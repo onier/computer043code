@@ -4,25 +4,28 @@
  */
 package bean;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.FactoryBean;
-import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.BeanDefinitionVisitor;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.util.StringValueResolver;
 
 /**
  *
  * @author admin
  */
-public class Bean implements DisposableBean, InitializingBean, FactoryBean, BeanFactoryAware, BeanNameAware {
+public class Bean implements BeanFactoryPostProcessor /*implements DisposableBean,BeanFactoryPostProcessor, InitializingBean, FactoryBean, BeanFactoryAware, BeanNameAware */ {
 
     private Bean bean1;
     private Bean bean2;
     private String name = "green";
     private String age = "10";
     private String sex = "123";
+    private HashMap<String, String> map;
 
     public static Bean createBeans() {
         return new Bean();
@@ -130,5 +133,36 @@ public class Bean implements DisposableBean, InitializingBean, FactoryBean, Bean
 
     public boolean isSingleton() {
         return false;
+    }
+
+    /**
+     * @return the map
+     */
+    public Map<String, String> getMap() {
+        return map;
+    }
+
+    /**
+     * @param map the map to set
+     */
+    public void setMap(HashMap<String, String> map) {
+        this.map = map;
+    }
+
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory clbf) throws BeansException {
+        String[] names = clbf.getBeanDefinitionNames();
+        for (int i = 0; i < names.length; i++) {
+            String string = names[i];
+            BeanDefinition beanDefinition = clbf.getBeanDefinition(string);
+            StringValueResolver valueResover = new StringValueResolver() {
+
+                public String resolveStringValue(String strVal) {
+                    System.out.println(strVal);
+                    return strVal;
+                }
+            };
+            BeanDefinitionVisitor visitor = new BeanDefinitionVisitor(valueResover);
+            visitor.visitBeanDefinition(beanDefinition);
+        }
     }
 }

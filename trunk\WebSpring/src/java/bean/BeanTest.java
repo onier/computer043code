@@ -34,7 +34,7 @@ public class BeanTest {
         Bean bean = (Bean) beanFactory.getBean("bean");
         System.out.println(bean);
         bean = (Bean) beanFactory.getBean("bean1");
-        System.out.println(bean);
+//        System.out.println(bean.getMap().get("abc"));
         bean = (Bean) beanFactory.getBean("bean2");
         System.out.println(bean);
     }

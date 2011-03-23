@@ -5,10 +5,11 @@
 package bean;
 
 import java.io.IOException;
-import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.FileSystemResource;
 
 /**
  *
@@ -17,13 +18,14 @@ import org.springframework.core.io.ClassPathResource;
 public class BeanDemo {
 
     public static void main(String[] args) throws IOException {
-        GenericApplicationContext ctx = new GenericApplicationContext();
-        XmlBeanDefinitionReader xmlReader = new XmlBeanDefinitionReader(ctx);
-        ClassPathResource path = new ClassPathResource("applicationContext.xml");
-        xmlReader.loadBeanDefinitions(path);
-        PropertiesBeanDefinitionReader propReader = new PropertiesBeanDefinitionReader(ctx);
-        propReader.loadBeanDefinitions(new ClassPathResource("web/WEB-INF/beaninfo.properties"));
-        ctx.refresh();
+        XmlBeanFactory ctx = new XmlBeanFactory(new FileSystemResource("web/WEB-INF/applicationContext.xml"));
+        PropertyPlaceholderConfigurer configuere = new PropertyPlaceholderConfigurer();
+        configuere.setLocation(new FileSystemResource("web/WEB-INF/beaninfo.properties"));
+        configuere.postProcessBeanFactory(ctx);
+//        ctx.refresh();
         System.out.println(ctx.getBean("bean2"));
+        ApplicationContext appContext = new ClassPathXmlApplicationContext("classpath:bean/applicationContext.xml");
+        Bean bean = (Bean) appContext.getBean("bean2");
+        System.out.println(bean);
     }
 }

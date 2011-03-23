@@ -29,9 +29,13 @@
         <property name="name" value="tom"></property>
         <property name="age"  value="10" > </property>
     </bean>
+    <bean   id="propertyConfigurer"
+            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+            p:location="web/WEB-INF/beaninfo.properties">
+    </bean>
     <bean id = "bean2" class="bean.Bean">
-        <property name="name" value="${beaninfo.name}"></property>
-        <property name="age" value="${beaninfo.age}"></property>
-        <property name="sex" value="${beaninfo.sex}"></property>
+        <property name="name" ><value>${name}</value></property>
+        <property name="age" ><value>${age}</value></property>
+        <property name="sex" ><value>${sex}</value></property>
     </bean>
 </beans>
