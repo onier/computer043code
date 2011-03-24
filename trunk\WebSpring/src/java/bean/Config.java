@@ -22,8 +22,7 @@ public class Config {
 
         // 如果要在BeanFactory中使用，bean factory post-processor必须手动运行:
         PropertyPlaceholderConfigurer cfg = new PropertyPlaceholderConfigurer();
-        cfg.setLocation(new FileSystemResource(
-                "web/WEB-INF/jdbc.properties"));
+        cfg.setLocation(new FileSystemResource("web/WEB-INF/jdbc.properties"));
         cfg.postProcessBeanFactory(factory);
 
         DriverManagerDataSource dataSource = (DriverManagerDataSource) factory.getBean("dataSource");
@@ -31,7 +30,7 @@ public class Config {
 
         // 注意，ApplicationContext能够自动辨认和应用在其上部署的实现了BeanFactoryPostProcessor的bean。
         //这就意味着，当使用ApplicationContext的时候应用PropertyPlaceholderConfigurer会非常的方便。
-               // 由于这个原因，建议想要使用这个或者其他bean
+        // 由于这个原因，建议想要使用这个或者其他bean
         // factory postprocessor的用户使用ApplicationContext代替BeanFactroy。
         ApplicationContext context = new FileSystemXmlApplicationContext("web/WEB-INF/conf.xml");
         DriverManagerDataSource dataSource2 = (DriverManagerDataSource) context.getBean("dataSource");

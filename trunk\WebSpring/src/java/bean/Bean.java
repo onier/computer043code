@@ -4,8 +4,9 @@
  */
 package bean;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -25,7 +26,12 @@ public class Bean implements BeanFactoryPostProcessor /*implements DisposableBea
     private String name = "green";
     private String age = "10";
     private String sex = "123";
-    private HashMap<String, String> map;
+    private HashMap<String, BeanContent> map;
+    private ArrayList<BeanContent> dataList;
+    private Properties property;
+
+    public Bean() {
+    }
 
     public static Bean createBeans() {
         return new Bean();
@@ -138,15 +144,8 @@ public class Bean implements BeanFactoryPostProcessor /*implements DisposableBea
     /**
      * @return the map
      */
-    public Map<String, String> getMap() {
+    public HashMap<String, BeanContent> getMap() {
         return map;
-    }
-
-    /**
-     * @param map the map to set
-     */
-    public void setMap(HashMap<String, String> map) {
-        this.map = map;
     }
 
     public void postProcessBeanFactory(ConfigurableListableBeanFactory clbf) throws BeansException {
@@ -164,5 +163,40 @@ public class Bean implements BeanFactoryPostProcessor /*implements DisposableBea
             BeanDefinitionVisitor visitor = new BeanDefinitionVisitor(valueResover);
             visitor.visitBeanDefinition(beanDefinition);
         }
+    }
+
+    /**
+     * @param map the map to set
+     */
+    public void setMap(HashMap<String, BeanContent> map) {
+        this.map = map;
+    }
+
+    /**
+     * @return the dataList
+     */
+    public ArrayList<BeanContent> getDataList() {
+        return dataList;
+    }
+
+    /**
+     * @param dataList the dataList to set
+     */
+    public void setDataList(ArrayList<BeanContent> dataList) {
+        this.dataList = dataList;
+    }
+
+    /**
+     * @return the property
+     */
+    public Properties getProperty() {
+        return property;
+    }
+
+    /**
+     * @param property the property to set
+     */
+    public void setProperty(Properties property) {
+        this.property = property;
     }
 }

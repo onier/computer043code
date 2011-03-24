@@ -38,21 +38,11 @@
         <property name="age" ><value>${age}</value></property>
         <property name="sex" ><value>${sex}</value></property>
         <property name="dataList" >
-            <list>
-                <ref  bean="bean"></ref>
-                <value>yu</value>
-            </list>
-        </property>
-        <property name="map">
-            <map>
-                <entry key="1" value="a"></entry>
-            </map>
-        </property>
-        <property name="property">
-            <props>
-                <prop key="1">admin</prop>
-                <prop key="2">ghost</prop>
-            </props>
+            <value>
+                <list>
+                    <value>yu</value>
+                </list>
+            </value>
         </property>
     </bean>
 </beans>
