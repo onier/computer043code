@@ -12,10 +12,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String args[]) throws Exception {
-
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:/contextlistener/newSpringXMLConfig.xml");
         Thread.sleep(1000);
-
     }
 }
 
@@ -34,6 +32,9 @@ class HeartbeatTask extends TimerTask implements ApplicationEventPublisherAware 
 }
 
 class HeartbeatForwarder implements ApplicationListener {
+
+    public HeartbeatForwarder() {
+    }
 
     public void onApplicationEvent(ApplicationEvent event) {
         if (event instanceof HeartbeatEvent) {
