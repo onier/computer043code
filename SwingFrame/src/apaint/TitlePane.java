@@ -5,6 +5,7 @@
 package apaint;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,6 +23,7 @@ import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
@@ -140,9 +142,16 @@ public class TitlePane extends JPanel {
 
     protected JPopupMenu createPoupMenu() {
         JPopupMenu menu = new JPopupMenu();
-        menu.add("file");
-        menu.add("edit");
-        menu.add("about");
+        JMenuItem item = new JMenuItem("file");
+        menu.add(item);
+        item.setPreferredSize(new Dimension(100, 20));
+        item = new JMenuItem("eidt");
+        item.setPreferredSize(new Dimension(100, 20));
+        menu.add(item);
+        item = new JMenuItem("about");
+        item.setPreferredSize(new Dimension(100, 20));
+        menu.add(item);
+        item.setPreferredSize(new Dimension(100, 20));
         return menu;
     }
 

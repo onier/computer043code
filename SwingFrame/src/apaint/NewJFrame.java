@@ -10,12 +10,16 @@
  */
 package apaint;
 
+import com.sun.awt.AWTUtilities;
 import component.ColorTabbedPane;
 import component.EllipseButton;
 import component.JDropDownButton;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
+import java.awt.geom.RoundRectangle2D;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
@@ -64,6 +68,14 @@ public class NewJFrame extends javax.swing.JFrame {
 //        this.ellipseButton1.putClientProperty(ColorLookAndFeel.BUTTON_BORDER, Color.GREEN);
         this.setSize(800, 600);
         this.setLocationRelativeTo(null);
+        this.jPanel6.add(new TitleBorder(), BorderLayout.CENTER);
+        AWTUtilities.setWindowShape(this, new RoundRectangle2D.Float(0, 0, 800, 600, 15, 15));
+        this.addWindowStateListener(new WindowStateListener() {
+
+            public void windowStateChanged(WindowEvent e) {
+                AWTUtilities.setWindowShape(NewJFrame.this, new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 15, 15));
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -112,8 +124,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
-        titleBorder1 = new apaint.TitleBorder();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -153,7 +164,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jPanel1.setName("jPanel1"); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/end.PNG"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/apaint/1.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel1.setName("jLabel1"); // NOI18N
@@ -454,11 +465,9 @@ public class NewJFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        titleBorder1.setName("titleBorder1"); // NOI18N
-        getContentPane().add(titleBorder1, java.awt.BorderLayout.PAGE_START);
-
-        jMenuBar1.setName("jMenuBar1"); // NOI18N
-        setJMenuBar(jMenuBar1);
+        jPanel6.setName("jPanel6"); // NOI18N
+        jPanel6.setLayout(new java.awt.BorderLayout());
+        getContentPane().add(jPanel6, java.awt.BorderLayout.NORTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -502,12 +511,12 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
@@ -523,6 +532,5 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToolBar jToolBar1;
-    private apaint.TitleBorder titleBorder1;
     // End of variables declaration//GEN-END:variables
 }
