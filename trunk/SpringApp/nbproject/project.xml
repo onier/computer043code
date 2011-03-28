@@ -19,6 +19,8 @@
                 <config-file>src/methodbeforeadvice/newSpringXMLConfig.xml</config-file>
                 <config-file>src/traceinterceptor/context.xml</config-file>
                 <config-file>src/aspectjautoproxy/newSpringXMLConfig.xml</config-file>
+                <config-file>src/aop/context.xml</config-file>
+                <config-file>src/aspectjautoproxy/Config.xml</config-file>
             </config-files>
             <config-file-groups/>
         </spring-data>
