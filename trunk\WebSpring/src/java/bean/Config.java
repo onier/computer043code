@@ -34,6 +34,6 @@ public class Config {
         // factory postprocessor的用户使用ApplicationContext代替BeanFactroy。
         ApplicationContext context = new FileSystemXmlApplicationContext("web/WEB-INF/conf.xml");
         DriverManagerDataSource dataSource2 = (DriverManagerDataSource) context.getBean("dataSource");
-        System.out.println(dataSource2.getDriverClassName());
+        System.out.println(dataSource2.getPassword());
     }
 }
