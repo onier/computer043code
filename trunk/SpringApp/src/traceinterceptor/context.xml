@@ -21,15 +21,23 @@
        http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-        <property name="driverClassName" value="baisicdatasource.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:mem:."/>
-        <property name="username" value="sa"/>
-        <property name="password" value=""/>
+    <bean id="afterBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <bean class="traceinterceptor.MtBean">
+                <property name="firstName" value="BBB"/>
+            </bean>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <idref bean="traceInterceptor"/>
+            </list>
+        </property>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+    <bean id="traceInterceptor"
+          class="org.springframework.aop.interceptor.CustomizableTraceInterceptor">
+        <property name="enterMessage"
+                  value="Entered $[methodName] on $[targetClassShortName]"/>
     </bean>
 
-    <bean id="employeeDao" class="EmployeeDaoImpl">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
 </beans>

@@ -4,8 +4,6 @@
  */
 package baisicdatasource;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
