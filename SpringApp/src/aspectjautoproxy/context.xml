@@ -21,15 +21,11 @@
        http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-        <property name="driverClassName" value="baisicdatasource.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:mem:."/>
-        <property name="username" value="sa"/>
-        <property name="password" value=""/>
+    <bean id="test" class="aspectjautoproxy.TestBean2">
+        <property name="simpleBean" ref="simple"/>
     </bean>
-
-    <bean id="employeeDao" class="EmployeeDaoImpl">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
+    <bean id="simple" class="aspectjautoproxy.SimpleBean"/>
+    <bean class="aspectjautoproxy.Main"/>
+    <aop:aspectj-autoproxy/>
+    
 </beans>

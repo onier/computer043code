@@ -15,6 +15,10 @@
             <config-files>
                 <config-file>src/contextlistener/newSpringXMLConfig.xml</config-file>
                 <config-file>src/baisicdatasource/newSpringXMLConfig.xml</config-file>
+                <config-file>src/aop/Config.xml</config-file>
+                <config-file>src/methodbeforeadvice/newSpringXMLConfig.xml</config-file>
+                <config-file>src/traceinterceptor/context.xml</config-file>
+                <config-file>src/aspectjautoproxy/newSpringXMLConfig.xml</config-file>
             </config-files>
             <config-file-groups/>
         </spring-data>
