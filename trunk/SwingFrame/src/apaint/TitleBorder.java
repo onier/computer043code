@@ -60,7 +60,12 @@ public class TitleBorder extends javax.swing.JPanel {
             Window window = SwingUtilities.getWindowAncestor(TitleBorder.this);
             Point p = window.getLocation();
             p.translate(e.getX() - x, e.getY() - y);
-            window.setLocation(p);
+            if (window instanceof Frame) {
+                Frame f = (Frame) window;
+                if (f.getExtendedState() != Frame.MAXIMIZED_BOTH) {
+                    window.setLocation(p);
+                }
+            }
         }
     }
 
@@ -81,7 +86,7 @@ public class TitleBorder extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("宋体", 1, 18));
         jLabel1.setForeground(new java.awt.Color(0, 255, 102));
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(TitleBorder.class, "TitleBorder.jLabel1.text")); // NOI18N
+        jLabel1.setText("Swing Demo");
         jLabel1.setName("jLabel1"); // NOI18N
         add(jLabel1, java.awt.BorderLayout.WEST);
 

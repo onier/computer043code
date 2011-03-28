@@ -61,6 +61,9 @@ public class ColorLookAndFeel extends BasicLookAndFeel {
                     "ScrollPaneUI", "apaint.ColorScrollPaneUI",
                     "SplitPaneUI", "apaint.ColorSplitPaneUI",
                     "RootPaneU", "apaint.ColorRootPaneUI",
+                    //                    "LabelUI", "apaint.ColorLabelUI",
+                    "MenuItemUI", "apaint.ColorMenuItemUI",
+                    "ToolBarUI", "apaint.ColorToolBarUI",
                     "PanelUI", "apaint.ColorPanelUI",});
     }
 
