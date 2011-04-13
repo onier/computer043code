@@ -174,7 +174,7 @@ public class ClassLoaderUtils {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(3);
-        frame.setContentPane(new JList(serachClass("ClassFinder")));
+        frame.setContentPane(new JList(serachClass("List")));
         frame.setVisible(true);
     }
 
