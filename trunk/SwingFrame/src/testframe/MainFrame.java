@@ -5,6 +5,7 @@
 package testframe;
 
 import java.awt.BorderLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -17,8 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import org.jdesktop.swingx.JXMultiSplitPane;
 import org.jdesktop.swingx.MultiSplitLayout;
+import org.openide.util.Exceptions;
 import tablerenderer.TableCellEditorFactory;
 import tablerenderer.TableCellRendererFactory;
 
@@ -29,6 +33,24 @@ import tablerenderer.TableCellRendererFactory;
 public class MainFrame extends JFrame {
 
     public static void main(String[] args) {
+        try {
+            //        jButton2.setUI(new ColorButtonUI());
+            //        jButton4.setUI(new ColorButtonUI());
+            //        jButton5.setUI(new ColorButtonUI());
+            //        this.jInternalFrame1.setUI(new BasicInternalFrameUI(jInternalFrame1));
+//            UIManager.setLookAndFeel("org.fife.plaf.Office2003.Office2003LookAndFeel");
+            UIManager.setLookAndFeel("de.hillenbrand.swing.plaf.threeD.ThreeDLookAndFeel");
+        } catch (ClassNotFoundException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (InstantiationException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (IllegalAccessException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+        UIManager.put("TabbedPane.contentBorderInsets", new Insets(0, 2, 1, 2));
+        UIManager.put("TabbedPane.tabInsets", new Insets(2, 2, 3, 0));
 //        ToolTipManager.sharedInstance().setDismissDelay(250);
 //        ToolTipManager.sharedInstance().setInitialDelay(250);
 //        ToolTipManager.sharedInstance().setReshowDelay(250);
