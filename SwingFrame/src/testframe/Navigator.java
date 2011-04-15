@@ -84,6 +84,7 @@ public class Navigator extends javax.swing.JPanel {
                 super.clearSelection();
             }
         };
+        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -107,6 +108,9 @@ public class Navigator extends javax.swing.JPanel {
         jScrollPane3.setViewportView(jXTree1);
 
         jTabbedPane1.addTab("tab3", jScrollPane3);
+
+        jXDatePicker1.setName("jXDatePicker1"); // NOI18N
+        jTabbedPane1.addTab("tab3", jXDatePicker1);
 
         add(jTabbedPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -132,6 +136,7 @@ public class Navigator extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private org.jdesktop.swingx.JXTree jXTree1;
     private org.jdesktop.swingx.JXTreeTable jXTreeTable1;
     // End of variables declaration//GEN-END:variables
