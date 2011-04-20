@@ -42,6 +42,7 @@ public class NewJFrame extends javax.swing.JFrame {
             //        jButton5.setUI(new ColorButtonUI());
             //        this.jInternalFrame1.setUI(new BasicInternalFrameUI(jInternalFrame1));
             UIManager.setLookAndFeel("apaint.ColorLookAndFeel");
+//            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException ex) {
             Exceptions.printStackTrace(ex);
         } catch (InstantiationException ex) {
@@ -127,6 +128,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Swing Demo");
         setUndecorated(true);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 10, 10));
