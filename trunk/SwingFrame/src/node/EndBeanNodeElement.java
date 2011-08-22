@@ -12,7 +12,7 @@ import java.util.TreeMap;
 import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
 import shape.BeanNodeElement;
-import widget.WidgetUtils;
+import testframe.IconUtils;
 
 /**
  *
@@ -34,7 +34,7 @@ public class EndBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public ImageIcon getIcon() {
-        return WidgetUtils.END_IMAGE;
+        return IconUtils.getEndIcon();
     }
 
     @Override

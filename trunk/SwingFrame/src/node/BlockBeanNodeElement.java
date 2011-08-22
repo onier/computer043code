@@ -12,7 +12,7 @@ import java.util.TreeMap;
 import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
 import shape.BeanNodeElement;
-import widget.WidgetUtils;
+import testframe.IconUtils;
 
 /**
  *
@@ -38,7 +38,7 @@ public class BlockBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public ImageIcon getIcon() {
-        return WidgetUtils.MESSAGE_IMAGE;
+        return IconUtils.getMessageIcon();
     }
 
     @Override

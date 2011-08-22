@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JScrollPane;
+import org.jvnet.lafwidget.layout.TransitionLayoutManager;
+import testframe.IconUtils;
 
 /**
  *
@@ -35,7 +37,7 @@ public class LabelTable extends javax.swing.JFrame {
         container.addPopupPanel(new DownComponentPanel(new ButtonHeaderRenderer("属性"), new TableComponentPanelRenderer()));
         this.jPanel2.setLayout(new BorderLayout());
         jPanel2.add(new JScrollPane(container));
-        AbstractAction action = new AbstractAction("Sample Action", ButtonHeaderRenderer.ICON_DOWN) {
+        AbstractAction action = new AbstractAction("Sample Action", IconUtils.getDownIcon()) {
 
             public void actionPerformed(ActionEvent e) {
                 System.out.println(e.getActionCommand());
@@ -47,6 +49,7 @@ public class LabelTable extends javax.swing.JFrame {
 //        container.addPopupPanel(new DownComponentPanel(new LabelHeaderRenderer("属性"), new DownComponentPanel(new LabelHeaderRenderer("属性"), new TableComponentPanelRenderer())));
         this.jPanel1.setLayout(new BorderLayout());
         jPanel1.add(new JScrollPane(container));
+//        TransitionLayoutManager.getInstance().track(this.getRootPane(), false, true);
     }
 
     /** This method is called from within the constructor to

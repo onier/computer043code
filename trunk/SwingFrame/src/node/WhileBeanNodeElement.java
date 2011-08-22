@@ -12,6 +12,7 @@ import java.util.TreeMap;
 import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
 import shape.BeanNodeElement;
+import testframe.IconUtils;
 import widget.WidgetUtils;
 
 /**
@@ -55,7 +56,7 @@ public class WhileBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public ImageIcon getIcon() {
-        return WidgetUtils.LOOP_IMAGE;
+        return IconUtils.getLoopIcon();
     }
 
     public WhileBeanNodeElement getEditNode() {
@@ -103,4 +104,3 @@ public class WhileBeanNodeElement extends AbstractBeanNodeElement {
         System.out.println(e.parseElement(str));
     }
 }
-

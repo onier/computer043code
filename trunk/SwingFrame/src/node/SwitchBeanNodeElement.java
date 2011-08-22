@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
 import shape.AbstractPropertiesModel;
 import shape.BeanNodeElement;
-import widget.WidgetUtils;
+import testframe.IconUtils;
 
 /**
  *
@@ -116,7 +116,7 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public ImageIcon getIcon() {
-        return WidgetUtils.LOOP_IMAGE;
+        return IconUtils.getLoopIcon();
     }
 
     @Override
@@ -212,7 +212,7 @@ public class SwitchBeanNodeElement extends AbstractBeanNodeElement {
         }
         return e;
     }
-    
+
     public static void main(String[] args) {
         SwitchBeanNodeElement e = new SwitchBeanNodeElement();
         String str = " switch(a){"

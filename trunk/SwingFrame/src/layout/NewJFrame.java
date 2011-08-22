@@ -12,16 +12,10 @@ package layout;
 
 import java.awt.BorderLayout;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.Icon;
-import shape.NodeElement;
+import testframe.IconUtils;
 
 /**
  *
@@ -41,7 +35,7 @@ public class NewJFrame extends javax.swing.JFrame {
         comtainer.addPopupPanel(new DownComponentPanel(new ButtonHeaderRenderer("open"), new ListComponentPanelRenderer("A", "B", "C", "D", "E", "F", "G", "H", "I")));
         comtainer.addPopupPanel(new DownComponentPanel(new ButtonHeaderRenderer("open"), new ListComponentPanelRenderer("A", "B", "C", "D", "E", "F", "G", "H", "I")));
         comtainer.addPopupPanel(new DownComponentPanel(new ButtonHeaderRenderer("open"), new ListComponentPanelRenderer("A", "B", "C", "D", "E", "F", "G", "H", "I")));
-        AbstractAction action = new AbstractAction("Sample Action", ButtonHeaderRenderer.ICON_DOWN) {
+        AbstractAction action = new AbstractAction("Sample Action", IconUtils.getDownIcon()) {
 
             public void actionPerformed(ActionEvent e) {
                 System.out.println(e.getActionCommand());
@@ -58,7 +52,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(comtainer, BorderLayout.CENTER);
         final JDownComponentPanelContainer comtainer1 = new JDownComponentPanelContainer();
-        action = new AbstractAction("Sample Action", ButtonHeaderRenderer.ICON_DOWN) {
+        action = new AbstractAction("Sample Action", IconUtils.getDownIcon()) {
 
             public void actionPerformed(ActionEvent e) {
                 System.out.println(e.getActionCommand());
