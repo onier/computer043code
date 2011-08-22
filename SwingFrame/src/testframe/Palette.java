@@ -61,7 +61,7 @@ public class Palette extends javax.swing.JPanel {
         initComponents();
 
         final JDownComponentPanelContainer comtainer1 = new JDownComponentPanelContainer();
-        AbstractAction action = new AbstractAction("Sample Action", ButtonHeaderRenderer.ICON_DOWN) {
+        AbstractAction action = new AbstractAction("Sample Action", IconUtils.getDownIcon()) {
 
             public void actionPerformed(ActionEvent e) {
                 System.out.println(e.getActionCommand());

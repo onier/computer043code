@@ -12,6 +12,7 @@ import java.util.TreeMap;
 import javax.swing.ImageIcon;
 import shape.AbstractBeanNodeElement;
 import shape.BeanNodeElement;
+import testframe.IconUtils;
 import widget.WidgetUtils;
 
 /**
@@ -42,7 +43,7 @@ public class ForBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public ImageIcon getIcon() {
-        return WidgetUtils.LOOP_IMAGE;
+        return IconUtils.getLoopIcon();
     }
 
     @Override

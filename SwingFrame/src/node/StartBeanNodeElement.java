@@ -20,7 +20,7 @@ import shape.AbstractBeanNodeElement;
 import shape.AbstractPropertiesModel;
 import shape.BeanNodeElement;
 import tablerenderer.ParameterType;
-import widget.WidgetUtils;
+import testframe.IconUtils;
 
 /**
  *
@@ -136,7 +136,7 @@ public class StartBeanNodeElement extends AbstractBeanNodeElement {
 
     @Override
     public ImageIcon getIcon() {
-        return WidgetUtils.START_IMAGE;
+        return IconUtils.getStartIcon();
     }
 
     @Override

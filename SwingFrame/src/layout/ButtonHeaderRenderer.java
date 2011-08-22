@@ -8,12 +8,14 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import layout.action.SelectChangeEvent;
 import layout.action.SelectChangeListener;
 import layout.action.SelectChangeSupport;
+import testframe.IconUtils;
 
 /**
  *
@@ -25,12 +27,11 @@ public class ButtonHeaderRenderer extends JToggleButton implements ComponentHead
     private Color background;
     private Color foreground;
     private int iconAlignment = SwingConstants.LEFT;
-    public static final Icon ICON_UP = new javax.swing.ImageIcon(Class.class.getResource("/layout/Up.gif"));
-    public static final Icon ICON_DOWN = new javax.swing.ImageIcon(Class.class.getResource("/layout/Down.gif"));
 
     public ButtonHeaderRenderer(String text) {
         super(text);
         setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        final ImageIcon ICON_UP = IconUtils.getUpIcon();
         setIcon(ICON_UP);
         background = this.getBackground(); //        this.setUI(new ButtonReadererUI());
         foreground = this.getForeground();
@@ -38,7 +39,7 @@ public class ButtonHeaderRenderer extends JToggleButton implements ComponentHead
 
             public void actionPerformed(ActionEvent e) {
                 if (ButtonHeaderRenderer.this.getIcon().equals(ICON_UP)) {
-                    ButtonHeaderRenderer.this.setIcon(ICON_DOWN);
+                    ButtonHeaderRenderer.this.setIcon(IconUtils.getDownIcon());
                 } else {
                     ButtonHeaderRenderer.this.setIcon(ICON_UP);
                 }

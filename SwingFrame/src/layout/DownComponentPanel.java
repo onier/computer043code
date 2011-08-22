@@ -52,11 +52,11 @@ public class DownComponentPanel extends JPanel implements ActionListener, Compon
         getHeaderRenderer().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-//                if (panelRenderer instanceof ShapeComponentListPanelRenderer) {
+                if (panelRenderer instanceof ShapeComponentListPanelRenderer) {
                 panelRenderer.getPopupPanelRenderer().setVisible(!panelRenderer.getPopupPanelRenderer().isVisible());
-//                } else {
-//                    setExpand(panelRenderer.getPopupPanelRenderer().isVisible());
-//                }
+                } else {
+                    setExpand(panelRenderer.getPopupPanelRenderer().isVisible());
+                }
             }
         });
     }

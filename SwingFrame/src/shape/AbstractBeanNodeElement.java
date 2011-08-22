@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
-import widget.WidgetUtils;
+import testframe.IconUtils;
 
 /**
  *
@@ -23,7 +23,7 @@ public abstract class AbstractBeanNodeElement extends AbstractBean implements Be
     protected List<BeanNodeElement> children = new ArrayList<BeanNodeElement>();
     protected TreeMap<String, Class> beanInfo = new TreeMap<String, Class>();
     protected TreeMap<String, Object> beanValue = new TreeMap<String, Object>();
-    protected ImageIcon icon = WidgetUtils.MESSAGE_IMAGE;
+    protected ImageIcon icon = IconUtils.getMessageIcon();
     protected String disctription = "";
 
     public AbstractBeanNodeElement(BeanNodeElement parent, List<BeanNodeElement> children, TreeMap<String, Class> beanInfo, TreeMap<String, Object> beanValue, ImageIcon icon, String disctription) {
