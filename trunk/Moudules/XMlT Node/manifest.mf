@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.netbeans.sample.xmlt.node
+OpenIDE-Module-Layer: org/netbeans/sample/xmlt/node/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/netbeans/sample/xmlt/node/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
