@@ -7,8 +7,7 @@ package apaint;
 import com.sun.awt.AWTUtilities;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -17,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JToolTip;
-import sun.awt.AWTAccessor;
 
 /**
  *
@@ -118,6 +116,7 @@ public class OpaqueFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        new OpaqueFrame().setVisible(true);
+//        new OpaqueFrame().setVisible(true);
+        System.out.println(Locale.getDefault());
     }
-}
+} 
