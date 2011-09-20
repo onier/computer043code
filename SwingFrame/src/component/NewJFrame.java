@@ -10,6 +10,9 @@
  */
 package component;
 
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 
 /**
@@ -26,6 +29,7 @@ public class NewJFrame extends javax.swing.JFrame {
         this.groupButton1.addButton(new JButton("1"));
         this.groupButton1.addButton(new JButton("1"));
         this.groupButton1.addButton(new JButton("1"));
+
     }
 
     /** This method is called from within the constructor to
