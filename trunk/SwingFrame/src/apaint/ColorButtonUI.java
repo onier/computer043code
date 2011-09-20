@@ -154,7 +154,7 @@ public class ColorButtonUI extends BasicButtonUI {
                     g2d.drawLine(c.getWidth() - 1, 0, c.getWidth() - 1, c.getHeight());
                 }
             } else if (layout != null && layout.equals(ColorLookAndFeel.BUTTON_LAYOUT_LEFT)) {
-                g2d.fill(new RoundRectangle2D.Float(0, 0, c.getWidth()-1, c.getHeight(), 10, 10));
+                g2d.fill(new RoundRectangle2D.Float(0, 0, c.getWidth() - 1, c.getHeight(), 10, 10));
                 g2d.setStroke(new BasicStroke(2));
                 g2d.setColor(color.brighter());
                 g2d.draw(new RoundRectangle2D.Float(-10, 0, c.getWidth() + 10, c.getHeight() - 1, 10, 10));
