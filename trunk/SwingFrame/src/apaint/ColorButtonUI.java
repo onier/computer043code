@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
@@ -33,16 +34,18 @@ import javax.swing.plaf.basic.BasicButtonUI;
  */
 public class ColorButtonUI extends BasicButtonUI {
 
-    public static final ColorButtonUI buttonUI = new ColorButtonUI();
+    public JButton button;
 
-    public ColorButtonUI() {
+    public ColorButtonUI(JComponent c) {
         super();
+        button = (JButton) c;
     }
 
     public static ComponentUI createUI(JComponent c) {
-        return buttonUI;
+        return new ColorButtonUI(c);
     }
 
+    @Override
     public void installUI(final JComponent c) {
         super.installUI(c);
         c.addPropertyChangeListener("mouseIn", new PropertyChangeListener() {
@@ -55,11 +58,13 @@ public class ColorButtonUI extends BasicButtonUI {
         c.setOpaque(false);
     }
 
+    @Override
     public void installDefaults(AbstractButton button) {
         super.installDefaults(button);
         button.setRolloverEnabled(true);
     }
 
+    @Override
     public void uninstallDefaults(AbstractButton button) {
         super.uninstallDefaults(button);
         button.setRolloverEnabled(false);
@@ -92,10 +97,12 @@ public class ColorButtonUI extends BasicButtonUI {
         }
     }
 
+    @Override
     protected BasicButtonListener createButtonListener(final AbstractButton button) {
         return new ButtonListener(button);
     }
 
+    @Override
     public void update(Graphics g, JComponent c) {
         AbstractButton button = (AbstractButton) c;
         if ((c.getBackground() instanceof UIResource) && button.isContentAreaFilled() && c.isEnabled()) {

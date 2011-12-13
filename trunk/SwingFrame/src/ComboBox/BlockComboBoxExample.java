@@ -9,8 +9,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.plaf.metal.*;
-import javax.swing.plaf.basic.*;
 
 /**
  * @version 1.0 12/25/98

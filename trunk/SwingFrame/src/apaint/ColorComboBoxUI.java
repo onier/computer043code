@@ -4,6 +4,7 @@
  */
 package apaint;
 
+import apaint.ColorListUI.Renderer;
 import component.ColorArrowButton;
 import java.awt.Color;
 import java.awt.Component;
@@ -16,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -34,13 +36,15 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
 //    protected ColorCellRendererPane currentValuePane = new ColorCellRendererPane();
     private Hanlder hanlder = new Hanlder();
     private boolean rollover = false, armed = false;
+    private Renderer renderer = new Renderer();
 
     public static ComponentUI createUI(JComponent c) {
         return new ColorComboBoxUI();
     }
 
-    public ColorComboBoxUI() {
-        currentValuePane = new ColorCellRendererPane();
+    @Override
+    protected ListCellRenderer createRenderer() {
+        return renderer;
     }
 
     @Override
@@ -139,7 +143,7 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
         super.installUI(c);
         comboBox.getEditor().getEditorComponent().addMouseMotionListener(hanlder);
         comboBox.getEditor().getEditorComponent().addMouseListener(hanlder);
-        comboBox.setBorder(null);
+        comboBox.setBorder(BorderFactory.createLineBorder(UIManager.getColor(ColorLookAndFeelProperties.TEXT_FOCUS_BORDER_COLOR_KEY)));
         comboBox.setOpaque(false);
     }
 
@@ -175,7 +179,6 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
             origColor = g.getColor();
             isPressed = getModel().isPressed();
             isEnabled = isEnabled();
-
             // If there's no room to draw arrow, bail
             if (h < 5 || w < 5) {
                 g.setColor(origColor);
@@ -187,19 +190,16 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
             if (isPressed) {
                 g.translate(1, 1);
             }
-
             // Draw the arrow
             size = Math.min((h - 4) / 3, (w - 4) / 3);
             size = Math.max(size, 2);
             paintTriangle(g, (w - size) / 2, (h - size) / 2,
                     size, direction, isEnabled);
-
             // Reset the Graphics back to it's original settings
             if (isPressed) {
                 g.translate(-1, -1);
             }
             g.setColor(origColor);
-
         }
     }
 

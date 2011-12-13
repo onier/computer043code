@@ -42,6 +42,18 @@ public class ColorLookAndFeel extends BasicLookAndFeel {
         table.put("progressBar.color", Color.GREEN);
         table.put("progressBar.bordercolor", Color.YELLOW);
         table.put(" ProgressBar.repaintInterval", 25);
+        table.put(ColorLookAndFeelProperties.TEXT_BORDER_COLOR_KEY, ColorLookAndFeelProperties.TEXT_BORDER_COLOR);
+        table.put(ColorLookAndFeelProperties.TEXT_BACKGROUND_COLOR_KEY, ColorLookAndFeelProperties.TEXT_BACKGROUND_COLOR);
+        table.put(ColorLookAndFeelProperties.TEXT_FOCUS_BORDER_COLOR_KEY, ColorLookAndFeelProperties.TEXT_FOCUS_BORDER_COLOR);
+        table.put(ColorLookAndFeelProperties.TEXT_FOCUS_BACKGROUND_COLOR_KEY, ColorLookAndFeelProperties.TEXT_FOCUS_BACKGROUND_COLOR);
+        table.put(ColorLookAndFeelProperties.TEXT_SLECT_COLOR_KEY, ColorLookAndFeelProperties.TEXT_SLECT_COLOR);
+
+        table.put(ColorLookAndFeelProperties.LABEL_BACKGROUND_KEY, ColorLookAndFeelProperties.LABEL_BACKGROUND);
+
+        table.put(ColorLookAndFeelProperties.RENDERER_COLOR1_KEY, ColorLookAndFeelProperties.RENDERER_COLOR1);
+        table.put(ColorLookAndFeelProperties.RENDERER_COLOR2_KEY, ColorLookAndFeelProperties.RENDERER_COLOR2);
+        table.put(ColorLookAndFeelProperties.RENDERER_COLOR3_KEY, ColorLookAndFeelProperties.RENDERER_COLOR3);
+        table.put(ColorLookAndFeelProperties.RENDERER_COLOR4_KEY, ColorLookAndFeelProperties.RENDERER_COLOR4);
     }
 
     @Override
@@ -60,8 +72,11 @@ public class ColorLookAndFeel extends BasicLookAndFeel {
                     "ComboBoxUI", "apaint.ColorComboBoxUI",
                     "ScrollPaneUI", "apaint.ColorScrollPaneUI",
                     "SplitPaneUI", "apaint.ColorSplitPaneUI",
+                    "TextFieldUI", "apaint.ColorTextFieldUI",
+                    "FormattedTextFieldUI", "apaint.ColorTextFieldUI",
                     "RootPaneU", "apaint.ColorRootPaneUI",
-                    //                    "LabelUI", "apaint.ColorLabelUI",
+                    "LabelUI", "apaint.ColorLabelUI",
+                    "ListUI", "apaint.ColorListUI",
                     "MenuItemUI", "apaint.ColorMenuItemUI",
                     "ToolBarUI", "apaint.ColorToolBarUI",
                     "PanelUI", "apaint.ColorPanelUI",});
