@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UnicodeFont>
+    <Head name="UI16" headBegin="0" headLength="256" dotMatrixSize="16" />
+    <Fonts>
+        <!-- Basic Latin, invisible chars 0 - 1F -->
+        <!-- IPA Extensions, Greek, Cyrillic -->
+        <!-- Monospaced -->
+        <Font beginChar="0000" endChar="001F" fontSize="13" halfWidth="true"
+            fontName="Monospaced"
+			verbose="true" verboseImage="true"/>
+        <!-- Basic Latin 20-7F -->
+        <!-- Courier New -->
+        <Font beginChar="0020" endChar="00A0" fontSize="14" halfWidth="true"
+            fontName="C:\WINDOWS\Fonts\COUR.TTF"
+			verbose="true" verboseImage="true"/>
+        <!-- Latin-1, Latin Extended-A, Latin Extended-B -->
+        <!-- IPA Extensions, Greek -->
+        <!-- Courier New  -->
+        <Font beginChar="00A1" endChar="024F" fontSize="13" halfWidth="true"
+            fontName="C:\WINDOWS\Fonts\COUR.TTF"
+			verbose="true" verboseImage="true"/>
+        <!-- IPA Extensions, Greek -->
+        <!-- Monospaced  -->
+        <Font beginChar="0250" endChar="03FF" fontSize="13" halfWidth="true"
+            fontName="Monospaced"
+			verbose="true" verboseImage="true"/>
+        <!-- Cyrillic, Cyrillic Supplement -->
+        <!-- Courier New  -->
+        <Font beginChar="0400" endChar="052f" fontSize="13" halfWidth="true"
+            fontName="C:\WINDOWS\Fonts\COUR.TTF"
+			verbose="true" verboseImage="true"/>
+        <!-- Symbols: General Punctuation -->
+        <!-- GNU Unifont -->
+        <Font beginChar="2010" endChar="206F" fontSize="14" halfWidth="true"
+            fontName="unifont-5.1.20080907.ttf"
+			verbose="true" verboseImage="true"/>
+        <!-- Symbols: Superscripts and Subscripts -->
+        <!-- Currency Symbols, Combining Marks and Symbols -->
+        <!-- GNU Unifont -->
+        <Font beginChar="2070" endChar="20FF" fontSize="13" halfWidth="true"
+            fontName="unifont-5.1.20080907.ttf"
+			verbose="true" verboseImage="true"/>
+        <!-- Symbols: Geometric Shapes -->
+        <!-- Monospaced -->
+        <Font beginChar="25a0" endChar="25FF" fontSize="13" halfWidth="false"
+            fontName="Monospaced"
+			verbose="true" verboseImage="true"/>
+        <!-- Symbols: Miscellaneous Symbols, Dingbats -->
+        <!-- Monospaced -->
+        <Font beginChar="2600" endChar="27BF" fontSize="13" halfWidth="false"
+            fontName="Monospaced"
+			verbose="true" verboseImage="true"/>
+        <!-- Ideographic Description Characters, CJKs -->
+        <!-- SongTi -->
+        <Font beginChar="2ff0" endChar="9fcf" fontSize="14" halfWidth="false"
+            fontName="C:\WINDOWS\Fonts\simsun.ttc"
+			verbose="true" verboseImage="true"/>
+        <!-- Halfwidth and Fullwidth Forms -->
+        <!-- SongTi -->
+        <Font beginChar="FF01" endChar="FFEF" fontSize="14" halfWidth="false"
+            fontName="C:\WINDOWS\Fonts\simsun.ttc"
+			verbose="true" verboseImage="true"/>
+    </Fonts>
+    <ConvertTables>
+        <!-- ISO8859_x to UNICODE -->
+        <ConvertTable name="CUIO" fileName="8859-x.bin" />
+        <!-- GBK to UNICODE -->
+        <ConvertTable name="CUGB" fileName="ByteToCharGBK_LE.bin" />
+        <!-- BIG5 to UNICODE -->
+        <ConvertTable name="CUB5" fileName="ByteToCharBIG5_LE.bin" />
+        <!-- JIS0201 to UNICODE -->
+        <ConvertTable name="CUJ1" fileName="ByteToCharJIS0201_LE.bin" />
+        <!-- JIS0208 to UNICODE -->
+        <ConvertTable name="CUJ8" fileName="ByteToCharJIS0208_LE.bin" />
+        <!-- UNICODE to ISO8859-15 -->
+        <ConvertTable name="NCIO" fileName="UnicodeToNativeISO8859_15_LE.bin" />
+    </ConvertTables>
+</UnicodeFont>

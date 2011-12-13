@@ -49,9 +49,6 @@ public class SteppedComboBoxExample extends JFrame {
     }
 }
 
-/**
- * @version 1.0 12/12/98
- */
 class SteppedComboBoxUI extends MetalComboBoxUI {
 
     protected ComboPopup createPopup() {
