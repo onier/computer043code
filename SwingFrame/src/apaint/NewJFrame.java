@@ -16,7 +16,10 @@ import component.EllipseButton;
 import component.JDropDownButton;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
 import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowStateListener;
 import java.awt.geom.RoundRectangle2D;
@@ -77,6 +80,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 AWTUtilities.setWindowShape(NewJFrame.this, new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 15, 15));
             }
         });
+        System.out.println(Toolkit.getDefaultToolkit().getScreenSize());
+        System.out.println(Toolkit.getDefaultToolkit().getScreenInsets(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration()));
+        setMaximizedBounds(ColorLookAndFeelProperties.getScreenSize());
         System.out.println(jTextField1.getUI().getClass());
         System.out.println(jComboBox3.getRenderer().getClass());
         System.out.println(jComboBox2.getRenderer().getClass());
@@ -132,6 +138,12 @@ public class NewJFrame extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jButton6 = new JDropDownButton(false);
+        jSplitPane2 = new javax.swing.JSplitPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jPanel7 = new javax.swing.JPanel();
+        jComboBox4 = new javax.swing.JComboBox();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jPanel8 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -447,12 +459,12 @@ public class NewJFrame extends javax.swing.JFrame {
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox3.setName("jComboBox3"); // NOI18N
         jComboBox3.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 jComboBox3PopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -522,6 +534,66 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab3", jPanel3);
 
+        jSplitPane2.setBorder(null);
+        jSplitPane2.setDividerLocation(300);
+        jSplitPane2.setContinuousLayout(true);
+        jSplitPane2.setName("jSplitPane2"); // NOI18N
+        jSplitPane2.setOneTouchExpandable(true);
+
+        jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane6.setName("jScrollPane6"); // NOI18N
+
+        jPanel7.setName("jPanel7"); // NOI18N
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setEnabled(false);
+        jComboBox4.setName("jComboBox4"); // NOI18N
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(647, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(756, Short.MAX_VALUE))
+        );
+
+        jScrollPane6.setViewportView(jPanel7);
+
+        jSplitPane2.setLeftComponent(jScrollPane6);
+
+        jScrollPane7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane7.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane7.setName("jScrollPane7"); // NOI18N
+
+        jPanel8.setName("jPanel8"); // NOI18N
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 566, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 590, Short.MAX_VALUE)
+        );
+
+        jScrollPane7.setViewportView(jPanel8);
+
+        jSplitPane2.setRightComponent(jScrollPane7);
+
+        jTabbedPane1.addTab("tab4", jSplitPane2);
+
         jPanel2.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -544,8 +616,8 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void jComboBox3PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox3PopupMenuWillBecomeVisible
-        System.out.println(jComboBox3.getRenderer());
-    }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeVisible
+
+        System.out.println(jComboBox3.getRenderer());     }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeVisible
 
     /**
      * @param args the command line arguments
@@ -577,6 +649,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
@@ -586,6 +659,8 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JRadioButton jRadioButton1;
@@ -594,7 +669,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

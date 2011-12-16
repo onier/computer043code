@@ -5,6 +5,11 @@
 package apaint;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 
 /**
  *
@@ -34,4 +39,13 @@ public class ColorLookAndFeelProperties {
     public static Color RENDERER_COLOR3 = new Color(255, 215, 110);
     public static String RENDERER_COLOR4_KEY = "rendererColor4";
     public static Color RENDERER_COLOR4 = new Color(255, 230, 161);
+    /**menu item*/
+    public static String MENU_ITEM_ICON_BackGround_KEY = "menuItemColor";
+    public static Color MENU_ITEM_ICON_BackGround = new Color(233, 238, 238);
+
+    public static Rectangle getScreenSize() {
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        Insets inset = Toolkit.getDefaultToolkit().getScreenInsets(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration());
+        return new Rectangle(inset.left, inset.top, size.width - inset.right, size.height - inset.bottom);
+    }
 }

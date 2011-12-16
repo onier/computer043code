@@ -54,6 +54,8 @@ public class ColorLookAndFeel extends BasicLookAndFeel {
         table.put(ColorLookAndFeelProperties.RENDERER_COLOR2_KEY, ColorLookAndFeelProperties.RENDERER_COLOR2);
         table.put(ColorLookAndFeelProperties.RENDERER_COLOR3_KEY, ColorLookAndFeelProperties.RENDERER_COLOR3);
         table.put(ColorLookAndFeelProperties.RENDERER_COLOR4_KEY, ColorLookAndFeelProperties.RENDERER_COLOR4);
+        
+        table.put(ColorLookAndFeelProperties.MENU_ITEM_ICON_BackGround_KEY, ColorLookAndFeelProperties.MENU_ITEM_ICON_BackGround);
     }
 
     @Override

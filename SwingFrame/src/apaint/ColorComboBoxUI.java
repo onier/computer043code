@@ -63,7 +63,7 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
         g.setRenderingHints(map);
         if (!comboBox.isEditable()) {
             Rectangle r = rectangleForCurrentValue();
-            paintCurrentValueBackground(g, r, hasFocus);
+//            paintCurrentValueBackground(g, r, hasFocus);
             paintCurrentValue(g, r, hasFocus);
         }
     }
@@ -83,22 +83,17 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
                     -1,
                     false,
                     false);
-            c.setBackground(UIManager.getColor("ComboBox.background"));
+//            c.setBackground(UIManager.getColor("ComboBox.background"));
         }
         c.setFont(comboBox.getFont());
-        if (hasFocus && !isPopupVisible(comboBox)) {
-            c.setForeground(listBox.getSelectionForeground());
-            c.setBackground(listBox.getSelectionBackground());
+        if (comboBox.isEnabled()) {
+//            c.setForeground(comboBox.getForeground());
+//            c.setBackground(comboBox.getBackground());
         } else {
-            if (comboBox.isEnabled()) {
-                c.setForeground(comboBox.getForeground());
-                c.setBackground(comboBox.getBackground());
-            } else {
-                c.setForeground(DefaultLookup.getColor(
-                        comboBox, this, "ComboBox.disabledForeground", null));
-                c.setBackground(DefaultLookup.getColor(
-                        comboBox, this, "ComboBox.disabledBackground", null));
-            }
+//            c.setForeground(DefaultLookup.getColor(
+//                    comboBox, this, "ComboBox.disabledForeground", null));
+//            c.setBackground(DefaultLookup.getColor(
+//                    comboBox, this, "ComboBox.disabledBackground", null));
         }
 
         boolean shouldValidate = false;
@@ -115,8 +110,8 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
 //        }
 
         currentValuePane.paintComponent(g, c, comboBox, x, y, w, h, shouldValidate);
-        g.setColor(Color.BLUE);
-        g.draw(new RoundRectangle2D.Float(0, 0, comboBox.getWidth() - 1, comboBox.getHeight() - 1, 10, 10));
+//        g.setColor(Color.BLUE);
+//        g.draw(new RoundRectangle2D.Float(0, 0, comboBox.getWidth() - 1, comboBox.getHeight() - 1, 10, 10));
     }
 
     public void paintCurrentValueBackground(Graphics2D g, Rectangle bounds, boolean hasFocus) {
@@ -126,7 +121,7 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
         } else {
             g.setColor(Color.GREEN);
         }
-        g.setColor(Color.BLUE);
+        g.setColor(Color.RED);
         g.draw(new RoundRectangle2D.Float(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10));
         g.setColor(t);
     }
@@ -143,8 +138,8 @@ public class ColorComboBoxUI extends BasicComboBoxUI {
         super.installUI(c);
         comboBox.getEditor().getEditorComponent().addMouseMotionListener(hanlder);
         comboBox.getEditor().getEditorComponent().addMouseListener(hanlder);
-        comboBox.setBorder(BorderFactory.createLineBorder(UIManager.getColor(ColorLookAndFeelProperties.TEXT_FOCUS_BORDER_COLOR_KEY)));
-        comboBox.setOpaque(false);
+        c.setBorder(BorderFactory.createLineBorder(UIManager.getColor(ColorLookAndFeelProperties.TEXT_FOCUS_BORDER_COLOR_KEY)));
+        c.setOpaque(false);
     }
 
     protected class ScrollButton extends ColorArrowButton {

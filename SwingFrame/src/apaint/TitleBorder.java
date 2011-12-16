@@ -22,7 +22,7 @@ import javax.swing.SwingUtilities;
  * @author admin
  */
 public class TitleBorder extends javax.swing.JPanel {
-
+    
     private int x, y;
     private MouseHandler handler = new MouseHandler();
 
@@ -32,15 +32,15 @@ public class TitleBorder extends javax.swing.JPanel {
         this.addMouseMotionListener(handler);
         this.addMouseListener(handler);
     }
-
+    
     private class MouseHandler extends MouseAdapter {
-
+        
         @Override
         public void mousePressed(MouseEvent e) {
             x = e.getX();
             y = e.getY();
         }
-
+        
         @Override
         public void mouseClicked(MouseEvent e) {
             if (e.getClickCount() > 1) {
@@ -54,7 +54,7 @@ public class TitleBorder extends javax.swing.JPanel {
                 }
             }
         }
-
+        
         @Override
         public void mouseDragged(MouseEvent e) {
             Window window = SwingUtilities.getWindowAncestor(TitleBorder.this);

@@ -143,6 +143,7 @@ public class TitlePane extends JPanel {
     protected JPopupMenu createPoupMenu() {
         JPopupMenu menu = new JPopupMenu();
         JMenuItem item = new JMenuItem("file");
+        item.setIcon(new javax.swing.ImageIcon(getClass().getResource("/apaint/1.png")));
         menu.add(item);
         item.setPreferredSize(new Dimension(100, 20));
         item = new JMenuItem("eidt");
