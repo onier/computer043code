@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuItemUI;
 
@@ -31,12 +32,22 @@ public class ColorMenuItemUI extends BasicMenuItemUI {
         c.setSize(c.getHeight(), 100);
     }
 
+    @Override
+    protected void paintText(Graphics g, JMenuItem menuItem, Rectangle textRect, String text) {
+        Graphics2D g2d = (Graphics2D) g;
+        g.translate(32, 0);
+        super.paintText(g, menuItem, textRect, text);
+        g.translate(-32, 0);
+    }
+
     protected void paintBackground(Graphics g, JMenuItem c, Color bgColor) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.WHITE);
         g2d.fill(new Rectangle(0, 0, c.getWidth(), c.getHeight()));
-        g2d.setPaint(new GradientPaint(0, 0, new Color(233, 238, 238), 0, 50, new Color(233, 238, 238), true));
-        g2d.fill(new Rectangle(0, 0, 50, c.getHeight()));
+        g2d.setColor(UIManager.getColor(ColorLookAndFeelProperties.MENU_ITEM_ICON_BackGround_KEY).darker());
+        g2d.draw(new Rectangle(0, 0, 32, c.getHeight()));
+        g2d.setPaint(new GradientPaint(0, 0, UIManager.getColor(ColorLookAndFeelProperties.MENU_ITEM_ICON_BackGround_KEY), 0, 32, UIManager.getColor(ColorLookAndFeelProperties.MENU_ITEM_ICON_BackGround_KEY), true));
+        g2d.fill(new Rectangle(0, 0, 32, c.getHeight()));
         g2d.setColor(Color.BLACK);
     }
 }
