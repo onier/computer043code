@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/en4you"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="En4You" />
+
+        <Button
+            android:id="@+id/AutoComplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AutoComplete" />
+
+        <Button
+            android:id="@+id/AutoCompleteSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AutoCompleteSize" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/CustomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CustomTextView" />
+
+</LinearLayout>

@@ -4,16 +4,14 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/inputEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </EditText>
-
-    <Button
-        android:id="@+id/abdefeadf"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Name of President" />
+
+    <AutoCompleteTextView
+        android:id="@+id/txtCountries"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
