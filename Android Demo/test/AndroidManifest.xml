@@ -21,6 +21,21 @@
         <activity android:name=".animationframe.LayoutAnimation"></activity>
         <activity android:name="AnimationActivity"></activity>
         <activity android:name=".animationframe.Animations"></activity>
+        <activity android:name=".ui.textview.AutoCompleteText"></activity>
+        <activity android:name=".ui.textview.TextViewActivity"></activity>
+        <activity android:name=".ui.textview.AutoCompleteSize"></activity>
+        <activity android:name=".ui.textview.CustomTextView"></activity>
+        <activity android:name=".graphics.Test"></activity>
+        <activity android:name=".graphics.DrawActivity"></activity>
+        <activity android:name=".event.ScrollTest"></activity>
+        <activity android:name=".ui.scrollview.ScrollView1"></activity>
+        <activity android:name=".ui.scrollview.ScrollViewActivity"></activity>
+        <activity android:name=".listactivity.List1">
+        </activity>
+        <activity android:name=".listactivity.ListActivityDemo"></activity>
+        <activity android:name=".listactivity.List2"></activity>
+        <activity android:name=".listactivity.DynamicDemo"></activity>
+        <activity android:name=".listactivity.List5"></activity>
     </application>
 
 </manifest>
