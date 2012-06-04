@@ -58,7 +58,9 @@ public class ExcelDemo {
 
             shapes.method("AddTextbox", new Object[]{5, 100, 210, 80, 10});  /*垂直Text*/
 
-            shapes.method("AddPicture", new Object[]{"C:/Documents and Settings/zhenhai.xu/My Documents/My Pictures/stiml_logo.png", -1, -1, 250, 250, 300, 300}); /*图片*/
+            shapes.method("AddOLEObject", new Object[]{null, "F:/SwingFrame/Estimate.xls", false, false, "",1,"Estimate",400,500,800,600});
+            
+            shapes.method("AddPicture", new Object[]{"C:/Documents and Settings/All Users/Documents/My Pictures/Sample Pictures/1262613Y910520-14436.jpg", -1, -1, 250, 250, 300, 300}); /*图片*/
             System.out.println("Hit [Enter] key to exit.");
             System.in.read();
             Object[] arglist3 = new Object[3];
