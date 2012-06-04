@@ -40,11 +40,13 @@ public class testWord {
             System.out.println("昞偺悢=" + table_count);
             for (int i = 0; i < table_count; i++) {
                 Object[] index = new Object[1];
-                index[0] = new Integer(i + 1);		 
+                index[0] = new Integer(i + 1);		// COM僐儗僋僔儑儞偼侾偐傜巒傑傞
                 IDispatch wdTable = (IDispatch) wdTables.method("Item", index);
                 System.out.println("" + i + "=" + wdTable);
+                // 堦墳丄昞偼庢傟傞偗傟偳丒丒丒
             }
 
+            // 僾儕儞僞偵弌椡
             //wdDocument.method("PrintOut", null);	// 摦嶌枹妋擣
 
             System.out.println("俁昩屻偵廔椆偟傑偡丅");

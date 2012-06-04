@@ -63,12 +63,13 @@ public class DownComponentPanel extends JPanel implements ActionListener, Compon
 
     public void setExpand(boolean expand) {
         JComponent com = panelRenderer.getPopupPanelRenderer();
-        if (com.isVisible()) {
-            Rectangle rect = com.getBounds();
-            panelRenderer.setAnimationSize(new Dimension(rect.width, rect.height));
-        }
-        animation.setExpand(expand);
-        animationTimer.start();
+        com.setVisible(!com.isVisible());
+//        if (com.isVisible()) {
+//            Rectangle rect = com.getBounds();
+//            panelRenderer.setAnimationSize(new Dimension(rect.width, rect.height));
+//        }
+//        animation.setExpand(expand);
+//        animationTimer.start();
     }
 
     public void actionPerformed(ActionEvent e) {
